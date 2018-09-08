@@ -4,6 +4,11 @@ Rails.application.routes.draw do
 
   root "products#index"
 
-  resources :thirtydays
-  
+  resources :thirtydays, only: [:index, :show] do
+    collection do
+      get :designers, to: "thirtydays#designers"
+      get :products, to: "thirtydays#products"
+    end
+  end
+
 end
