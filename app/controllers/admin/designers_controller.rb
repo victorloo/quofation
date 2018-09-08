@@ -1,4 +1,6 @@
 class Admin::DesignersController < ApplicationController
+  before_action :set_designer, only: [:show, :edit, :update]
+
   def index
     @designers = Designer.all
   end
@@ -19,12 +21,30 @@ class Admin::DesignersController < ApplicationController
   end
 
   def show
-    @designer = Designer.find(params[:id])
+    #原程式碼命名為set_designer
+  end
+
+  def edit
+    
+  end
+
+  def update
+    if @designer.update(designer_params)
+      flash[:notice] = "設計師修改成功"
+      redirect_to admin_designer_path(@designer)
+    else
+      flash.now[:alert] = "設計師修改失敗"
+      render :edit
+    end
   end
 
   private
 
   def designer_params
     params.require(:designer).permit(:name, :brandname, :description, :image)
+  end
+
+  def set_designer
+    @designer = Designer.find(params[:id])
   end
 end
