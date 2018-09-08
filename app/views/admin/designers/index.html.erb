@@ -1,1 +1,12 @@
 <h1>設計師後台</h1>
+<ul>
+  <% @designers.each do |designer| %>
+  <li>
+    <%= designer.image %>
+    <%= designer.name %>
+    <%= designer.brandname %>
+    <%= designer.description %>
+  </li>
+  <% end %>
+</ul>
+<%= link_to 'New Designer', new_admin_designer_path %>
