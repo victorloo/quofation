@@ -4,4 +4,8 @@ class ThirtydaysController < ApplicationController
     @products = Product.all.sample(3)
   end
   
+  def show
+    @product = Product.find(params[:id])
+  end
+  
 end

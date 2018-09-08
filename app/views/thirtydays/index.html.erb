@@ -37,7 +37,7 @@
         <img class="card-img-top" src="" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">
-            <%= product.name %>
+            <%= link_to "#{product.name}", thirtyday_path(product) %>
           </h5>
           <p class="card-text">
             <%= product.description %>
