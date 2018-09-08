@@ -18,6 +18,10 @@ class Admin::DesignersController < ApplicationController
     end    
   end
 
+  def show
+    @designer = Designer.find(params[:id])
+  end
+
   private
 
   def designer_params
