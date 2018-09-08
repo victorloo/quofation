@@ -1,5 +1,5 @@
 class Admin::DesignersController < ApplicationController
-  before_action :set_designer, only: [:show, :edit, :update]
+  before_action :set_designer, only: [:show, :edit, :update, :destroy]
 
   def index
     @designers = Designer.all
@@ -36,6 +36,12 @@ class Admin::DesignersController < ApplicationController
       flash.now[:alert] = "設計師修改失敗"
       render :edit
     end
+  end
+
+  def destroy
+    @designer.destroy
+    redirect_to admin_designers_path
+    flash[:alert] = "設計師已刪除"
   end
 
   private
