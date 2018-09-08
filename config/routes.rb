@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   #建立設計師館頁面
   resources :designers, only: [:index, :show]
 
-  
+  #建立後台設計師CRUD
+  namespace :admin do
+    resources :designers
+  end
 end
