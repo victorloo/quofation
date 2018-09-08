@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   root "products#index"
   #建立設計師館頁面
   resources :designers, only: [:index, :show]
+
+  
 end
