@@ -1,0 +1,20 @@
+<% if @designer.errors.any? %>
+  <ul>
+    <% @designer.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for [:admin, @designer] do |f| %>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :brandname, "BrandName" %>
+  <%= f.text_field :brandname %>
+
+  <%= f.label :description, "Description" %>
+  <%= f.text_area :description %>
+
+  <%= f.submit %>
+<% end %>
