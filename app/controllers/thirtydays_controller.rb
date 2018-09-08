@@ -1,0 +1,2 @@
+class ThirtydaysController < ApplicationController
+end
