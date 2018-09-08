@@ -1,3 +1,12 @@
 <p>This is Index#Product</p>
 
+<% @products.each do |product| %>
+    <div>
+      <%= image_tag product.image %>
+      <h3><%= link_to product.name, product_path(product) %></h3>
+      <p><%= product.category.name %><p>
+      <p><%= truncate(product.description, length: 80) %></p>
+    </div>
+<% end %>
 
+<%= paginate @products %>
