@@ -1,0 +1,16 @@
+<h1>設計師後台</h1>
+<ul>
+  <% @designers.each do |designer| %>
+  <li>
+    <%= designer.name %>
+    <%= designer.brandname %>
+    <%= designer.description %>
+    
+    <%= link_to 'Show', admin_designer_path(designer) %>
+    <%= link_to 'Edit', edit_admin_designer_path(designer) %>
+    <%= link_to 'Delete', admin_designer_path(designer), method: :delete, data: {confirm:"確定刪除嗎？"} %>
+  </li>
+  <% end %>
+</ul>
+<%= link_to 'New Designer', new_admin_designer_path %>
+<%= paginate @designers %>
