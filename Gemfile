@@ -10,8 +10,6 @@ gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-ge
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
-
-gem 'bootstrap', '~> 4.1', '>= 4.1.3'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -28,7 +26,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'kaminari'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -41,7 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Development for QuoFation
 gem 'devise', '~> 4.5'
 gem 'ffaker', '~> 2.10'
-
+gem 'bootstrap', '~> 4.1', '>= 4.1.3'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'carrierwave'
 gem 'kaminari'
