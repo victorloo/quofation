@@ -32,10 +32,13 @@ namespace :dev do
     Designer.destroy_all
 
     20.times do |i|
+      file = File.open("#{Rails.root}/public/images/designer#{i+1}.jpg")
+      
       Designer.create!(
         name: FFaker::Name.first_name,
         brandname: FFaker::Lorem.word,
-        description: FFaker::Lorem::sentence(10)
+        description: FFaker::Lorem::sentence(10),
+        image: file
         )
     end
     puts "have created fake designers"
