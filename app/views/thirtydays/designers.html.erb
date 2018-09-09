@@ -1,0 +1,12 @@
+<h1>Designers List</h1>
+<div>
+  <% @designers.each do |designer| %>
+    <ul>
+      <li><%= link_to "#{designer.username}", root_path %></li>
+    </ul>
+  <% end %>
+</div>
+<hr>
+<ul>
+  <li><%= link_to "Go Back To 30 Days Index", thirtydays_path %></li>
+</ul>

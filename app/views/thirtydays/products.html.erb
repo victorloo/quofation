@@ -1,0 +1,15 @@
+<h1>This is page Thirtydays#Products</h1>
+<div>
+  <% @products.each do |product| %>
+  <h3><%= link_to "#{product.name}", thirtyday_path(product) %></h3>
+  <ul>
+    <li><%= product.description %></li>
+  </ul>
+  <hr>
+  <% end %>
+</div>
+<ul>
+  <li>
+    <%= link_to "Go Back To 30 Days Index", thirtydays_path %>
+  </li>
+</ul>

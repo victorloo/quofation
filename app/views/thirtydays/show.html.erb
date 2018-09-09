@@ -1,0 +1,18 @@
+<h1>This is the page Thirtydays#Show</h1>
+<p>Show details</p>
+<ul>
+  <li>Name: <%= @product.name %></li>
+  <li>Description: <%= @product.description %></li>
+  <li>Price: <%= @product.price %></li>
+  <li>Thirtydays: <%= @product.thirtydays_status.to_s %></li>
+  <li>Designer: <%= @product.user.id %></li>
+</ul>
+<%= link_to "ADD TO CART", root_path, class:"btn btn-outline-primary" %>
+<br>
+<%= link_to "See Designer's works", root_path , class:"btn btn-outline-success" %>
+<br>
+<%= link_to "Products List", products_thirtydays_path, class:"btn btn-outline-warning" %>
+<br>
+<%= link_to "Designers List", designers_thirtydays_path, class:"btn btn-outline-dark" %>
+<br>
+<%= link_to "Go Back To 30 Days Index", thirtydays_path %>

@@ -5,8 +5,17 @@ namespace :dev do
         username: FFaker::Name.first_name,
         email: FFaker::Internet.email,
         password: 123456,
-        description: FFaker::Lorem.paragraph,
+        avatar: FFaker::Avatar.image,
         role: "designer"
+      )
+    end
+    10.times do |i|
+      User.create!(
+        username: FFaker::Name.first_name,
+        email: FFaker::Internet.email,
+        password: 123456,
+        avatar: FFaker::Avatar.image,
+        role: ""
       )
     end
     puts "have created fake users"
@@ -17,10 +26,10 @@ namespace :dev do
     30.times do |i|
       Product.create!(
         name: FFaker::Product.product_name,
-        description: FFaker::Lorem.phrases,
+        description: FFaker::Lorem.phrase,
         price: rand(200.500),
         thirtydays_status: false,
-        user_id: User.all.sample.id
+        user_id: User.where(role: "designer").sample.id
       )
     end
     puts "have created fake products"
