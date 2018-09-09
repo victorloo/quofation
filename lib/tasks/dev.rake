@@ -26,4 +26,14 @@ namespace :dev do
     puts "have created fake products"
     puts "now you have #{Product.count} products data"
   end
+
+  task fake_brands: :environment do
+    30.times do |i|
+      Brand.create!(
+        name: "brand#{i.to_s}"
+      )
+    end
+    puts "have created fake brands"
+    puts "now you have #{Brand.count} brands data"
+  end
 end
