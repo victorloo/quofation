@@ -1,9 +1,15 @@
 namespace :dev do
+  task fake_all: :environment do
+    Rake::Task['dev:fake_users'].execute
+    Rake::Task['dev:fake_products'].execute
+    Rake::Task['dev:fake_designers'].execute
+  end
+
   task fake_users: :environment do
-    3.times do |i|
+    5.times do |i|
       User.create!(
         username: FFaker::Name.first_name,
-        email: FFaker::Internet.email,
+        email: FFaker::Internet.disposable_email,
         password: 123456,
         avatar: FFaker::Avatar.image,
         role: "designer"
@@ -12,7 +18,7 @@ namespace :dev do
     10.times do |i|
       User.create!(
         username: FFaker::Name.first_name,
-        email: FFaker::Internet.email,
+        email: FFaker::Internet.disposable_email,
         password: 123456,
         avatar: FFaker::Avatar.image,
         role: ""
@@ -23,20 +29,31 @@ namespace :dev do
   end
 
   task fake_products: :environment do
+    # Normal Products
     30.times do |i|
       Product.create!(
-        name: FFaker::Product.product_name,
+        name: FFaker::Lorem.word,
         description: FFaker::Lorem.phrase,
-        price: rand(200.500),
+        price: rand(200..500),
         thirtydays_status: false,
-        user_id: User.where(role: "designer").sample.id
+        user_id: rand(1..5),
+        image: FFaker::Image.url
+      )
+    end
+    # 30 Days Products
+    20.times do |i|
+      Product.create!(
+        name: FFaker::Lorem.word,
+        description: FFaker::Lorem.phrase,
+        price: rand(200..500),
+        thirtydays_status: true,
+        user_id: rand(1..5),
+        image: FFaker::Image.url
       )
     end
     puts "have created fake products"
     puts "now you have #{Product.count} products data"
   end
-
-
 
   #designer fake file
   task fake_designers: :environment do
@@ -54,16 +71,5 @@ namespace :dev do
     end
     puts "have created fake designers"
     puts "now you have #{Designer.count} designers data"
-
-  task fake_brands: :environment do
-    30.times do |i|
-      Brand.create!(
-        name: "brand#{i.to_s}"
-      )
-    end
-    puts "have created fake brands"
-    puts "now you have #{Brand.count} brands data"
-
   end
-end
 end
