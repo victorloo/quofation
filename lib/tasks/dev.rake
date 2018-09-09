@@ -26,4 +26,19 @@ namespace :dev do
     puts "have created fake products"
     puts "now you have #{Product.count} products data"
   end
+
+  #designer fake file
+  task fake_designers: :environment do
+    Designer.destroy_all
+
+    20.times do |i|
+      Designer.create!(
+        name: FFaker::Name.first_name,
+        brandname: FFaker::Lorem.word,
+        description: FFaker::Lorem::sentence(10)
+        )
+    end
+    puts "have created fake designers"
+    puts "now you have #{Designer.count} designers data"
+  end
 end
