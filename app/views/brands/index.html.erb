@@ -1,0 +1,54 @@
+  <!DOCTYPE html>
+<html>
+  <head>
+    <title>Quofation</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if current_user %>
+      <% if current_user&.admin? %>
+        <li><%= link_to 'Admin Panel', admin_brands_path %></li>
+      <% end %>
+      <li><p class="navbar-text">Hi, <%= current_user.email %></p></li>
+      <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
+      <li><%= link_to('修改個人資料', edit_user_path(current_user)) %></li>
+      <li><%= link_to('修改密碼', edit_user_registration_path) %></li>
+    <% else %>
+      <li><%= link_to('註冊', new_user_registration_path) %></li>
+      <li><%= link_to('登入', new_user_session_path) %></li>
+    <% end %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>
+  
+
+
+
+  <div>
+    <h1>首頁</h1>
+    <a href="#" class="btn btn-primary">30天活動</a>
+    <div class="card-deck">
+      <% @brands.each do |brand| %>
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= brand.name %>
+            <%= link_to "進入設計師館", products_path(products_url), class: "btn btn-primary" %>
+          </h5>
+          <p class="card-text">
+          
+          </p>
+         
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

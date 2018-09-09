@@ -36,6 +36,8 @@ namespace :dev do
     puts "now you have #{Product.count} products data"
   end
 
+
+
   #designer fake file
   task fake_designers: :environment do
     Designer.destroy_all
@@ -52,5 +54,16 @@ namespace :dev do
     end
     puts "have created fake designers"
     puts "now you have #{Designer.count} designers data"
+
+  task fake_brands: :environment do
+    30.times do |i|
+      Brand.create!(
+        name: "brand#{i.to_s}"
+      )
+    end
+    puts "have created fake brands"
+    puts "now you have #{Brand.count} brands data"
+
   end
+end
 end

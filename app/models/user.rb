@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :products
+  
+  def admin?
+    self.role == "admin"
+  end
+
 end
