@@ -10,7 +10,7 @@
       <br>
       <div class="well">
         <ul class="list-unstyled">
-          <li><strong>Name:</strong> <%= @designers.name %></li>
+          <li><strong>Designer:</strong> <%= @designers.name %></li>
           <li><strong>Brand:</strong> <%= @designers.brandname %></li>
           
         </ul>
@@ -27,3 +27,27 @@
   </div>
 </div>
 
+<div class="card-deck">
+      <% @products.each do |product| %>
+       <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= product.name %>
+          </h5>
+          <p class="card-text">
+            <%= product.description %>
+          </p>
+          <a href="#" class="btn btn-primary">ADD TO CART</a>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <%= paginate @products %>
+</div>
+
+<%= link_to "回首頁", root_path, class: "btn btn-primary" %>
