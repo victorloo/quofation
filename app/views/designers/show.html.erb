@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1><%= @designers.name %></h1>
+      
+    </div>
+
+    <div class="col-md-4">
+      <%= image_tag @designers.image.url,width: "300px", class: "img-responsive center-block" %>
+      <br>
+      <div class="well">
+        <ul class="list-unstyled">
+          <li><strong>Name:</strong> <%= @designers.name %></li>
+          <li><strong>Brand:</strong> <%= @designers.brandname %></li>
+          
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <%= simple_format @designers.description %>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <hr>
+
+  </div>
+</div>
+

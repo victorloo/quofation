@@ -2,12 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
-  resources :brands, only: [:show]
-  root "brands#index"
 
 
-  resource :products, only: [:index, :show]
-  root "products#index"
+  resources :designers, only: [:index, :show]
+  root "designers#index"
 
 
   resources :thirtydays, only: [:index, :show] do
@@ -17,8 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  #建立設計師館頁面
-  resources :designers, only: [:index, :show]
+
 
   #建立後台設計師CRUD
   namespace :admin do
