@@ -3,6 +3,7 @@ namespace :dev do
     Rake::Task['dev:fake_users'].execute
     Rake::Task['dev:fake_designers'].execute
     Rake::Task['dev:fake_products'].execute
+    Rake::Task['dev:fake_fitting'].execute
   end
 
   task fake_users: :environment do
@@ -59,7 +60,7 @@ namespace :dev do
         description: FFaker::Lorem.phrase,
         price: rand(200..500),
         thirtydays_status: false,
-        designer_id: rand(21..40),
+        designer_id: Designer.all.sample.id,
         image: FFaker::Image.url
       )
     end
@@ -70,12 +71,28 @@ namespace :dev do
         description: FFaker::Lorem.phrase,
         price: rand(200..500),
         thirtydays_status: true,
-        designer_id: rand(1..20),
+        designer_id: Designer.all.sample.id,
         image: FFaker::Image.url
       )
     end
     puts "have created fake products"
     puts "now you have #{Product.count} products data"
+  end
+
+  task fake_fitting: :environment do
+    FittingPhoto.destroy_all
+    
+    Product.where(thirtydays_status: true).each do |product|
+      3.times do |i|
+        FittingPhoto.create!(
+          image: FFaker::Image.url,
+          user_id: User.all.sample.id,
+          product_id: product.id
+        )
+      end
+    end
+    puts "have created fake fitting_photoes"
+    puts "now you have #{FittingPhoto.count} fitting_photoes data"
   end
 
 end
