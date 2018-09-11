@@ -1,0 +1,2 @@
+class FittingphotoesController < ApplicationController
+end

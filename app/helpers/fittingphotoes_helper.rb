@@ -1,0 +1,2 @@
+module FittingphotoesHelper
+end
