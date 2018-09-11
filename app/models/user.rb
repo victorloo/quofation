@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :designer
-  has_many :fitting_photoes
+  has_many :fitting_photos
   
   def admin?
     self.role == "admin"

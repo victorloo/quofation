@@ -91,8 +91,8 @@ namespace :dev do
         )
       end
     end
-    puts "have created fake fitting_photoes"
-    puts "now you have #{FittingPhoto.count} fitting_photoes data"
+    puts "have created fake fitting_photos"
+    puts "now you have #{FittingPhoto.count} fitting_photos data"
   end
 
 end
