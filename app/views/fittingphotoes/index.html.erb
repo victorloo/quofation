@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Fitting Photoes List</h1>
+  <div class="card-columns">
+    <% @photoes.each do |photo| %>
+      <div class="card">
+        <%= image_tag photo.image, class: "card-img-top", alt: "Card image cap" %>
+        <div class="card-body">
+          <p class="card-text">User Name: <%= photo.user.username %></p>
+          <%= link_to "Discuss!", root_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+  <ul>
+    <li><%= link_to "Back", thirtyday_path(@product) %></li>
+    <li><%= link_to "Go Back To 30 Days Index", thirtydays_path %></li>
+  </ul>
+</div>
