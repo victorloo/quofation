@@ -1,12 +1,14 @@
 namespace :dev do
   task fake_all: :environment do
     Rake::Task['dev:fake_users'].execute
-    Rake::Task['dev:fake_products'].execute
     Rake::Task['dev:fake_designers'].execute
+    Rake::Task['dev:fake_products'].execute
   end
 
   task fake_users: :environment do
-    5.times do |i|
+    User.destroy_all
+    # User: Designer
+    20.times do |i|
       User.create!(
         username: FFaker::Name.first_name,
         email: FFaker::Internet.disposable_email,
@@ -15,7 +17,8 @@ namespace :dev do
         role: "designer"
       )
     end
-    10.times do |i|
+    # User: Normal
+    20.times do |i|
       User.create!(
         username: FFaker::Name.first_name,
         email: FFaker::Internet.disposable_email,
@@ -26,33 +29,6 @@ namespace :dev do
     end
     puts "have created fake users"
     puts "now you have #{User.count} users data"
-  end
-
-  task fake_products: :environment do
-    # Normal Products
-    30.times do |i|
-      Product.create!(
-        name: FFaker::Lorem.word,
-        description: FFaker::Lorem.phrase,
-        price: rand(200..500),
-        thirtydays_status: false,
-        user_id: rand(1..5),
-        image: FFaker::Image.url
-      )
-    end
-    # 30 Days Products
-    20.times do |i|
-      Product.create!(
-        name: FFaker::Lorem.word,
-        description: FFaker::Lorem.phrase,
-        price: rand(200..500),
-        thirtydays_status: true,
-        user_id: rand(1..5),
-        image: FFaker::Image.url
-      )
-    end
-    puts "have created fake products"
-    puts "now you have #{Product.count} products data"
   end
 
   #designer fake file
@@ -66,10 +42,40 @@ namespace :dev do
         name: FFaker::Name.first_name,
         brandname: FFaker::Lorem.word,
         description: FFaker::Lorem::sentence(10),
-        image: file
+        image: file,
+        user_id: (1+i)
         )
     end
     puts "have created fake designers"
     puts "now you have #{Designer.count} designers data"
   end
+
+  task fake_products: :environment do
+    Product.destroy_all
+    # Normal Products
+    30.times do |i|
+      Product.create!(
+        name: FFaker::Lorem.word,
+        description: FFaker::Lorem.phrase,
+        price: rand(200..500),
+        thirtydays_status: false,
+        designer_id: rand(21..40),
+        image: FFaker::Image.url
+      )
+    end
+    # 30 Days Products
+    20.times do |i|
+      Product.create!(
+        name: FFaker::Lorem.word,
+        description: FFaker::Lorem.phrase,
+        price: rand(200..500),
+        thirtydays_status: true,
+        designer_id: rand(1..20),
+        image: FFaker::Image.url
+      )
+    end
+    puts "have created fake products"
+    puts "now you have #{Product.count} products data"
+  end
+
 end
