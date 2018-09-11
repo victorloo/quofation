@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   resources :designers, only: [:index, :show] do
     resources :products, only: [:index, :show]
   end
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show]do
+    post :add_to_cart, on: :member
+  end
 
   resource :cart
-  
+
   root "designers#index"
 
 
