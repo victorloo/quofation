@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :designers, only: [:index, :show] do
     resources :products, only: [:index, :show]
   end
+  resources :products, only: [:index, :show]
   root "designers#index"
 
 

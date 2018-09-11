@@ -6,4 +6,14 @@ class Admin::ProductsController < ApplicationController
     @products = Product.all
   end
 
+  private
+
+  def product_params
+    params.require(:product).permit(:name, :price, :description)
+  end
+
+  def set_product
+    @products = Product.find(params[:id])
+  end
+
 end
