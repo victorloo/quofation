@@ -1,15 +1,23 @@
-<h1>This is page Thirtydays#Products</h1>
-<div>
-  <% @products.each do |product| %>
-  <h3><%= link_to "#{product.name}", thirtyday_path(product) %></h3>
-  <ul>
-    <li><%= product.description %></li>
-  </ul>
+<div class="container">
+  <h1>This is page Thirtydays#Products</h1>
+  <div class="card-columns">
+    <% @products.each do |product| %>
+      <div class="card">
+        <%= image_tag product.image, class: "card-img-top", alt: "Card image cap" %>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= product.name %>
+          </h5>
+          <p class="card-text">
+            <%= product.description %>
+          </p>
+          <%= link_to "See More!", thirtyday_path(product), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
   <hr>
-  <% end %>
+  <ul>
+    <li><%= link_to "Go Back To 30 Days Index", thirtydays_path %></li>
+  </ul>
 </div>
-<ul>
-  <li>
-    <%= link_to "Go Back To 30 Days Index", thirtydays_path %>
-  </li>
-</ul>

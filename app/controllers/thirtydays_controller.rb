@@ -1,7 +1,7 @@
 class ThirtydaysController < ApplicationController
   
   def index
-    @products = Product.all.sample(3)
+    @products = Product.where(thirtydays_status: true).sample(3)
   end
   
   def show
@@ -9,11 +9,11 @@ class ThirtydaysController < ApplicationController
   end
 
   def designers
-    @designers = User.where(role: :designer)
+    @designers = Designer.order("RANDOM()")
   end
 
   def products
-    @products = Product.all
+    @products = Product.where(thirtydays_status: true).order("RANDOM()")
   end
   
 end
