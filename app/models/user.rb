@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one :designer
   has_many :fitting_photos
+  has_many :discussion
   
   def admin?
     self.role == "admin"
