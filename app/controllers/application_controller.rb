@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-
+  session[:cart_id] = @cart.id
+end
 private
 
   def authenticate_admin

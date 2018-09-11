@@ -45,13 +45,13 @@
           <%= image_tag designer.image.url,width: "300px", class: "img-responsive center-block" %>
           <div class="caption">
             <h3><%= link_to designer.name, designer_path(designer) %></h3>
-            <p class="label label-default"><%= designer.name %><p>
             <p><%= truncate(designer.description, length: 80) %></p>
           </div>
         </div>
       </div>
     <% end %>
       
+
     <!-- 有generate kaminari paginate bootstrap style -->
     <div class="text-center">
     <%= paginate @designers %>
