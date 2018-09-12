@@ -5,4 +5,8 @@ class FittingphotosController < ApplicationController
     @photos = @product.fitting_photos
   end
 
+  def show
+    @photo = FittingPhoto.find(params[:id])
+  end
+
 end

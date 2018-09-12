@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="mx-auto" style="width: 300px;">
+    <%= image_tag @photo.image, class: "img-responsive center-block" %>
+  </div>
+  <div>
+    <% @photo.discussions.each do |discussion| %>
+      <% if current_user == discussion.user %>
+        <div style="float: right">
+          <h4><%= discussion.user.name %></h4>
+          <p><%= simple_format discussion.content %></p>
+          <p class="text-muted">
+            <em><%= time_ago_in_words(discussion.created_at) %></em>
+          </p>
+          <hr>
+        </div>
+      <% else %>
+        <div style="float: left">
+          <h4><%= discussion.user.name %></h4>
+          <p><%= simple_format discussion.content %></p>
+          <p class="text-muted">
+            <em><%= time_ago_in_words(discussion.created_at) %></em>
+          </p>
+          <hr>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<ul style="clear:both;">
+  <li><%= link_to "Back to Album", thirtyday_fittingphotos_path(@photo.product), class:"btn btn-outline-danger" %></li>
+</ul>
