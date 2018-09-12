@@ -12,7 +12,7 @@ namespace :dev do
     # User: Designer
     20.times do |i|
       User.create!(
-        username: FFaker::Name.first_name,
+        name: FFaker::Name.first_name,
         email: FFaker::Internet.disposable_email,
         password: 123456,
         avatar: FFaker::Avatar.image,
@@ -22,7 +22,7 @@ namespace :dev do
     # User: Normal
     20.times do |i|
       User.create!(
-        username: FFaker::Name.first_name,
+        name: FFaker::Name.first_name,
         email: FFaker::Internet.disposable_email,
         password: 123456,
         avatar: FFaker::Avatar.image,
