@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       get :designers, to: "thirtydays#designers"
       get :products, to: "thirtydays#products"
     end
-    resources :fittingphotos, path: 'album', only: [:index, :show]
+    resources :fittingphotos, path: 'album', only: [:index, :show] do
+      resources :discussions, only: [:create, :destroy]
+    end
   end
 
   #建立後台設計師CRUD
