@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   resources :products, only: [:index, :show]
 
+  resources :users, except: [:index, :new, :create, :destroy]
 
   root "designers#index"
 
