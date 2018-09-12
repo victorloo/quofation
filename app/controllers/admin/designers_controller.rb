@@ -8,7 +8,7 @@ class Admin::DesignersController < ApplicationController
   def new
     @designer = Designer.new
   end
-
+  
   def create
     @designer = Designer.new(designer_params)
     if @designer.save

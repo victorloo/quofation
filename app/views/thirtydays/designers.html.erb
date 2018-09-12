@@ -1,12 +1,25 @@
-<h1>Designers List</h1>
-<div>
-  <% @designers.each do |designer| %>
-    <ul>
-      <li><%= link_to "#{designer.username}", root_path %></li>
-    </ul>
-  <% end %>
+<div class="container">
+  <h1>Designers List</h1>
+  <div class="card-columns">
+    <% @designers.each do |designer| %>
+      <% if designer.products.where(thirtydays_status: true) %>
+      <div class="card">
+        <%= image_tag designer.image.url, class: "card-img-top", alt: "Card image cap" %>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= designer.brandname %>
+          </h5>
+          <p class="card-text">
+            <%= designer.description %>
+          </p>
+          <%= link_to "See More!", designer_path(designer), class: "btn btn-primary" %>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  <hr>
+  <ul>
+    <li><%= link_to "Go Back To 30 Days Index", thirtydays_path %></li>
+  </ul>
 </div>
-<hr>
-<ul>
-  <li><%= link_to "Go Back To 30 Days Index", thirtydays_path %></li>
-</ul>

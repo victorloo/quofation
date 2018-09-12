@@ -1,4 +1,4 @@
-# README
+# QuoFation
 
 ## 通知
 
@@ -9,16 +9,13 @@ rails dev:fake_all
 
 # 各別輸入
 rails dev:fake_users
-rails dev:fake_products
 rails dev:fake_designers
+rails dev:fake_products
 ```
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
 Things you may want to cover:
 
-* Ruby version: 2.5.1
+* Ruby version: 2.4.4
 
 * System dependencies
 

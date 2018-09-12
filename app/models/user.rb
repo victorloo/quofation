@@ -4,7 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :products
+  validates_presence_of :name
+
+  has_one :designer
+  has_many :fitting_photos
+  has_many :discussions
   
   def admin?
     self.role == "admin"
