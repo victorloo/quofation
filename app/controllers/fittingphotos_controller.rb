@@ -7,6 +7,8 @@ class FittingphotosController < ApplicationController
 
   def show
     @photo = FittingPhoto.find(params[:id])
+    @discussion = Discussion.new
+    @thirtyday = @photo.product
   end
 
 end

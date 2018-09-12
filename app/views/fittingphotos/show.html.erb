@@ -5,7 +5,7 @@
   <div>
     <% @photo.discussions.each do |discussion| %>
       <% if current_user == discussion.user %>
-        <div style="float: right">
+        <div style="float: right; width: 60%;">
           <h4><%= discussion.user.name %></h4>
           <p><%= simple_format discussion.content %></p>
           <p class="text-muted">
@@ -14,7 +14,7 @@
           <hr>
         </div>
       <% else %>
-        <div style="float: left">
+        <div style="float: left; width: 60%;">
           <h4><%= discussion.user.name %></h4>
           <p><%= simple_format discussion.content %></p>
           <p class="text-muted">
@@ -25,7 +25,19 @@
       <% end %>
     <% end %>
   </div>
+  <div style="clear:both;">
+    <%= form_for [@thirtyday, @photo, @discussion], url: "#{@photo.id}/discussions" do |f| %>
+    <div class="form-group">
+      <%= f.text_area :content, placeholder: "Give a discussion", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: "btn btn-primary" %>
+      <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+    </div>
+    <% end %>
+  </div>
 </div>
-<ul style="clear:both;">
+<hr>
+<ul>
   <li><%= link_to "Back to Album", thirtyday_fittingphotos_path(@photo.product), class:"btn btn-outline-danger" %></li>
 </ul>
