@@ -1,0 +1,21 @@
+.my-cart {
+  border-left: 1px solid #bbb;
+  padding: 15px;
+  width: 310px;
+  height: 100vh;
+  float: right;
+}
+
+ .cart-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
+}
+ .cart-item img {
+  width: 75px;
+}
+ .cart-item-info h3 {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
