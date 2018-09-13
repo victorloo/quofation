@@ -16,7 +16,7 @@ Description:<%= @designer.description %><br>
           </tr>
         </thead>
         <tbody>
-          <% @products.each do |product| %>
+          <% @designer.products.each do |product| %>
           <tr>
             <th scope="row"><%= product.id %></th>
             <td><%= product.name %></td>

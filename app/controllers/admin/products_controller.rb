@@ -7,7 +7,7 @@ class Admin::ProductsController < ApplicationController
 
   def show
     @designer = Designer.find(params[:designer_id])
-    @product = Product.find(parmas[:id])
+    @product = Product.find(params[:id])
   end
 
   def new
