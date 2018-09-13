@@ -1,11 +1,30 @@
 class Admin::ProductsController < ApplicationController
   
   def index
-    @products = Product.all
+    @designer = Designer.find(params[:designer_id])
+    @products = @designer.products
   end
 
   def show
-    @products = Product.all
+    @designer = Designer.find(params[:designer_id])
+    @product = Product.find(parmas[:id])
+  end
+
+  def new
+    @designer = Designer.find(params[:designer_id])
+    @product = Product.new
+  end
+
+  def create
+    @product = Product.new(product_params)
+    @product.designer_id = params[:designer_id]
+    if @product.save
+      flash[:notice] = "Product was successfully created"
+      redirect_to admin_designer_products_path
+    else
+      flash.now[:alert] = "Product was failed to create"
+      render :new
+    end
   end
 
   private

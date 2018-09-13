@@ -26,11 +26,10 @@ Rails.application.routes.draw do
     resources :designers do
       resources :products
     end
-
-  end
-
-  namespace :admin do
     root "designers#index"
   end
+
+
+    
 
 end

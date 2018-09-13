@@ -15,11 +15,10 @@
           <% @designers.each do |designer| %>
           <tr>
             <th scope="row"><%= designer.id %></th>
-            <td><%= designer.name %></td>
+            <td><%= link_to designer.name, admin_designer_path(designer) %></td>
             <td><%= designer.brandname %></td>
             <td><%= designer.description %></td>
             <td>
-              <%= link_to 'Show', admin_designer_path(designer) %>
               <%= link_to 'Edit', edit_admin_designer_path(designer) %>
               <%= link_to 'Delete', admin_designer_path(designer), method: :delete, data: {confirm:"確定刪除嗎？"} %>
             </td>

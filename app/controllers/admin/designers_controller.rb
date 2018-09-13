@@ -17,7 +17,7 @@ class Admin::DesignersController < ApplicationController
     else
       flash.now[:alert] = "新增設計師失敗"
       render :new
-    end    
+    end
   end
 
   def show

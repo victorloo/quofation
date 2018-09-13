@@ -4,10 +4,11 @@
   <% @products.each do |product| %>
   <li>
     <%= product.name %>
-    <%= link_to 'Show', admin_product_path(product) %>
-    <%= link_to 'Edit', edit_admin_product_path(product) %>
-    <%= link_to 'Delete', admin_product_path(product), method: :delete, data: {confirm:"Are you sure?"} %>
+    <%= link_to 'Show', admin_designer_product_path(designer_id: @designer, id: product) %>
+    <%= link_to 'Edit', edit_admin_designer_product_path(designer_id: @designer, id: product) %>
+    <%= link_to 'Delete', admin_designer_product_path(designer_id: @designer, id: product), method: :delete, data: {confirm:"Are you sure?"} %>
   </li>
   <% end %>
 </ul>
-<%= link_to 'New Product', new_admin_product_path %>
+
+
