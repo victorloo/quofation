@@ -8,11 +8,15 @@ class Admin::ProductsController < ApplicationController
   def show
     @designer = Designer.find(params[:designer_id])
     @product = Product.find(params[:id])
+    @products = Product.page(params[:page]).per(10)
   end
 
   def new
     @designer = Designer.find(params[:designer_id])
     @product = Product.new
+  end
+
+  def edit
   end
 
   def create

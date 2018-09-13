@@ -19,22 +19,21 @@ Description:<%= @designer.description %><br>
           <% @designer.products.each do |product| %>
           <tr>
             <th scope="row"><%= product.id %></th>
-            <td><%= product.name %></td>
+            <td><%= link_to product.name, admin_designer_product_path(designer_id: @designer, id: product) %></td>
             <td><%= product.price %></td>
             <td><%= product.description %></td>
             <td>
-              <%= link_to 'Show', admin_designer_product_path(product) %>
-              <%= link_to 'Edit', edit_admin_designer_product_path(product) %>
-              <%= link_to 'Delete', admin_designer_product_path(product), method: :delete, data: {confirm:"Are you sure?"} %>
+              <%= link_to 'Edit', edit_admin_designer_product_path(designer_id: @designer, id: product) %>
+              <%= link_to 'Delete', admin_designer_product_path(designer_id: @designer, id: product), method: :delete, data: {confirm:"Are you sure?"} %>
             </td>
           </tr>
           <% end %>
         </tbody>
       </table>
+      <div class="text-center">
+        <%= paginate @products %>
+      </div>
 
-<div class="text-center">
-  <%= paginate @products %>
-</div>
 
 
 <%= link_to '回設計師首頁', admin_designers_path %>
