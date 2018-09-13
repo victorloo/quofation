@@ -41,7 +41,7 @@
             <%= product.description %>
           </p>
           $<%= product.price %>
-          <%= button_to 'Add to Cart', add_to_cart_product_path(product) %>
+          <%= button_to 'Add to Cart', add_to_cart_product_path(product), remote: true %>
         </div>
       </div>
       <% end %>
