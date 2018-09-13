@@ -7,12 +7,6 @@
       
     </div>
 
-
-
-
-
-
-
     <div class="col-md-4">
       <%= image_tag @designers.image.url,width: "300px", class: "img-responsive center-block" %>
       <br>
@@ -46,7 +40,8 @@
           <p class="card-text">
             <%= product.description %>
           </p>
-          <a href="#" class="btn btn-primary">ADD TO CART</a>
+          $<%= product.price %>
+          <%= button_to 'Add to Cart', add_to_cart_product_path(product) %>
         </div>
       </div>
       <% end %>

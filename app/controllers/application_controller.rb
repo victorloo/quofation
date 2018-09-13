@@ -3,7 +3,24 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
 
+  #view 呼叫controller方法 使用helper_method
+  helper_method :current_cart
+
   private
+
+  def current_cart
+    @cart || set_cart # return @cart if @cart exits, or call set_cart
+  end
+
+  def set_cart
+     if session[:cart_id]
+      @cart = Cart.find_by(id: session[:cart_id])
+    end
+     @cart ||= Cart.create
+     session[:cart_id] = @cart.id
+    @cart
+  end
+
 
   def authenticate_admin
     unless current_user.admin?
