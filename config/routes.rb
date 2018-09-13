@@ -23,12 +23,14 @@ Rails.application.routes.draw do
 
   #建立後台設計師CRUD
   namespace :admin do
-    resources :designers
+    resources :designers do
+      resources :products
+    end
+
   end
 
   namespace :admin do
-    resources :products
-    root "products#index"
+    root "designers#index"
   end
 
 end

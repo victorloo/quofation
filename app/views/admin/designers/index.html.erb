@@ -1,16 +1,34 @@
 <h1>設計師後台</h1>
-<ul>
-  <% @designers.each do |designer| %>
-  <li>
-    <%= designer.name %>
-    <%= designer.brandname %>
-    <%= designer.description %>
-    
-    <%= link_to 'Show', admin_designer_path(designer) %>
-    <%= link_to 'Edit', edit_admin_designer_path(designer) %>
-    <%= link_to 'Delete', admin_designer_path(designer), method: :delete, data: {confirm:"確定刪除嗎？"} %>
-  </li>
-  <% end %>
-</ul>
+
+<h2>Designer List</h2>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>BrandName</th>
+            <th>Description</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @designers.each do |designer| %>
+          <tr>
+            <th scope="row"><%= designer.id %></th>
+            <td><%= designer.name %></td>
+            <td><%= designer.brandname %></td>
+            <td><%= designer.description %></td>
+            <td>
+              <%= link_to 'Show', admin_designer_path(designer) %>
+              <%= link_to 'Edit', edit_admin_designer_path(designer) %>
+              <%= link_to 'Delete', admin_designer_path(designer), method: :delete, data: {confirm:"確定刪除嗎？"} %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
 <%= link_to 'New Designer', new_admin_designer_path %>
-<%= paginate @designers %>
+<div class="text-center">
+  <%= paginate @designers %>
+</div>
