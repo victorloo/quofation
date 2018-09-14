@@ -14,6 +14,7 @@ class Admin::ProductsController < ApplicationController
   def new
     @designer = Designer.find(params[:designer_id])
     @product = Product.new
+    @product_photo = @product.photos.new
   end
 
   def edit
@@ -26,7 +27,7 @@ class Admin::ProductsController < ApplicationController
     @product.designer_id = params[:designer_id]
     if @product.save
       flash[:notice] = "Product was successfully created"
-      redirect_to admin_designer_products_path
+      redirect_to admin_designer_path(params[:designer_id])
     else
       flash.now[:alert] = "Product was failed to create"
       render :new
@@ -57,7 +58,7 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :image)
+    params.require(:product).permit(:name, :price, :description, :image, photos_attributes: [:image])
   end
 
   def set_product

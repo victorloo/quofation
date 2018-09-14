@@ -32,7 +32,7 @@ class Admin::DesignersController < ApplicationController
   def update
     if @designer.update(designer_params)
       flash[:notice] = "設計師修改成功"
-      redirect_to admin_designer_path(@designer)
+      redirect_to admin_designers_path
     else
       flash.now[:alert] = "設計師修改失敗"
       render :edit
