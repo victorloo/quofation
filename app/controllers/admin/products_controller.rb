@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @designer = Designer.find(params[:designer_id])
@@ -33,7 +33,7 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
-   def update
+  def update
     if @product.update(product_params)
       flash[:notice] = "product was successfully updated"
       redirect_to admin_designer_products_path(@product)
@@ -41,6 +41,14 @@ class Admin::ProductsController < ApplicationController
       flash.now[:alert] = "product was failed to update"
       render :edit
     end
+  end
+
+  def destroy
+    @designer = Designer.find(params[:designer_id])
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to admin_designer_path(params[:designer_id]) 
+    flash[:alert] = "product was deleted"
   end
 
 
