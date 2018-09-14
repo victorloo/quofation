@@ -1,5 +1,6 @@
 class Admin::ProductsController < ApplicationController
-  
+  before_action :set_product, only: [:show, :edit, :update]
+
   def index
     @designer = Designer.find(params[:designer_id])
     @products = @designer.products
@@ -8,7 +9,6 @@ class Admin::ProductsController < ApplicationController
   def show
     @designer = Designer.find(params[:designer_id])
     @product = Product.find(params[:id])
-    @products = Product.page(params[:page]).per(10)
   end
 
   def new
@@ -17,6 +17,8 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
+    @designer = Designer.find(params[:designer_id])
+    @product = Product.find(params[:id])
   end
 
   def create
@@ -31,6 +33,17 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
+   def update
+    if @product.update(product_params)
+      flash[:notice] = "product was successfully updated"
+      redirect_to admin_designer_products_path(@product)
+    else
+      flash.now[:alert] = "product was failed to update"
+      render :edit
+    end
+  end
+
+
   private
 
   def product_params
@@ -38,6 +51,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def set_product
+    @designer = Designer.find(params[:designer_id])
     @products = Product.find(params[:id])
   end
 
