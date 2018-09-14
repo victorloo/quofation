@@ -34,9 +34,11 @@ class Admin::ProductsController < ApplicationController
   end
 
   def update
-    if @product.update(product_params)
+    @designer = Designer.find(params[:designer_id])
+    @product = Product.find(params[:id])
+    if @product.update(product_params) 
       flash[:notice] = "product was successfully updated"
-      redirect_to admin_designer_products_path(@product)
+      redirect_to admin_designer_path(params[:designer_id])
     else
       flash.now[:alert] = "product was failed to update"
       render :edit
@@ -55,7 +57,7 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description)
+    params.require(:product).permit(:name, :price, :description, :image)
   end
 
   def set_product
