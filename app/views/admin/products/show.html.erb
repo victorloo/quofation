@@ -1,6 +1,6 @@
 Name:<%= @product.name %><br>
 Price:<%= @product.price %><br>
 Description:<%= @product.description %><br>
-<%= image_tag @product.image.url, width: '600px' %>
+<%= image_tag @product.image.url, width: '600px' if @product.image? %>
 
 <%= link_to "List of Products", admin_designer_path(params[:designer_id]) %>

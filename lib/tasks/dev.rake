@@ -62,7 +62,8 @@ namespace :dev do
         price: rand(200..500),
         thirtydays_status: false,
         designer_id: Designer.all.sample.id,
-        image: FFaker::Image.url
+        image: FFaker::Image.url,
+        category: Category.all.sample
       )
     end
     # 30 Days Products

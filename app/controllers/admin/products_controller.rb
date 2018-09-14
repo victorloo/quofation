@@ -14,7 +14,6 @@ class Admin::ProductsController < ApplicationController
   def new
     @designer = Designer.find(params[:designer_id])
     @product = Product.new
-    @product_photo = @product.photos.new
   end
 
   def edit
