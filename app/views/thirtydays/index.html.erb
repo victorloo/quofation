@@ -10,11 +10,11 @@
         <% @products.each do |product| %>
           <% if @products.first == product %>
             <div class="carousel-item active">
-              <%= image_tag product.image, class: "d-block w-100", alt: "First slide" %>
+              <%= image_tag product.image.url, class: "d-block w-100", alt: "First slide" %>
             </div>
           <% else %>
             <div class="carousel-item">
-              <%= image_tag product.image, class: "d-block w-100", alt: "#{ (@products.second == product) ? "second" : "third" } slide" %>
+              <%= image_tag product.image.url, class: "d-block w-100", alt: "#{ (@products.second == product) ? "second" : "third" } slide" %>
             </div>
           <% end %>          
         <% end %>
@@ -36,7 +36,7 @@
     <div class="card-deck">
       <% @products.each do |product| %>
       <div class="card" style="width: 18rem;">
-        <%= image_tag product.image, class: "card-img-top", alt: "Card image cap" %>
+        <%= image_tag product.image.url, class: "card-img-top", alt: "Card image cap" %>
         <div class="card-body">
           <h5 class="card-title">
             <%= link_to "#{product.name}", thirtyday_path(product) %>
