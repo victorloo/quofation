@@ -30,12 +30,12 @@
 </div>
 
 <div class="card-deck">
-      <% @products.each do |product| %>
+      <% @designer.products.each do |product| %>
        <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">
-            <h3><%= link_to product.name, product_path(product)%></h3>
+            <h3><%= link_to product.name, designer_product_path(designer_id: @designer, id: product)%></h3>
           </h5>
           <p class="card-text">
             <%= product.description %>
@@ -48,6 +48,11 @@
     </div>
   </div>
 </div>
+
+
+
+
+
 
 <div class="text-center">
   <%= paginate @products %>

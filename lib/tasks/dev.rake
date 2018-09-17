@@ -1,5 +1,6 @@
 namespace :dev do
   task fake_all: :environment do
+    Rake::Task['db:seed'].execute
     Rake::Task['dev:fake_users'].execute
     Rake::Task['dev:fake_designers'].execute
     Rake::Task['dev:fake_products'].execute
@@ -64,7 +65,7 @@ namespace :dev do
         thirtydays_status: false,
         designer_id: Designer.all.sample.id,
         image: FFaker::Image.url,
-        category: Category.all.sample
+        category_id: Category.all.sample.id
       )
     end
     # 30 Days Products
@@ -75,7 +76,8 @@ namespace :dev do
         price: rand(200..500),
         thirtydays_status: true,
         designer_id: Designer.all.sample.id,
-        image: FFaker::Image.url
+        image: FFaker::Image.url,
+        category_id: Category.all.sample.id
       )
     end
     puts "have created fake products"
