@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get :designers, to: "thirtydays#designers"
       get :products, to: "thirtydays#products"
     end
+    resources :comments, only: [:create, :destroy]
     resources :fittingphotos, path: 'album', only: [:index, :show] do
       resources :discussions, only: [:create, :destroy]
     end
