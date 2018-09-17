@@ -9,7 +9,8 @@ class User < ApplicationRecord
   has_one :designer
   has_many :fitting_photos
   has_many :discussions
-  
+  has_many :orders
+
   def admin?
     self.role == "admin"
   end
