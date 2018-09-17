@@ -57,26 +57,30 @@ namespace :dev do
   task fake_products: :environment do
     Product.destroy_all
     # Normal Products
-    30.times do |i|
+    20.times do |i|
+      file = File.open("#{Rails.root}/public/images/product#{i+1}.jpg")
+
       Product.create!(
         name: FFaker::Lorem.word,
         description: FFaker::Lorem.phrase,
         price: rand(200..500),
         thirtydays_status: false,
         designer_id: Designer.all.sample.id,
-        image: FFaker::Image.url,
+        image: file,
         category_id: Category.all.sample.id
       )
     end
     # 30 Days Products
     20.times do |i|
+      file = File.open("#{Rails.root}/public/images/product#{i+1}.jpg")
+
       Product.create!(
         name: FFaker::Lorem.word,
         description: FFaker::Lorem.phrase,
         price: rand(200..500),
         thirtydays_status: true,
         designer_id: Designer.all.sample.id,
-        image: FFaker::Image.url,
+        image: file,
         category_id: Category.all.sample.id
       )
     end
