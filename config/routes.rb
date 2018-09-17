@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       resources :discussions, only: [:create, :destroy]
     end
   end
-  resources :chat_room, only: [:index, :show, :new, :create]
+  resources :chat_rooms, only: [:index, :show, :new, :create]
   # redis
   mount ActionCable.server => '/cable'
 

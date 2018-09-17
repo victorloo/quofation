@@ -2,7 +2,11 @@
   <div class="card-block">
     <div class="row">
       <div class="col-md-1">
-        <%= image_tag message.user.avatar, width: "60px", alt: "User's avatar" %>
+        <% if message.user.avatar? %>
+          <%= image_tag message.user.avatar, width: "60px", alt: "User's avatar" %>
+        <% else %>
+          <%= gravatar_for message.user %>
+        <% end %>
       </div>
       <div class="col-md-11">
         <p class="card-text">
