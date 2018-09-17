@@ -16,9 +16,11 @@
   align-items: center;
   margin-bottom: 15px;
 }
+
  .cart-item img {
   width: 75px;
 }
+
  .cart-item-info h3 {
   margin-top: 0px;
   margin-bottom: 5px;
@@ -28,4 +30,34 @@
   display: flex;
   justify-content: space-between;
   font-weight: 800;
+}
+
+.panel {
+  border: 1px solid #ccc;
+  padding: 21px;
+  border-radius: 4px;
+  margin-bottom: 30px;
+}
+
+ .btn {
+  background-color: #ddd;
+  padding: 11px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  border-radius: 4px;
+}
+
+ .btn:hover {
+  background-color: #999;
+  color: #fff;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: inline-block;
+  width: 80px;
+  text-align: right;
 }
