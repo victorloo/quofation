@@ -3,8 +3,9 @@ namespace :dev do
     Rake::Task['dev:fake_users'].execute
     Rake::Task['dev:fake_designers'].execute
     Rake::Task['dev:fake_products'].execute
+    Rake::Task['dev:fake_comments'].execute
     Rake::Task['dev:fake_fitting'].execute
-    Rake::Task['dev:fake_discussion'].execute
+    #Rake::Task['dev:fake_discussion'].execute
   end
 
   task fake_users: :environment do
@@ -79,6 +80,22 @@ namespace :dev do
     end
     puts "have created fake products"
     puts "now you have #{Product.count} products data"
+  end
+
+  task fake_comments: :environment do
+    Comment.destroy_all
+
+    Product.where(thirtydays_status: true).each do |product|
+      3.times do |i|
+        Comment.create!(
+          content: FFaker::Lorem.sentence,
+          user_id: User.all.sample.id,
+          product_id: product.id
+        )
+      end
+    end
+    puts "have created fake comments"
+    puts "now you have #{Comment.count} comments data"
   end
 
   task fake_fitting: :environment do

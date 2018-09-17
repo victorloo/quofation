@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-md-1">
+        <% if message.user.avatar? %>
+          <%= image_tag message.user.avatar, width: "60px", alt: "User's avatar" %>
+        <% else %>
+          <%= gravatar_for message.user %>
+        <% end %>
+      </div>
+      <div class="col-md-11">
+        <p class="card-text">
+          <span class="text-muted">
+            <%= message.user.name %> at
+            <%= message.created_at.strftime('%H:%M:%S %d %B %Y') %> says
+          </span>
+          <br>
+          <%= message.body %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

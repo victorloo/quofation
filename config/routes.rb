@@ -21,10 +21,14 @@ Rails.application.routes.draw do
       get :designers, to: "thirtydays#designers"
       get :products, to: "thirtydays#products"
     end
+    resources :comments, only: [:create, :destroy]
     resources :fittingphotos, path: 'album', only: [:index, :show] do
       resources :discussions, only: [:create, :destroy]
     end
   end
+  resources :chat_rooms, only: [:index, :show, :new, :create]
+  # redis
+  mount ActionCable.server => '/cable'
 
   #建立後台設計師CRUD
   namespace :admin do
