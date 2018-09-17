@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_one :designer
   has_many :fitting_photos
   has_many :discussions
+  has_many :comments, dependent: :destroy
+  has_many :comment_products, through: :comments
   
   def admin?
     self.role == "admin"
