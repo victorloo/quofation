@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :discussions, only: [:create, :destroy]
     end
   end
+  resources :chat_room, only: [:index, :show, :new, :create]
 
   #建立後台設計師CRUD
   namespace :admin do
