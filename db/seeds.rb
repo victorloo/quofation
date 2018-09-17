@@ -23,6 +23,15 @@ category_list = [
   { name: "包包" }
 ]
 
+User.create(
+  email: "root@example.com",
+  password: "12345678",
+  name: "test",
+  role: "admin"
+)
+puts "admin has created"
+
+
 category_list.each do |category|
   Category.create( name: category[:name] )
 end
