@@ -6,6 +6,7 @@ class ThirtydaysController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
+    @comment = Comment.new
   end
 
   def designers
