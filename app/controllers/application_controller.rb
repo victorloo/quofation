@@ -21,6 +21,14 @@ class ApplicationController < ActionController::Base
     @cart
   end
 
+  def after_sign_in_path_for(resource)
+    if session[:new_order_data].present?
+      @cart = Cart.find(session[:cart_id])
+      cart_path(@cart)
+    else
+      super
+    end
+  end
 
   def authenticate_admin
     unless current_user.admin?

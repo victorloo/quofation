@@ -40,11 +40,14 @@
         <div class="card-body">
           <h5 class="card-title">
             <%= link_to "#{product.name}", thirtyday_path(product) %>
+
           </h5>
           <p class="card-text">
             <%= product.description %>
+            $<%= product.price %><br>
+            <%= button_to 'Add to Cart', add_to_cart_product_path(product), remote: true %>
           </p>
-          <a href="#" class="btn btn-primary">ADD TO CART</a>
+          
         </div>
       </div>
       <% end %>
