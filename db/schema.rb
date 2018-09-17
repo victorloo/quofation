@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_17_085221) do
+ActiveRecord::Schema.define(version: 2018_09_17_093435) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "cart_id"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 2018_09_17_085221) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "chat_rooms", force: :cascade do |t|
+    t.string "title"
+    t.integer "fitting_photo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fitting_photo_id"], name: "index_chat_rooms_on_fitting_photo_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -57,6 +65,16 @@ ActiveRecord::Schema.define(version: 2018_09_17_085221) do
     t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "user_id"
+    t.integer "chat_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|

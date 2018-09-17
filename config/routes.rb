@@ -26,6 +26,9 @@ Rails.application.routes.draw do
       resources :discussions, only: [:create, :destroy]
     end
   end
+  resources :chat_rooms, only: [:index, :show, :new, :create]
+  # redis
+  mount ActionCable.server => '/cable'
 
   #建立後台設計師CRUD
   namespace :admin do
