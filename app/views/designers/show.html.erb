@@ -1,17 +1,11 @@
 <%= link_to "回首頁", root_path, class: "btn btn-primary" %>
-
+<%= render "shared/cart" %>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <h1><%= @designers.name %></h1>
       
     </div>
-
-
-
-
-
-
 
     <div class="col-md-4">
       <%= image_tag @designers.image.url,width: "300px", class: "img-responsive center-block" %>
@@ -46,7 +40,8 @@
           <p class="card-text">
             <%= product.description %>
           </p>
-          <a href="#" class="btn btn-primary">ADD TO CART</a>
+          $<%= product.price %>
+          <%= button_to 'Add to Cart', add_to_cart_product_path(product), remote: true %>
         </div>
       </div>
       <% end %>
