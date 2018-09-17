@@ -10,7 +10,10 @@ Rails.application.routes.draw do
     post :remove_from_cart, on: :member
     post :adjust_item, on: :member
   end
+  
   resource :cart
+
+  resource :orders
 
   resources :users, except: [:index, :new, :create, :destroy]
 

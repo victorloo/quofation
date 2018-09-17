@@ -83,6 +83,28 @@ ActiveRecord::Schema.define(version: 2018_09_17_093435) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "product_id"
+    t.integer "price"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "sn"
+    t.integer "amount"
+    t.integer "user_id"
+    t.string "name"
+    t.string "phone"
+    t.string "address"
+    t.string "payment_status", default: "not_paid"
+    t.string "shipping_status", default: "not_shipped"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"

@@ -12,7 +12,9 @@ class User < ApplicationRecord
   has_many :discussions
   has_many :comments, dependent: :destroy
   has_many :comment_products, through: :comments
-  
+  has_many :orders
+
+
   def admin?
     self.role == "admin"
   end
