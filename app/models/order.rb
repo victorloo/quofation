@@ -18,4 +18,14 @@ class Order < ApplicationRecord
   def subtotal
     order_items.map{ |x| x.item_total }.sum
   end
+
+  PAYMENT_STATUS = [
+    ["Not Paid", :not_paid],
+    ["Paid", :paid]
+  ]
+   SHIPPING_STATUS = [
+    ["Not Shipped", :not_shipped],
+    ["Shipped",:shipped]
+  ]
+  
 end
