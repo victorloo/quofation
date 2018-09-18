@@ -3,6 +3,25 @@
   <h1>服飾種類分類總表</h1>
 
   <div class="row">
+    
+    <div>
+      <%= link_to 'Product', admin_designer_path(@designer) %> |
+      <%= link_to 'Categories', admin_designer_categories_path(designer_id: @designer) %>
+    </div>
+    <br>
+    <div class="form-inline" >
+      <!-- [:admin, @category] :admin 是 namespace 的路徑。 -->
+      <%= form_for [:admin, @designer, @category] do |f| %>
+        <div class="form-group">
+        <%= f.text_field :name, placeholder: "Category Name",  class: "form-control" %>
+      </div>
+      <%= f.submit class: "btn btn-primary" %>
+      <% if @category.errors.any? %>
+        <%= @category.errors.full_messages.to_sentence %>
+      <% end %>
+    <% end %>
+  </div>
+  <br>
 
     <div class="col-md-12">
     
