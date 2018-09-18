@@ -32,7 +32,7 @@
 <div class="card-deck">
       <% @designer.products.each do |product| %>
        <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
+        <%= image_tag product.image.url,width: "300px", class: "img-responsive center-block" %>
         <div class="card-body">
           <h5 class="card-title">
             <h3><%= link_to product.name, designer_product_path(designer_id: @designer, id: product)%></h3>
