@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       resources :products
     end
     root "designers#index"
+    resources :orders
   end
 
 

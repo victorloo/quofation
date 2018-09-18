@@ -13,7 +13,7 @@
     </tr>
     <% @items.each do |item| %>
       <tr class="product-<%= item.product.id %>">
-        <td><%= image_tag item.product.image %></td>
+        <td><%= image_tag item.product.image.url %></td>
         <td><%= item.product.name %></td>
         <td>$ <%= item.product.price %></td>
         <td class="cart-item-adjust">
