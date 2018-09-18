@@ -68,7 +68,8 @@ namespace :dev do
         designer_id: Designer.all.sample.id,
         image: file,
         category_id: Category.all.sample.id,
-        size_id: Size.all.sample.id
+        size_id: Size.all.sample.id,
+        color_id: Color.all.sample.id
       )
     end
     # 30 Days Products
@@ -83,7 +84,8 @@ namespace :dev do
         designer_id: Designer.all.sample.id,
         image: file,
         category_id: Category.all.sample.id,
-        size_id: Size.all.sample.id
+        size_id: Size.all.sample.id,
+        color_id: Color.all.sample.id
       )
     end
     puts "have created fake products"
