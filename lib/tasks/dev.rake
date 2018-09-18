@@ -81,7 +81,8 @@ namespace :dev do
         thirtydays_status: true,
         designer_id: Designer.all.sample.id,
         image: file,
-        category_id: Category.all.sample.id
+        category_id: Category.all.sample.id,
+        size_id: Size.all.sample.id
       )
     end
     puts "have created fake products"
