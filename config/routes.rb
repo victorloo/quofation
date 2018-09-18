@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       resources :products
     end
     root "designers#index"
+    resources :chat_rooms, except: [:create, :new, :show]
   end
 
 end
