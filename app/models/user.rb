@@ -7,8 +7,8 @@ class User < ApplicationRecord
   validates_presence_of :name
 
   has_one :designer
-  has_many :chatrooms, dependent: :destroy
-  has_many :chatroom_products, through: :chatrooms
+  has_many :chat_rooms, dependent: :destroy
+  has_many :chat_room_products, through: :chatrooms
   has_many :messages, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :comment_products, through: :comments
