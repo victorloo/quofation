@@ -33,10 +33,12 @@ ActiveRecord::Schema.define(version: 2018_09_17_093435) do
 
   create_table "chat_rooms", force: :cascade do |t|
     t.string "title"
-    t.integer "fitting_photo_id"
+    t.integer "product_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["fitting_photo_id"], name: "index_chat_rooms_on_fitting_photo_id"
+    t.index ["product_id"], name: "index_chat_rooms_on_product_id"
+    t.index ["user_id"], name: "index_chat_rooms_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
