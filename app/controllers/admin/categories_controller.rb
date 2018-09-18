@@ -6,6 +6,7 @@ class Admin::CategoriesController < ApplicationController
   def index
     @designer = Designer.find(params[:designer_id])
     @categories = Category.all
+    
    
 
     if params[:id]
@@ -39,6 +40,7 @@ class Admin::CategoriesController < ApplicationController
     end
   end
 
+  
   private
 
   def category_params
