@@ -4,6 +4,11 @@ Description:<%= @designer.description %><br>
 <%= image_tag(@designer.image.url, width: "300px") %>
 
  <%= link_to 'New Product', new_admin_designer_product_path(designer_id: @designer), class: "btn btn-primary" %>
+    <div>
+      <%= link_to 'Product', admin_designer_path(designer_id: @designer) %> |
+      <%= link_to 'Categories', admin_designer_categories_path(designer_id: @designer) %>
+    </div>
+
     <h2>Product List</h2>
       <table class="table table-striped table-bordered">
         <thead>
