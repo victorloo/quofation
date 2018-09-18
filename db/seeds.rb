@@ -79,6 +79,50 @@ size_list.each do |size|
 end
 puts "Size created!"
 
+# Color
+
+Color.destroy_all
+
+color_list = [
+  { name: "白色" },
+  { name: "黑色" },
+  { name: "紅色" },
+  { name: "水藍" },
+  { name: "亮橘" },
+  { name: "寶藍" },
+  { name: "鮮黃" },
+  { name: "中粉" },
+  { name: "淺灰" },
+  { name: "天空藍" },
+  { name: "深藍" },
+  { name: "紫色" },
+  { name: "紫紅" },
+  { name: "淺橘" },
+  { name: "亮綠" },
+  { name: "淺紫" },
+  { name: "橘色" },
+  { name: "湖水藍" },
+  { name: "暗紅" },
+  { name: "明黃" },
+  { name: "粉紫" },
+  { name: "中藍" },
+  { name: "粉色" },
+  { name: "粉桃" },
+  { name: "淺綠" },
+  { name: "棕色" },
+  { name: "淺黃" },
+  { name: "軍綠" },
+  { name: "酒紅" },
+  { name: "卡其" } 
+]
+
+color_list.each do |color|
+  Color.create( name: color[:name] )
+end
+puts "Category created!"
+
+
+
 User.create(
   email: "root@example.com",
   password: "12345678",
