@@ -20,6 +20,7 @@ Description:<%= @designer.description %><br>
             <th>Color</th>
             <th>Price</th>
             <th>Description</th>
+            <th>庫存</th>
             <th>Function</th>
           </tr>
         </thead>
@@ -33,6 +34,7 @@ Description:<%= @designer.description %><br>
             <td><%= product.color.name %></td>
             <td><%= product.price %></td>
             <td><%= product.description %></td>
+            <td><%= product.inventory.name %></td>
             <td>
               <%= link_to 'Edit', edit_admin_designer_product_path(designer_id: @designer, id: product) %>
               <%= link_to 'Delete', admin_designer_product_path(designer_id: @designer, id: product), method: :delete, data: {confirm:"Are you sure?"} %>
