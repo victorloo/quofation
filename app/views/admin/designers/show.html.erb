@@ -16,6 +16,7 @@ Description:<%= @designer.description %><br>
             <th>#</th>
             <th>Name</th>
             <th>Category</th>
+            <th>Size</th>
             <th>Price</th>
             <th>Description</th>
             <th>Function</th>
@@ -27,6 +28,7 @@ Description:<%= @designer.description %><br>
             <th scope="row"><%= product.id %></th>
             <td><%= link_to product.name, admin_designer_product_path(designer_id: @designer, id: product) %></td>
             <td><%= product.category.name %></td>
+            <td><%= product.size.name %></td>
             <td><%= product.price %></td>
             <td><%= product.description %></td>
             <td>

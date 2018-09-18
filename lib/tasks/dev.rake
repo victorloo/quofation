@@ -67,7 +67,8 @@ namespace :dev do
         thirtydays_status: false,
         designer_id: Designer.all.sample.id,
         image: file,
-        category_id: Category.all.sample.id
+        category_id: Category.all.sample.id,
+        size_id: Size.all.sample.id
       )
     end
     # 30 Days Products
