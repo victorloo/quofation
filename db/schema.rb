@@ -57,22 +57,6 @@ ActiveRecord::Schema.define(version: 2018_09_17_093435) do
     t.integer "user_id"
   end
 
-  create_table "discussions", force: :cascade do |t|
-    t.text "content"
-    t.integer "user_id"
-    t.integer "fitting_photo_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "fitting_photos", force: :cascade do |t|
-    t.string "image"
-    t.integer "user_id"
-    t.integer "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "messages", force: :cascade do |t|
     t.text "body"
     t.integer "user_id"
