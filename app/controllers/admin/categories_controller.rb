@@ -6,7 +6,13 @@ class Admin::CategoriesController < ApplicationController
   def index
     @designer = Designer.find(params[:designer_id])
     @categories = Category.all
-    @category = Category.new
+   
+
+    if params[:id]
+      @category = Category.find(params[:id])
+    else
+      @category = Category.new
+    end
   end
 
   def create
@@ -19,6 +25,18 @@ class Admin::CategoriesController < ApplicationController
      @categories = Category.all
      render :index
    end
+  end
+
+  def update
+    @designer = Designer.find(params[:designer_id])
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      flash[:notice] = "category was successfully updated"
+      redirect_to admin_designer_path(params[:designer_id])
+    else
+      @categories = Category.all
+      render :index
+    end
   end
 
   private
