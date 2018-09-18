@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :size, optional: true
   belongs_to :color, optional: true
+  brlongs_to :inventory, optional: true
   has_many :comments, dependent: :destroy
   has_many :comment_users, through: :comments
   has_many :cart_items, dependent: :destroy
