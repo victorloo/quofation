@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   resource :orders
 
-  resources :users, except: [:index, :new, :create, :destroy]
+  resources :users, except: [:index, :new, :create, :destroy] do
+    resources :chat_rooms, only: [:index, :show]
+  end
 
   root "designers#index"
 
@@ -29,7 +31,7 @@ Rails.application.routes.draw do
       resources :discussions, only: [:create, :destroy]
     end
   end
-  resources :chat_rooms, only: [:index, :show, :new, :create]
+
   # redis
   mount ActionCable.server => '/cable'
 
@@ -40,8 +42,5 @@ Rails.application.routes.draw do
     end
     root "designers#index"
   end
-
-
-    
 
 end
