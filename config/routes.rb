@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :designers do
       resources :products
+      resources :categories
     end
     root "designers#index"
   end
