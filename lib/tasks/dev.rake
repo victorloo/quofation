@@ -5,8 +5,6 @@ namespace :dev do
     Rake::Task['dev:fake_designers'].execute
     Rake::Task['dev:fake_products'].execute
     Rake::Task['dev:fake_comments'].execute
-    Rake::Task['dev:fake_fitting'].execute
-    #Rake::Task['dev:fake_discussion'].execute
   end
 
   task fake_users: :environment do
@@ -108,45 +106,6 @@ namespace :dev do
     end
     puts "have created fake comments"
     puts "now you have #{Comment.count} comments data"
-  end
-
-  task fake_fitting: :environment do
-    FittingPhoto.destroy_all
-    
-    Product.where(thirtydays_status: true).each do |product|
-      3.times do |i|
-        FittingPhoto.create!(
-          image: FFaker::Image.url,
-          user_id: User.all.sample.id,
-          product_id: product.id
-        )
-      end
-    end
-    puts "have created fake fitting_photos"
-    puts "now you have #{FittingPhoto.count} fitting_photos data"
-  end
-
-  task fake_discussion: :environment do
-    Discussion.destroy_all
-
-    FittingPhoto.all.each do |photo|
-      # User's discussion
-      2.times do |i|
-        Discussion.create!(
-          content: FFaker::Lorem.sentence,
-          user_id: photo.user.id,
-          fitting_photo_id: photo.id
-        )
-      end
-      # Designer's discussion
-      Discussion.create!(
-        content: FFaker::Lorem.sentence,
-        user_id: photo.product.designer.user.id,
-        fitting_photo_id: photo.id
-      )
-    end
-    puts "have created fake discussions"
-    puts "now you have #{Discussion.count} discussion data"
   end
 
 end
