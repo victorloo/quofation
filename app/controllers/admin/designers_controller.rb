@@ -22,6 +22,7 @@ class Admin::DesignersController < ApplicationController
 
   def show
     #原程式碼命名為set_designer
+    
     @products = Product.page(params[:page]).per(10)
   end
 
