@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items, dependent: :destroy
   has_many :products, through: :order_items
+  has_many :payments
 
   def add_order_items(cart)
     cart.cart_items.each do |item|
@@ -27,5 +28,5 @@ class Order < ApplicationRecord
     ["Not Shipped", :not_shipped],
     ["Shipped",:shipped]
   ]
-  
+
 end

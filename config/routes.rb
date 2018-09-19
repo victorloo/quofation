@@ -42,7 +42,9 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-
+  resources :orders do
+    post :checkout_spgateway, on: :member
+  end
     
 
 end
