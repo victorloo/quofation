@@ -6,17 +6,24 @@
 
 <div class="container">
   <div class="row">
+      
     <div class="col-md-12">
       <h1><%= @products.name %></h1>
     </div>
 
+
     <div class="col-md-4">
 
       <%= image_tag @products.image.url,width: "300px", class: "img-responsive center-block" %>
+
       <br>
       <div class="well">
         <ul class="list-unstyled">
+          <li><strong>種類:</strong> <%= @products.category.name %></li>
+          <li><strong>尺寸:</strong> <%= @products.size.name %></li>
+          <li><strong>顏色:</strong> <%= @products.color.name %></li>
           <li><strong>Price:</strong> <%= @products.price %></li>
+          <li><strong>庫存:</strong> <%= @products.inventory.name %></li>
         </ul>
       </div>
     </div>

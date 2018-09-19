@@ -1,7 +1,7 @@
 <div class="container">
   <h1>This is the page Thirtydays#Show</h1>
   <p>Show details</p>
-  <%= image_tag @product.image, class: "img-responsive center-block", alt: "Photo of Product" %>
+  <%= image_tag @product.image.url, class: "img-responsive center-block", alt: "Photo of Product" %>
   <ul>
     <li>Name: <%= @product.name %></li>
     <li>Description: <%= @product.description %></li>
