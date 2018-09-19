@@ -38,10 +38,10 @@ Description:<%= @designer.description %><br>
             <td><%= product.inventory.name %></td>
             <td>
                 <%= simple_form_for [:admin, @designer, product], html: { class: 'form-inline' } do |f| %>
-                <%= f.input :thirtydays_status,lable: false, as: :select %> 
-                <%= f.button :submit, class: 'btn btn-primary ml-2' %>
+                  <%= f.input :thirtydays_status, label: false, as: :select, include_blank: false %> 
+                  <%= f.button :submit, class: 'btn btn-primary ml-2' %>
                 <% end %>
-              </td>
+            </td>
             <td>
               <%= link_to 'Edit', edit_admin_designer_product_path(designer_id: @designer, id: product) %>
               <%= link_to 'Delete', admin_designer_product_path(designer_id: @designer, id: product), method: :delete, data: {confirm:"Are you sure?"} %>
