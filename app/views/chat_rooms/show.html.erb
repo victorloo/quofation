@@ -20,7 +20,7 @@
   <% end %>
 
   <% if current_user.designer != nil %>
-    <%= link_to "Back", designer_chat_rooms_user_path(@chat_room.user) %>
+    <%= link_to "Back", designer_chat_rooms_user_path(current_user) %>
   <% else %>
     <%= link_to "Back", user_chat_rooms_path(@chat_room.user) %>
   <% end %>
