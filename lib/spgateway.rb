@@ -55,7 +55,7 @@ class Spgateway
 
   def self.decrypt(trade_info, trade_sha)
     return nil if self.generate_aes_sha256(trade_info) != trade_sha
-     decipher = OpenSSL::Cipher::AES256.new(:CBC)
+    decipher = OpenSSL::Cipher::AES256.new(:CBC)
     decipher.decrypt
     decipher.padding = 0
     decipher.key = self.hash_key
