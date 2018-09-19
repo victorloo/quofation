@@ -12,5 +12,8 @@
   </ul>
   <ul>
     <li><%= link_to "ChatRooms", user_chat_rooms_path(@user) %></li>
+    <% if @user.designer != nil %>
+      <li><%= link_to "Designer's ChatRooms", designer_chat_rooms_user_path(@user) %></li>  
+    <% end %>
   </ul>
 </div>

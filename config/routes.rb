@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :users, except: [:index, :new, :create, :destroy] do
     resources :chat_rooms, only: [:index, :show]
+    get :designer_chat_rooms, on: :member, to: "chat_rooms#designer"
   end
 
   root "designers#index"

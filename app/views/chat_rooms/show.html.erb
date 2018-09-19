@@ -19,5 +19,10 @@
     <%= f.submit "Post", class: 'btn btn-primary btn-lg' %>
   <% end %>
 
-  <%= link_to "Back", user_chat_rooms_path(@chat_room.user) %>
+  <% if current_user.designer != nil %>
+    <%= link_to "Back", designer_chat_rooms_user_path(@chat_room.user) %>
+  <% else %>
+    <%= link_to "Back", user_chat_rooms_path(@chat_room.user) %>
+  <% end %>
+  
 </div>
