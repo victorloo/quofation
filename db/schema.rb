@@ -33,10 +33,12 @@ ActiveRecord::Schema.define(version: 2018_09_18_084806) do
 
   create_table "chat_rooms", force: :cascade do |t|
     t.string "title"
-    t.integer "fitting_photo_id"
+    t.integer "product_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["fitting_photo_id"], name: "index_chat_rooms_on_fitting_photo_id"
+    t.index ["product_id"], name: "index_chat_rooms_on_product_id"
+    t.index ["user_id"], name: "index_chat_rooms_on_user_id"
   end
 
   create_table "colors", force: :cascade do |t|
@@ -61,22 +63,6 @@ ActiveRecord::Schema.define(version: 2018_09_18_084806) do
     t.datetime "updated_at", null: false
     t.string "image"
     t.integer "user_id"
-  end
-
-  create_table "discussions", force: :cascade do |t|
-    t.text "content"
-    t.integer "user_id"
-    t.integer "fitting_photo_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "fitting_photos", force: :cascade do |t|
-    t.string "image"
-    t.integer "user_id"
-    t.integer "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "inventories", force: :cascade do |t|
