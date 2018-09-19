@@ -4,7 +4,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @designer = Designer.find(params[:id])
     @products = Product.find(params[:id])
   end
   

@@ -40,7 +40,11 @@
           <p class="card-text">
             <%= product.description %>
           </p>
+          <%= product.category.name %><br>
+          尺寸:<%= product.size.name %><br>
+          顏色:<%= product.color.name %><br>
           $<%= product.price %>
+
           <%= button_to 'Add to Cart', add_to_cart_product_path(product), remote: true %>
         </div>
       </div>
