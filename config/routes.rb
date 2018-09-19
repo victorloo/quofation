@@ -45,6 +45,9 @@ Rails.application.routes.draw do
   resources :orders do
     post :checkout_spgateway, on: :member
   end
+
+  post 'spgateway/return'
+  post "spgateway/notify"
     
 
 end
