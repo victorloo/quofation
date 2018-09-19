@@ -1,0 +1,24 @@
+<h1>This is the page ChatRooms#Index</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Product</th>
+      <th scope="col">Buyer</th>
+      <th scope="col">Designer</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @chatrooms.each do |cr| %>
+      <tr>
+        <td scope="col" ><%= cr.title %></td>
+        <td><%= cr.product.name %></td>
+        <td><%= cr.user.name %></td>
+        <td><%= cr.product.designer.name %></td>
+        <td><%= link_to "edit", root_path %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

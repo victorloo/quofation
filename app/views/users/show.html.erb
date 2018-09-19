@@ -2,6 +2,18 @@
   <h1>Dashboard</h1>
   <ul>
     <li><%= @user.name %></li>
-    <%= image_tag @user.avatar,width: "300px", class: "img-responsive center-block" %>
+    <li>
+      <% if @user.avatar? %>
+        <%= image_tag @user.avatar, width: "300px", class: "img-responsive center-block", alt: "User's avatar" %>
+      <% else %>
+        <%= gravatar_for @user %>
+      <% end %>
+    </li>
+  </ul>
+  <ul>
+    <li><%= link_to "ChatRooms", user_chat_rooms_path(@user) %></li>
+    <% if @user.designer != nil %>
+      <li><%= link_to "Designer's ChatRooms", designer_chat_rooms_user_path(@user) %></li>  
+    <% end %>
   </ul>
 </div>

@@ -3,7 +3,7 @@
   <div class="card-columns">
     <% @products.each do |product| %>
       <div class="card">
-        <%= image_tag product.image, class: "card-img-top", alt: "Card image cap" %>
+        <%= image_tag product.image.url, class: "card-img-top", alt: "Card image cap" %>
         <div class="card-body">
           <h5 class="card-title">
             <%= product.name %>

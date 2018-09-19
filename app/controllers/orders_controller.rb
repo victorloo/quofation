@@ -18,6 +18,16 @@ class OrdersController < ApplicationController
       if @order.save
         current_cart.destroy
         session.delete(:new_order_data)
+        # Create ChatRooms
+        @order.products.each do |product|
+          if product.thirtydays_status
+            product.chat_rooms.create!(
+              title: "#{product.name} and #{current_user.name}",
+              product_id: product.id,
+              user_id: current_user.id
+            )
+          end
+        end
         redirect_to orders_path, notice: "new order created"
       else
         @items = current_cart.cart_items

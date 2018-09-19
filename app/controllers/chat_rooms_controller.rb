@@ -1,12 +1,16 @@
 class ChatRoomsController < ApplicationController
 
   def index
-    @chat_rooms = ChatRoom.all
+    @chat_rooms = current_user.chat_rooms.all
   end
 
   def show
     @chat_room = ChatRoom.includes(:messages).find_by(id: params[:id])
     @message = Message.new
+  end
+
+  def designer
+    @chat_rooms = current_user.designer.chat_rooms
   end
   
   def new
