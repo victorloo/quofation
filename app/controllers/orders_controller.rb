@@ -27,10 +27,19 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    @order = Order.find(params[:id])
+    if @order.shipping_status == "not_shipped"
+      
+      @order.destroy
+      redirect_to orders_path, alert: "order##{@order.sn} cancelled."
+    end
+  end
+
   private
    
   def order_params
-    params.require(:order).permit(:name, :phone, :address, :payment_method)
+    params.require(:order).permit(:name, :phone, :address)
   end
 
 end

@@ -22,7 +22,7 @@ class Admin::OrdersController < ApplicationController
       render "admin/orders/edit"
     end
   end
-
+   
   private
 
   def order_params
