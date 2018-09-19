@@ -1,7 +1,7 @@
 <div class="container">
   <h1>This is the page Thirtydays#Show</h1>
   <p>Show details</p>
-  <%= image_tag @product.image, class: "img-responsive center-block", alt: "Photo of Product" %>
+  <%= image_tag @product.image.url, width: '300px', class: "img-responsive center-block", alt: "Photo of Product" %>
   <ul>
     <li>Name: <%= @product.name %></li>
     <li>Description: <%= @product.description %></li>
@@ -11,11 +11,15 @@
   </ul>
 
   <ul>
-    <li><%= link_to "ADD TO CART", root_path, class:"btn btn-outline-primary" %></li>
+    <li><%= button_to 'Add to CART', add_to_cart_product_path(@product), class:"btn btn-outline-primary", remote: true %></li>
     <li><%= link_to "See Designer's works", designer_path(@product.designer) , class:"btn btn-outline-success" %></li>
     <li><%= link_to "Products List", products_thirtydays_path, class:"btn btn-outline-warning" %></li>
     <li><%= link_to "Designers List", designers_thirtydays_path, class:"btn btn-outline-dark" %></li>
-    <li><%= link_to "Fitting Discussion", thirtyday_fittingphotos_path(@product), class:"btn btn-outline-danger" %></li>
+    <% if (current_user.designer) && (current_user.designer.chat_rooms) != nil %>
+      <li><%= link_to "Designer's ChatRooms", designer_chat_rooms_user_path(current_user), class:"btn btn-outline-danger" %></li>
+    <% elsif current_user.chat_rooms != nil %>
+      <li><%= link_to "Your's ChatRooms", user_chat_rooms_path(current_user), class:"btn btn-outline-danger" %></li>
+    <% end %>
     <li><%= link_to "Go Back To 30 Days Index", thirtydays_path %></li>
   </ul>
 
