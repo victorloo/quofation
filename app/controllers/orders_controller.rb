@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
       @order.sn = Time.now.to_i
       @order.add_order_items(current_cart)
       @order.amount = current_cart.subtotal
+
       if @order.save
         current_cart.destroy
         session.delete(:new_order_data)
