@@ -22,6 +22,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def create
+    @designer = Designer.find(params[:designer_id])
     @product = Product.new(product_params)
     @product.designer_id = params[:designer_id]
     if @product.save

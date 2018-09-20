@@ -11,9 +11,11 @@
 
   <body>
     <% if current_user %>
-      <% if current_user&.admin? %>
-        <li><%= link_to 'Admin Panel', admin_root_path %></li>
-      <% end %>
+      <% if current_user.role == "admin" %>
+        <li><%= link_to 'Admin Panel', admin_root_path %></li>  
+      <% elsif current_user.role == "designer" %>
+        <li><%= link_to 'Designer Panel', admin_designer_path(current_user) %></li>
+      <% end %> 
       <li><p class="navbar-text">Hi, <%= current_user.email %></p></li>
       <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
       <li><%= link_to "Your Dashboard", user_path(current_user) %></li>
