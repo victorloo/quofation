@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items, dependent: :destroy
   has_many :products, through: :order_items
+  has_many :payments
 
   def add_order_items(cart)
     cart.cart_items.each do |item|
@@ -18,4 +19,14 @@ class Order < ApplicationRecord
   def subtotal
     order_items.map{ |x| x.item_total }.sum
   end
+
+  PAYMENT_STATUS = [
+    ["Not Paid", :not_paid],
+    ["Paid", :paid]
+  ]
+   SHIPPING_STATUS = [
+    ["Not Shipped", :not_shipped],
+    ["Shipped",:shipped]
+  ]
+
 end

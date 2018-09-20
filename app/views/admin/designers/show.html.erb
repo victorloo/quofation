@@ -47,7 +47,9 @@ Description:<%= @designer.description %><br>
               <%= link_to 'Delete', admin_designer_product_path(designer_id: @designer, id: product), method: :delete, data: {confirm:"Are you sure?"} %>
             </td>
           </tr>
+          
           <% end %>
+          
         </tbody>
       </table>
       <div class="text-center">

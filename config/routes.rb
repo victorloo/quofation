@@ -43,7 +43,17 @@ Rails.application.routes.draw do
       resources :categories
     end
     root "designers#index"
+    resources :orders
     resources :chat_rooms, except: [:create, :new, :show]
   end
+  
+  resources :orders do
+    post :checkout_spgateway, on: :member
+  end
+
+  post 'spgateway/return'
+  post "spgateway/notify"
+    
 
 end
+

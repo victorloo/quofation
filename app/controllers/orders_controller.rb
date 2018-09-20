@@ -15,9 +15,11 @@ class OrdersController < ApplicationController
       @order.sn = Time.now.to_i
       @order.add_order_items(current_cart)
       @order.amount = current_cart.subtotal
+
       if @order.save
         current_cart.destroy
         session.delete(:new_order_data)
+
         # Create ChatRooms
         @order.products.each do |product|
           if product.thirtydays_status
@@ -28,6 +30,8 @@ class OrdersController < ApplicationController
             )
           end
         end
+
+        UserMailer.notify_order_create(@order).deliver_now!
         redirect_to orders_path, notice: "new order created"
       else
         @items = current_cart.cart_items
@@ -35,6 +39,35 @@ class OrdersController < ApplicationController
       end
     end
   end
+
+  def update
+    @order = Order.find(params[:id])
+    if @order.shipping_status == "not_shipped"
+      
+      @order.destroy
+      redirect_to orders_path, alert: "order##{@order.sn} cancelled."
+    end
+  end
+
+  def checkout_spgateway
+    @order = current_user.orders.find(params[:id])
+    if @order.payment_status != "not_paid"
+      flash[:alert] = "Order has been paid."
+      redirect_to orders_path
+    else
+      @payment = Payment.create!(
+        sn: Time.now.to_i,
+        order_id: @order.id,
+        payment_method: params[:payment_method],
+        amount: @order.amount
+      )
+
+      
+
+      render layout: false
+    end
+  end
+
 
   private
    
