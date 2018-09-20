@@ -59,10 +59,10 @@ ActiveRecord::Schema.define(version: 2018_09_19_072430) do
     t.string "name"
     t.string "brandname"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "image"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "inventories", force: :cascade do |t|
@@ -120,9 +120,9 @@ ActiveRecord::Schema.define(version: 2018_09_19_072430) do
     t.integer "price"
     t.string "image"
     t.boolean "thirtydays_status"
+    t.integer "designer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "designer_id"
     t.integer "category_id"
     t.integer "size_id"
     t.integer "color_id"
@@ -144,9 +144,12 @@ ActiveRecord::Schema.define(version: 2018_09_19_072430) do
     t.string "name", null: false
     t.string "realname"
     t.string "phone"
-    t.string "address"
     t.string "role"
     t.string "avatar"
+    t.string "zip"
+    t.string "city"
+    t.string "dist"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

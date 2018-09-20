@@ -33,16 +33,17 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
       # Development for QuoFation
-      t.string :username, null: false
+      t.string :name, null: false
       t.string :realname
       t.string :phone
-      t.string :address
       t.string :role
+      t.string :avatar
 
-      # Designer
-      t.text :description
-      t.string :brand
-      t.string :image
+      # User's Address
+      t.string :zip
+      t.string :city
+      t.string :dist
+      t.string :address
 
       t.timestamps null: false
     end

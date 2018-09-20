@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer :price
       t.string :image
       t.boolean :thirtydays_status
-      t.integer :user_id
+      t.integer :designer_id
 
       t.timestamps
     end
