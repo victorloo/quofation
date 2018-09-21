@@ -1,66 +1,63 @@
-<%= link_to "回首頁", root_path, class: "btn btn-primary" %>
-<%= render "shared/cart" %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1><%= @designers.name %></h1>
-      
-    </div>
-
-    <div class="col-md-4">
-      <%= image_tag @designers.image.url, width: "300px", class: "img-responsive center-block" %>
-      <br>
-      <div class="well">
-        <ul class="list-unstyled">
-          <li><strong>Designer:</strong> <%= @designers.name %></li>
-          <li><strong>Brand:</strong> <%= @designers.brandname %></li>
-          
+<!-- Breadcrumbs + Hero-->
+    <section class="position-relative dark-overlay py-3 py-lg-7">
+    <%= image_tag @designers.image.url, class: "bg-image" %>
+      <div class="container overlay-content hero hero-page">
+        <ul class="breadcrumb justify-content-center no-border mb-0">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
         </ul>
+        <div class="hero-content pb-5 text-center text-white">
+          <h1 class="hero-heading"><%= @designers.brandname %></h1>
+          <h1 class="hero-heading">Designer:<%= @designers.name %></h1>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+          <p class="lead"><%= truncate(@designer.description, length: 80) %></p>                        
+        </div>
       </div>
-    </div>
-    <div class="col-md-8">
-      <%= simple_format @designers.description %>
-    </div>
+    </section>
+    <main class="pt-5">
+      <div class="container">
+        <div class="row">
+
 
     <div class="clearfix"></div>
 
-    <hr>
-
-  </div>
-</div>
-
-<div class="card-deck">
-      <% @designer.products.each do |product| %>
-       <div class="card" style="width: 18rem;">
-
-
-        <%= image_tag product.image.url,width: "300px", class: "img-responsive center-block" %>
-
-
-        <div class="card-body">
-          <h5 class="card-title">
-            <h3><%= link_to product.name, designer_product_path(designer_id: @designer, id: product)%></h3>
-          </h5>
-          <p class="card-text">
-            <%= product.description %>
-          </p>
+   
+ <% @designer.products.each do |product| %>
+<div class="col-xl-3 col-lg-4 col-sm-6">
+  <div class="product">
+    <div class="product-image">
+      <%= image_tag product.image.url, width: '300px', class: "img-fluid" %>
+      <div class="product-hover-overlay"><%= link_to "", designer_product_path(designer_id: @designer, id: product), class: "product-hover-overlay-link" %>
+        <div class="product-hover-overlay-buttons">
+          <%= button_to add_to_cart_product_path(product), remote: true, class: "btn btn-outline-dark btn-product-left" do%>
+          <i class="fa fa-shopping-cart"></i>
+          <% end %>
+          <%= link_to designer_product_path(designer_id: @designer, id: product), class: "btn btn-dark btn-buy" do%>
+          <i class="fa-search fa"></i>
+          <span class="btn-buy-label ml-2">View</span>
+          <% end %>
+          <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-dark btn-product-right"><i class="fa fa-expand-arrows-alt"></i></a>
+        </div>
+      </div>
+    </div>
+  <div class="py-2">
+    <div class="caption" >
+      <h5 class="card-title">
+        <h3><%= link_to product.name, designer_product_path(designer_id: @designer, id: product)%></h3>
+      </h5>
+        <p class="card-text">
+          <%= product.description %>
+        </p>
           <%= product.category.name %><br>
           尺寸:<%= product.size.name %><br>
           顏色:<%= product.color.name %><br>
           $<%= product.price %>
-
           <%= button_to 'Add to Cart', add_to_cart_product_path(product), remote: true %>
-        </div>
-      </div>
-      <% end %>
     </div>
+  </div>
   </div>
 </div>
 
-
-
-
-
+<% end %>
 
 <div class="text-center">
   <%= paginate @products %>

@@ -1,31 +1,57 @@
-<h1>首頁</h1>
-   <ul class="nav justify-content-end">
-  <li class="nav-item">
-    <a class="nav-link active" href="/thirtydays">30 天活動</a>
-  </li>
-<ul>
 
-<div class="container">
-  <div class="row">
-    
-    <!-- restaurants list，有多寫restaurant-item的class style -->
-    <% @designers.each do |designer| %>
-      <div class="col-sm-6 col-md-4">
-        <div class="designer-item">
-          <%= image_tag designer.image.url,width: "300px", class: "img-responsive center-block" %>
-          <div class="caption">
-            <h3><%= link_to designer.name, designer_path(designer) %></h3>
-            <p><%= truncate(designer.description, length: 80) %></p>
+
+ <!-- Hero Section-->
+    <section class="hero">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <ol class="breadcrumb justify-content-center">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active"><a href="/thirtydays">30 天活動</a></li>
+        </ol>
+        <!-- Hero Content-->
+        <div class="hero-content pb-5 text-center">
+          <h1 class="hero-heading">QuoFation</h1>
+          <div class="row">   
+            <div class="col-xl-8 offset-xl-2"><p class="lead text-muted">In Here, You Could Quote Any Fasion You Like.</p></div>
           </div>
         </div>
       </div>
-    <% end %>
-      
+    </section>
 
+ <!-- restaurants list，有多寫restaurant-item的class style -->
+<% @designers.each do |designer| %>
+
+<div class="col-xl-3 col-lg-4 col-sm-6">
+    <div class="product">
+    <div class="product-image">
+    <%= image_tag designer.image.url, width: '300px', class: "img-fluid" %>
+      <div class="product-hover-overlay"><%= link_to "", designer_path(designer), class: "product-hover-overlay-link" %>
+        <div class="product-hover-overlay-buttons"><a href="#" class="btn btn-outline-dark btn-product-left"><i class="fa fa-shopping-cart"></i></a>
+        <%= link_to designer_path(designer), class: "btn btn-dark btn-buy" do%>
+          <i class="fa-search fa"></i>
+          <span class="btn-buy-label ml-2">View</span>
+        <% end %>
+        <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-dark btn-product-right"><i class="fa fa-expand-arrows-alt"></i></a>
+        </div>
+      </div>
+    </div>
+  
+  <div class="py-2">
+    <div class="caption" >
+      <h3><%= link_to designer.brandname, designer_path(designer) %></h3>
+      <p><%= truncate(designer.description, length: 80) %></p> 
+    </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
+    
     <!-- 有generate kaminari paginate bootstrap style -->
     <div class="text-center">
     <%= paginate @designers %>
     </div>
+
       
   </div>
 </div>
