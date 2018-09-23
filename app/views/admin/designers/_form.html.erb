@@ -7,18 +7,30 @@
 <% end %>
 
 <%= form_for [:admin, @designer] do |f| %>
+
+  </div>
+  <div class="form-group">
   <%= f.label :name, "Name" %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: "form-control"  %>
+  </div>
 
+  <div class="form-group">
   <%= f.label :brandname, "BrandName" %>
-  <%= f.text_field :brandname %>
+  <%= f.text_field :brandname, class: "form-control"  %>
+  </div>
 
+  <div class="form-group">
   <%= f.label :description, "Description" %>
-  <%= f.text_area :description %>
+  <%= f.text_area :description, class: "form-control"  %>
+  </div>
 
+  <div class="form-group">
   <%= f.label :image, "Photo" %>
   <%= image_tag @designer.image.url, width: '300px' if @designer.image? %>
-  <%= f.file_field :image %>
+  <%= f.file_field :image, class: "form-control"  %>
+  </div>
 
-  <%= f.submit %>
+  <div class="form-group">
+  <%= f.submit class: "btn btn-primary" %>
+  </div>
 <% end %>
