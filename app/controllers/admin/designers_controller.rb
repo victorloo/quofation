@@ -22,7 +22,8 @@ class Admin::DesignersController < ApplicationController
 
   def show
     #原程式碼命名為set_designer
-    
+    @designers = Designer.find(params[:id])
+    @designer = Designer.find(params[:id])
     @products = Product.page(params[:page]).per(10)
   end
 
