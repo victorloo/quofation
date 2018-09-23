@@ -8,347 +8,177 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/solid.css" integrity="sha384-TbilV5Lbhlwdyc4RuIV/JhD8NR+BfMrvz4BL5QFa2we1hQu6wvREr3v6XSRfCTRp" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/regular.css" integrity="sha384-avJt9MoJH2rB4PKRsJRHZv7yiFZn8LrnXuzvmZoD3fh1aL6aM6s0BBcnCvBe6XSD" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/brands.css" integrity="sha384-7xAnn7Zm3QC1jFjVc1A6v/toepoG3JXboQYzbM0jrPzou9OFXm/fY6Z/XiIebl/k" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/fontawesome.css" integrity="sha384-ozJwkrqb90Oa3ZNb+yKFW2lToAWYdTiF1vt8JiH5ptTGHTGcN7qdoR1F95e0kYyG" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if current_user %>
-      <% if current_user.role == "admin" %>
-        <li><%= link_to 'Admin Panel', admin_root_path %></li>  
-      <% elsif current_user.role == "designer" %>
-        <li><%= link_to 'Designer Panel', admin_designer_path(current_user) %></li>
-      <% end %> 
-      <li><p class="navbar-text">Hi, <%= current_user.email %></p></li>
-      <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
-      <li><%= link_to "Your Dashboard", user_path(current_user) %></li>
-      <li><%= link_to('修改個人資料', edit_user_password_path(current_user)) %></li>
-      <li><%= link_to('修改密碼', edit_user_registration_path) %></li>
-      <li><%= link_to "Cart", cart_path %></li>
-      <li><%= link_to "Order", orders_path %></li>
-    <% else %>
-      <li><%= link_to('註冊', new_user_registration_path) %></li>
-      <li><%= link_to('登入', new_user_session_path) %></li>
-    <% end %>
-    
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <!-- Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-sticky navbar-airy navbar-light bg-white bg-fixed-white">
-      <div class="container-fluid">
-        <!-- Navbar Header  --><a href="index.html" class="navbar-brand">
-          <svg class="navbar-brand-svg" viewBox="0 0 65 16" width="85" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            
-          </svg></a>
-        <button type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
-          aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
-        <!-- Navbar Collapse -->
-        <div id="navbarCollapse" class="collapse navbar-collapse">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item dropdown"><a id="homeDropdownMenuLink" href="index.html" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" class="nav-link ">
-    
-                Home<i class="fa fa-angle-down"></i></a>
-              <div aria-labelledby="homeDropdownMenuLink" class="dropdown-menu"><a href="index.html" class="dropdown-item">Fullscreen
-                  home + Lookbook</a><a href="index2.html" class="dropdown-item">Split-screen home</a><a href="index3.html"
-                  class="dropdown-item">Classic home</a><a href="index4.html" class="dropdown-item">Parallax sections</a></div>
-            </li>
-            <li class="nav-item"><a href="category.html" class="nav-link">Shop</a>
-            </li>
-            <!-- Megamenu-->
-            <li class="nav-item dropdown position-static"><a href="#" data-toggle="dropdown" class="nav-link">Template<i
-                  class="fa fa-angle-down"></i></a>
-              <div class="dropdown-menu megamenu py-lg-0">
-                <div class="row">
-                  <div class="col-lg-9">
-                    <div class="row p-3 pr-lg-0 pl-lg-5 pt-lg-5">
-                      <div class="col-lg-3">
-                        <!-- Megamenu list-->
-                        <h6 class="text-uppercase">Homepage</h6>
-                        <ul class="megamenu-list list-unstyled">
-                          <li class="megamenu-list-item"><a href="index.html" class="megamenu-list-link">Fullscreen home +
-                              Lookbook </a></li>
-                          <li class="megamenu-list-item"><a href="index2.html" class="megamenu-list-link">Split-screen home
-                            </a></li>
-                          <li class="megamenu-list-item"><a href="index3.html" class="megamenu-list-link">Classic home </a></li>
-                          <li class="megamenu-list-item"><a href="index4.html" class="megamenu-list-link">Parallax sections
-                              <span class="badge badge-info ml-1">New</span> </a></li>
-                        </ul>
-                        <!-- Megamenu list-->
-                        <h6 class="text-uppercase">Shop</h6>
-                        <ul class="megamenu-list list-unstyled">
-                          <li class="megamenu-list-item"><a href="category.html" class="megamenu-list-link">Category - left
-                              sidebar </a></li>
-                          <li class="megamenu-list-item"><a href="category-right.html" class="megamenu-list-link">Category
-                              - right sidebar </a></li>
-                          <li class="megamenu-list-item"><a href="category-no-sidebar.html" class="megamenu-list-link">Category
-                              - no sidebar </a></li>
-                          <li class="megamenu-list-item"><a href="category-full.html" class="megamenu-list-link">Category -
-                              full width </a></li>
-                          <li class="megamenu-list-item"><a href="category-masonry.html" class="megamenu-list-link">Category
-                              - masonry items </a></li>
-                          <li class="megamenu-list-item"><a href="category-banner.html" class="megamenu-list-link">Category
-                              - w/ banner </a></li>
-                          <li class="megamenu-list-item"><a href="detail.html" class="megamenu-list-link">Product detail
-                            </a></li>
-                          <li class="megamenu-list-item"><a href="detail-2.html" class="megamenu-list-link">Product detail
-                              - v.2 </a></li>
-                        </ul>
-                      </div>
-                      <div class="col-lg-3">
-                        <!-- Megamenu list-->
-                        <h6 class="text-uppercase">Order process</h6>
-                        <ul class="megamenu-list list-unstyled">
-                          <li class="megamenu-list-item"><a href="cart.html" class="megamenu-list-link">Shopping cart </a></li>
-                          <li class="megamenu-list-item"><a href="cart-2.html" class="megamenu-list-link">Shopping cart -
-                              v. 2 <span class="badge badge-info ml-1">New</span> </a></li>
-                          <li class="megamenu-list-item"><a href="checkout1.html" class="megamenu-list-link">Checkout 1 -
-                              Address </a></li>
-                          <li class="megamenu-list-item"><a href="checkout2.html" class="megamenu-list-link">Checkout 2 -
-                              Delivery </a></li>
-                          <li class="megamenu-list-item"><a href="checkout3.html" class="megamenu-list-link">Checkout 3 -
-                              Payment </a></li>
-                          <li class="megamenu-list-item"><a href="checkout4.html" class="megamenu-list-link">Checkout 4 -
-                              Review </a></li>
-                          <li class="megamenu-list-item"><a href="checkout5.html" class="megamenu-list-link">Checkout 5 -
-                              Confirmation </a></li>
-                        </ul>
-                        <!-- Megamenu list-->
-                        <h6 class="text-uppercase">Blog</h6>
-                        <ul class="megamenu-list list-unstyled">
-                          <li class="megamenu-list-item"><a href="blog.html" class="megamenu-list-link">Blog </a></li>
-                          <li class="megamenu-list-item"><a href="post.html" class="megamenu-list-link">Post </a></li>
-                        </ul>
-                      </div>
-                      <div class="col-lg-3">
-                        <!-- Megamenu list-->
-                        <h6 class="text-uppercase">Pages</h6>
-                        <ul class="megamenu-list list-unstyled">
-                          <li class="megamenu-list-item"><a href="contact.html" class="megamenu-list-link">Contact </a></li>
-                          <li class="megamenu-list-item"><a href="contact-2.html" class="megamenu-list-link">Contact v.2
-                            </a></li>
-                          <li class="megamenu-list-item"><a href="text.html" class="megamenu-list-link">Text page </a></li>
-                          <li class="megamenu-list-item"><a href="faq.html" class="megamenu-list-link">F.A.Q.s <span class="badge badge-info ml-1">New</span>
-                            </a></li>
-                          <li class="megamenu-list-item"><a href="coming-soon.html" class="megamenu-list-link">Coming soon
-                            </a></li>
-                        </ul>
-                        <!-- Megamenu list-->
-                        <h6 class="text-uppercase">Customer</h6>
-                        <ul class="megamenu-list list-unstyled">
-                          <li class="megamenu-list-item"><a href="customer-login.html" class="megamenu-list-link">Login/sign
-                              up </a></li>
-                          <li class="megamenu-list-item"><a href="customer-orders.html" class="megamenu-list-link">Orders
-                            </a></li>
-                          <li class="megamenu-list-item"><a href="customer-order.html" class="megamenu-list-link">Order
-                              detail </a></li>
-                          <li class="megamenu-list-item"><a href="customer-addresses.html" class="megamenu-list-link">Addresses
-                            </a></li>
-                          <li class="megamenu-list-item"><a href="customer-account.html" class="megamenu-list-link">Profile
-                            </a></li>
-                        </ul>
-                      </div>
-                      <div class="col-lg-3">
-                        <!-- Megamenu list-->
-                        <h6 class="text-uppercase">Documentation</h6>
-                        <ul class="megamenu-list list-unstyled">
-                          <li class="megamenu-list-item"><a href="docs/docs-introduction.html" class="megamenu-list-link">Introduction
-                            </a></li>
-                          <li class="megamenu-list-item"><a href="docs/docs-directory-structure.html" class="megamenu-list-link">Directory
-                              structure </a></li>
-                          <li class="megamenu-list-item"><a href="docs/docs-gulp.html" class="megamenu-list-link">Gulp </a></li>
-                          <li class="megamenu-list-item"><a href="docs/docs-customizing-css.html" class="megamenu-list-link">Customizing
-                              CSS </a></li>
-                          <li class="megamenu-list-item"><a href="docs/docs-credits.html" class="megamenu-list-link">Credits
-                            </a></li>
-                          <li class="megamenu-list-item"><a href="docs/docs-changelog.html" class="megamenu-list-link">Changelog
-                            </a></li>
-                        </ul>
-                        <!-- Megamenu list-->
-                        <h6 class="text-uppercase">Components</h6>
-                        <ul class="megamenu-list list-unstyled">
-                          <li class="megamenu-list-item"><a href="docs/components-bootstrap.html" class="megamenu-list-link">Bootstrap
-                            </a></li>
-                          <li class="megamenu-list-item"><a href="docs/components-sell.html" class="megamenu-list-link">Theme
-                            </a></li>
-                          <li class="megamenu-list-item"><a href="component-variants/header.html" class="megamenu-list-link">Header
-                              variants <span class="badge badge-info ml-1">New</span> </a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="row megamenu-services d-none d-lg-flex">
-                      <div class="col-xl-3 col-lg-6 d-flex">
-                        <div class="megamenu-services-item">
-                          <svg class="svg-icon megamenu-services-icon">
-                            <use xlink:href="#delivery-time-1"> </use>
-                          </svg>
-                          <div>
-                            <h6 class="text-uppercase">Free shipping &amp; return</h6>
-                            <p class="mb-0 text-muted text-sm">Free Shipping over $300</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-xl-3 col-lg-6 d-flex">
-                        <div class="megamenu-services-item">
-                          <svg class="svg-icon megamenu-services-icon">
-                            <use xlink:href="#money-1"> </use>
-                          </svg>
-                          <div>
-                            <h6 class="text-uppercase">Money back guarantee</h6>
-                            <p class="mb-0 text-muted text-sm">30 Days Money Back</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-xl-3 col-lg-6 d-flex">
-                        <div class="megamenu-services-item">
-                          <svg class="svg-icon megamenu-services-icon">
-                            <use xlink:href="#customer-support-1"> </use>
-                          </svg>
-                          <div>
-                            <h6 class="text-uppercase">020-800-456-747</h6>
-                            <p class="mb-0 text-muted text-sm">24/7 Available Support</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-xl-3 col-lg-6 d-flex">
-                        <div class="megamenu-services-item">
-                          <svg class="svg-icon megamenu-services-icon">
-                            <use xlink:href="#secure-payment-1"> </use>
-                          </svg>
-                          <div>
-                            <h6 class="text-uppercase">Secure Payment</h6>
-                            <p class="mb-0 text-muted text-sm">Secure Payment</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 d-none d-lg-block"><%= image_tag('megamenu.jpg', class: "bg-image") %></div>
-                </div>
-              </div>
-            </li>
-            <!-- /Megamenu end-->
-            <!-- Multi level dropdown    -->
-            <li class="nav-item dropdown"><a id="navbarDropdownMenuLink" href="http://example.com" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" class="nav-link">Dropdown<i class="fa fa-angle-down"></i></a>
-              <ul aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
-                <li><a href="#" class="dropdown-item">Action</a></li>
-                <li><a href="#" class="dropdown-item">Another action</a></li>
-                <li class="dropdown-submenu"><a id="navbarDropdownMenuLink2" href="http://example.com" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" class="dropdown-item">Dropdown link<i class="fa fa-angle-down ml-2"></i></a>
-                  <ul aria-labelledby="navbarDropdownMenuLink2" class="dropdown-menu">
-                    <li><a href="#" class="dropdown-item">Action</a></li>
-                    <li class="dropdown-submenu"><a id="navbarDropdownMenuLink3" href="http://example.com" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" class="dropdown-item">
-    
-                        Another action<i class="fa fa-angle-down ml-2"></i></a>
-                      <ul aria-labelledby="navbarDropdownMenuLink3" class="dropdown-menu">
-                        <li><a href="#" class="dropdown-item">Action</a></li>
-                        <li><a href="#" class="dropdown-item">Action</a></li>
-                        <li><a href="#" class="dropdown-item">Action</a></li>
-                        <li><a href="#" class="dropdown-item">Action</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#" class="dropdown-item">Something else here</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <!-- Multi level dropdown end-->
-            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a>
-            </li>
-            <li class="nav-item dropdown"><a id="docsDropdownMenuLink" href="index.html" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" class="nav-link ">
-    
-                Docs<i class="fa fa-angle-down"></i></a>
-              <div aria-labelledby="docsDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
-                <h6 class="dropdown-header font-weight-normal">Documentation</h6><a href="docs/docs-introduction.html"
-                  class="dropdown-item">Introduction </a><a href="docs/docs-directory-structure.html" class="dropdown-item">Directory
-                  structure </a><a href="docs/docs-gulp.html" class="dropdown-item">Gulp </a><a href="docs/docs-customizing-css.html"
-                  class="dropdown-item">Customizing CSS </a><a href="docs/docs-credits.html" class="dropdown-item">Credits
-                </a><a href="docs/docs-changelog.html" class="dropdown-item">Changelog </a>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header font-weight-normal">Components</h6><a href="docs/components-bootstrap.html"
-                  class="dropdown-item">Bootstrap </a><a href="docs/components-sell.html" class="dropdown-item">Theme </a><a
-                  href="component-variants/header.html" class="dropdown-item">Header variants <span class="badge badge-info ml-1">New</span>
-                </a>
-              </div>
-            </li>
-          </ul>
-          <div class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
-            <!-- Search Button-->
-            <div data-toggle="search" class="nav-item navbar-icon-link">
-              <svg class="svg-icon">
-                <use xlink:href="#search-1"> </use>
-              </svg>
-            </div>
-            <!-- User Not Logged - link to login page-->
-            <div class="nav-item"><a href="customer-login.html" class="navbar-icon-link">
-                <svg class="svg-icon">
-                  <use xlink:href="#male-user-1"> </use>
-                </svg><span class="text-sm ml-2 ml-lg-0 text-uppercase text-sm font-weight-bold d-none d-sm-inline d-lg-none">Log
-                  in </span></a></div>
-            <!-- Cart Dropdown-->
-            <div class="nav-item dropdown"><a href="cart.html" class="navbar-icon-link d-lg-none">
-                <svg class="svg-icon">
-                  <use xlink:href="#cart-1"> </use>
-                </svg><span class="text-sm ml-2 ml-lg-0 text-uppercase text-sm font-weight-bold d-none d-sm-inline d-lg-none">View
-                  cart</span></a>
-              <div class="d-none d-lg-block"><a id="cartdetails" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                  href="cart.html" class="navbar-icon-link dropdown-toggle">
-                  <svg class="svg-icon">
-                    <use xlink:href="#cart-1"> </use>
-                  </svg>
-                  <div class="navbar-icon-link-badge">3 </div>
-                </a>
-                <div aria-labelledby="cartdetails" class="dropdown-menu dropdown-menu-right p-4">
-                  <div class="navbar-cart-product-wrapper">
-                    <!-- cart item-->
-                    <div class="navbar-cart-product">
-                      <div class="d-flex align-items-center"><a href="detail.html"><%= image_tag('product-square-ian-dooley-347968-unsplash.jpg', class: "img-fluid navbar-cart-product-image") %></a>
-                        <div class="w-100"><a href="#" class="close text-sm mr-2"><i class="fa fa-times"> </i></a>
-                          <div class="pl-3"> <a href="detail.html" class="navbar-cart-product-link">Skull Tee</a><small
-                              class="d-block text-muted">Quantity: 1 </small><strong class="d-block text-sm">$75.00
-                            </strong></div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- cart item-->
-                    <div class="navbar-cart-product">
-                      <div class="d-flex align-items-center"><a href="detail.html"><%= image_tag('product-square-kyle-loftus-596319-unsplash.jpg', class: "img-fluid navbar-cart-product-image") %></a>
-                        <div class="w-100"><a href="#" class="close text-sm mr-2"><i class="fa fa-times"> </i></a>
-                          <div class="pl-3"> <a href="detail.html" class="navbar-cart-product-link">Transparent Blouse</a><small
-                              class="d-block text-muted">Quantity: 1 </small><strong class="d-block text-sm">$75.00
-                            </strong></div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- cart item-->
-                    <div class="navbar-cart-product">
-                      <div class="d-flex align-items-center"><a href="detail.html"><%= image_tag('product-square-serrah-galos-494312-unsplash.jpg', class: "img-fluid navbar-cart-product-image") %></a>
-                        <div class="w-100"><a href="#" class="close text-sm mr-2"><i class="fa fa-times"> </i></a>
-                          <div class="pl-3"> <a href="detail.html" class="navbar-cart-product-link">White Tee</a><small
-                              class="d-block text-muted">Quantity: 1 </small><strong class="d-block text-sm">$75.00
-                            </strong></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- total price-->
-                  <div class="navbar-cart-total"><span class="text-uppercase text-muted">Total</span><strong class="text-uppercase">$75.00</strong></div>
-                  <!-- buttons-->
-                  <div class="d-flex justify-content-between"><a href="cart.html" class="btn btn-link text-dark mr-3">View
-                      Cart <i class="fa-arrow-right fa"></i></a><a href="checkout1.html" class="btn btn-outline-dark">Checkout</a></div>
-                </div>
-              </div>
+    <% if (flash[:notice] || flash[:alert]) %>
+      <div class="container">
+        <div class="row">
+          <div class="alert alert-danger alert-dismissible alert-flash-message" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true"><i class="fas fa-times fa-4x"></i></span>
+            </button>
+            <div class="flash-message">
+              <p><%= alert %></p>
+              <p><%= notice %></p>
             </div>
           </div>
         </div>
       </div>
-    </nav>
+    <% end %>
+    
+    <header class="header">
+      <!-- Top Bar-->
+      <div class="top-bar">
+        <div class="container-fluid">
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-7 d-none d-sm-block">
+              <ul class="list-inline mb-0">
+                <% if current_user %>
+                  <% if current_user.role == "admin" %>
+                    <li class="list-inline-item pr-3 border-right">
+                      <%= link_to 'Admin Panel', admin_root_path %>
+                    </li>  
+                  <% elsif current_user.role == "designer" %>
+                    <li class="list-inline-item pr-3 border-right">
+                      <%= link_to 'Designer Panel', admin_designer_path(current_user) %>
+                    </li>
+                  <% end %> 
+                  <li class="list-inline-item pr-3 border-right">
+                    Hi, <%= current_user.name %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+            <div class="col-sm-5 d-flex justify-content-end">
+              <ul class="list-inline mb-0">
+                <% if current_user %>
+                  <li class="list-inline-item pl-3 border-left">
+                    <%= link_to order_path(current_user) do %>
+                      <i class="fas fa-list-ul fa-lg"></i>
+                    <% end %>
+                  </li>
+                  <li class="list-inline-item pl-3 border-left">
+                    <%= link_to user_chat_rooms_path(current_user), title: "User's ChatRooms" do %>
+                      <i class="far fa-comments fa-lg"></i>
+                    <% end %>
+                  </li>
+                  <li class="list-inline-item pl-3 border-left">
+                    <%= link_to designer_chat_rooms_user_path(current_user), title: "Designer's ChatRooms" do %>
+                      <i class="fas fa-comment-alt fa-lg"></i>
+                    <% end %>
+                  </li>
+                  <li class="list-inline-item pl-3 border-left">
+                    <%= link_to edit_user_password_path(current_user) do %>
+                      <i class="far fa-edit fa-lg"></i>
+                    <% end %>
+                  </li>
+                  <li class="list-inline-item pl-3 mr-0">
+                    <%= link_to destroy_user_session_path, method: :delete do %>
+                      <i class="fas fa-sign-out-alt fa-lg"></i>
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li class="list-inline-item pl-3 mr-0">
+                    <%= link_to new_user_registration_path do %>
+                      <i class="fas fa-user-plus fa-lg"></i>
+                    <% end %>
+                  </li>
+                  <li class="list-inline-item pl-3 border-left">
+                    <%= link_to new_user_session_path do %>
+                      <i class="fas fa-sign-in-alt fa-lg"></i>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Top Bar End-->
+      <!-- Navbar-->
+      <nav class="navbar navbar-expand-lg justify-content-between navbar-sticky navbar-light bg-white bg-fixed-white">
+        <div class="container-fluid">
+          <button type="button" data-toggle="collapse" data-target=".dual-nav" aria-controls="navbarCollapse" aria-expanded="false"
+            aria-label="Toggle navigation" class="navbar-toggler"><i class="fa fa-bars"></i></button>
+          <!-- Navbar Collapse -->
+          <div class="collapse navbar-collapse dual-nav w-50 order-1 order-lg-0">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <%= link_to "Home", root_path, class: "nav-link px-xl-4" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "30 Days", thirtydays_path, class: "nav-link px-xl-4" %>
+              </li>
+            </ul>
+          </div>
+          <!-- Navbar Brand-->
+          <%= link_to 'QuoFation', root_path, class:"navbar-brand d-block mx-auto text-center order-0 order-lg-1 logo" %>
+          <!-- Navbar Collapse -->
+          <div class="collapse navbar-collapse dual-nav w-50 order-2">
+            <div class="d-flex w-100 align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
+              <!-- User Not Logged - link to login page-->
+              <% if current_user %>
+                <div class="nav-item">
+                  <%= link_to user_path(current_user), class:"navbar-icon-link" do %>
+                    <span><i class="far fa-user fa-2x"></i></span>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <!-- Cart Dropdown-->
+              <li class="nav-item dropdown">
+                <a class="nav-link navbar-icon-link dropdown-toggle" data-toggle="dropdown" href="/cart" role="button" aria-haspopup="true" aria-expanded="false">
+                  <span><i class="fas fa-shopping-cart fa-2x"></i></span>
+                  <div class="navbar-icon-link-badge"><%= current_cart.cart_items.size %></div>
+                </a>
+                <div class="dropdown-menu">
+                  <% current_cart.cart_items.each do |item| %>
+                    <div class="dropdown-item navbar-cart-product">
+                      <div class="d-flex align-items-center">
+                        <%= link_to product_path(item.product) do %>
+                          <%= image_tag item.product.image.url, class: "img-fluid navbar-cart-product-image" %>
+                        <% end %>
+                        <div class="w-100">
+                          <%= link_to remove_from_cart_product_path(item.product), class: "close text-sm mr-2" do %>
+                            <i class="fa fa-times"></i>
+                          <% end %>
+                          <div class="pl-3">
+                            <%= link_to item.product.name, product_path(item.product), class: "navbar-cart-product-link" %>
+                            <small class="d-block text-muted">Quantity: <%= item.quantity %></small>
+                            <strong class="d-block text-sm">$<%= (item.product.price) * (item.quantity) %></strong>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                  <div class="dropdown-divider"></div>
+                  <div class="navbar-cart-total">
+                    <span class="text-uppercase text-muted">Total</span>
+                    <strong class="text-uppercase">$<%= current_cart.subtotal %></strong>
+                  </div>
+                  <div class="dropdown-divider"></div>
+                  <div class="dropdown-item d-flex justify-content-between">
+                    <%= link_to cart_path, class: "btn btn-link text-dark mr-3" do %>
+                      View Cart
+                      <i class="fa-arrow-right fa"></i>
+                    <% end %>
+                    <%= link_to "Checkout", cart_path, class: "btn btn-outline-dark" %>
+                  </div>
+                </div>
+              </li>
+            </div>
+          </div>
+          <!-- spacer to center the menu correctly on mobile -->
+          <!-- (compensates for the with of the navbar toggler appearing on the left)-->
+          <div class="w-2rem"> </div>
+        </div>
+      </nav>
+      <!-- /Navbar -->
+    </header>
+    
     <!-- /Navbar -->
     <div>
       <%= yield %>
