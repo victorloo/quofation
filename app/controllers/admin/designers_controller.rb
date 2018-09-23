@@ -50,7 +50,7 @@ class Admin::DesignersController < ApplicationController
   private
 
   def designer_params
-    params.require(:designer).permit(:name, :brandname, :description, :image)
+    params.require(:designer).permit(:name, :brandname, :description, :image, :user_id, )
   end
 
   def set_designer

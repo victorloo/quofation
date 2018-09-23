@@ -36,7 +36,7 @@ namespace :dev do
   #designer fake file
   task fake_designers: :environment do
     Designer.destroy_all
-
+    first_designer_id =  User.where(role: "designer").first.id
     20.times do |i|
       file = File.open("#{Rails.root}/public/images/designer#{i+1}.jpg")
       
@@ -45,7 +45,7 @@ namespace :dev do
         brandname: FFaker::Lorem.word,
         description: FFaker::Lorem::sentence(10),
         image: file,
-        user_id: (1+i)
+        user_id: (first_designer_id+i)
         )
     end
     puts "have created fake designers"
