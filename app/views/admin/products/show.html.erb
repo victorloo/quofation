@@ -1,11 +1,60 @@
-Name:<%= @product.name %><br>
-Category:<%= @product.category.name %><br>
-Size:<%= @product.size.name %><br>
-Color:<%= @product.color.name %><br>
-Price:<%= @product.price %><br>
-Description:<%= @product.description %><br>
-庫存:<%= @product.inventory.name %><br>
+<section class="position-relative dark-overlay py-3 py-lg-7">
+  <%= image_tag @products.image.url, class: "bg-image" %>
+  <div class="container overlay-content hero hero-page">
+    <ul class="breadcrumb justify-content-center no-border mb-0">
+      <li class="breadcrumb-item"><%= link_to "Back", admin_designer_path(params[:designer_id]) %></li>
+    </ul>
 
-<%= image_tag @product.image.url, width: '600px' if @product.image? %>
+  </div>
+</section>
 
-<%= link_to "List of Products", admin_designer_path(params[:designer_id]) %>
+
+ <section class="product-details">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6 py-3 order-2 order-lg-1">
+            <%= image_tag @products.image.url,width: "500px", class: "img-responsive center-block" %>
+          </div>
+
+          <div class="d-flex align-items-center col-lg-6 col-xl-5 pl-lg-5 mb-5 order-1 order-lg-2">
+            <div>
+              <ul class="breadcrumb justify-content-start">
+                <li class="breadcrumb-item">產品介紹</a></li>
+              </ul>
+              <h1 class="mb-4"><%= @products.name %></h1>
+              <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
+                <ul class="list-inline mb-2 mb-sm-0">
+                  <li class="list-inline-item h4 font-weight-light mb-0">$<%= @products.price %></li>
+                </ul>
+              </div>
+              <p class="mb-4 text-muted"><%= @products.description %></p>
+              <form action="#">
+                <div class="row">
+                  <div class="col-sm-6 col-lg-12 detail-option mb-3">
+                    <h6 class="detail-option-heading">類型：<%= @products.category.name %></h6>
+                  </div>
+                  <div class="col-sm-6 col-lg-12 detail-option mb-3">
+                    <h6 class="detail-option-heading">尺寸：<%= @products.size.name %></h6>
+                  </div>
+                  <div class="col-sm-6 col-lg-12 detail-option mb-3">
+                    <h6 class="detail-option-heading">顏色：<%= @products.color.name %></h6>
+                  </div>
+                  <div class="col-sm-6 col-lg-12 detail-option mb-3">
+                    <h6 class="detail-option-heading">庫存：<%= @products.inventory.name %></h6>
+                  </div>
+                  <div class="col-12 detail-option mb-5">
+                    <label class="detail-option-heading font-weight-bold">Items <span>(required)</span></label>
+                    <input name="items" type="number" value="1" class="form-control detail-quantity">
+                  </div>
+                </div>
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <button type="submit" class="btn btn-dark btn-lg mb-1"> <i class="fa fa-shopping-cart mr-2"></i>Add to Cart</button>
+                  </li>
+                </ul>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
