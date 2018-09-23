@@ -26,12 +26,12 @@
     <div class="product-image">
     <%= image_tag designer.image.url, width: '300px', class: "img-fluid" %>
       <div class="product-hover-overlay"><%= link_to "", designer_path(designer), class: "product-hover-overlay-link" %>
-        <div class="product-hover-overlay-buttons"><a href="#" class="btn btn-outline-dark btn-product-left"><i class="fa fa-shopping-cart"></i></a>
+        
         <%= link_to designer_path(designer), class: "btn btn-dark btn-buy" do%>
           <i class="fa-search fa"></i>
           <span class="btn-buy-label ml-2">View</span>
         <% end %>
-        <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-dark btn-product-right"><i class="fa fa-expand-arrows-alt"></i></a>
+        
         </div>
       </div>
     </div>
