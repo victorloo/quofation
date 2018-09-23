@@ -48,7 +48,7 @@
                 <% @designer.products.each do |product| %>
                 <tr>
                   <td class="py-4 align-middle"><%= product.id %></td>
-                  <td class="py-4 align-middle"><%= link_to product.name, admin_designer_product_path(designer_id: @designer, id: product) %></td>
+                  <td class="py-4 align-middle"><%= link_to product.name, admin_designer_product_path(designer_id: @designer, id: product), class: "text-dark" %></td>
                   <td class="py-4 align-middle"><%= product.category.name %></td>
                   <td class="py-4 align-middle"><%= product.size.name %></td>
                   <td class="py-4 align-middle"><%= product.color.name %></td>
