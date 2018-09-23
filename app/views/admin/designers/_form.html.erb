@@ -8,35 +8,38 @@
 
 <%= form_for [:admin, @designer] do |f| %>
 
-  </div>
-  <div class="form-group">
+
+<div class="block-header">
+  <h6 class="text-uppercase mb-0">Create New Designer</h6>
+</div>
+  <div class="block-body">
+    <div class="row">
+  <div class="form-group col-md-6">
   <%= f.label :user_id, "User ID" %>
   <%= f.number_field :user_id, class: "form-control"  %>
   </div>
   
-  <div class="form-group">
+   <div class="form-group col-md-6">
   <%= f.label :name, "Name" %>
   <%= f.text_field :name, class: "form-control"  %>
-  </div>
+  </div> 
+  <div class="form-group col-md-6">
+    <label for="brandname_invoice" class="form-label">Brand</label>
+      <input type="text" name="brandname_invoice" placeholder="Uniqlo" id="brandname_invoice" class="form-control">
+  </div>                  
+  <div class="form-group col-md-6">
+    <label for="description_invoice" class="form-label">Description</label>
+      <input type="text" name="description_invoice" placeholder="品牌描述" id="description_invoice" class="form-control">
+  </div>   
+  <div class="form-group col-md-6">
+    <label for="image_invoice" class="form-label">Photo</label>
+    <%= image_tag @designer.image.url, width: '300px' if @designer.image? %>
+    <%= f.file_field :image, class: "form-control"  %>
+  </div>   
 
-
-  <div class="form-group">
-  <%= f.label :brandname, "BrandName" %>
-  <%= f.text_field :brandname, class: "form-control"  %>
-  </div>
-
-  <div class="form-group">
-  <%= f.label :description, "Description" %>
-  <%= f.text_area :description, class: "form-control"  %>
-  </div>
-
-  <div class="form-group">
-  <%= f.label :image, "Photo" %>
-  <%= image_tag @designer.image.url, width: '300px' if @designer.image? %>
-  <%= f.file_field :image, class: "form-control"  %>
-  </div>
-
-  <div class="form-group">
+  <div class="form-group col-md-6">
   <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+
+  
