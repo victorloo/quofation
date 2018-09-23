@@ -2,6 +2,7 @@ class ThirtydaysController < ApplicationController
   before_action :authenticate_user!
   def index
     @products = Product.where(thirtydays_status: true).sample(3)
+    @rand_prod = Product.where(thirtydays_status: true).sample
   end
   
   def show
