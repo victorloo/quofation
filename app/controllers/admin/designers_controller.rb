@@ -11,7 +11,10 @@ class Admin::DesignersController < ApplicationController
   
   def create
     @designer = Designer.new(designer_params)
+    @user = @designer.user
     if @designer.save
+      @user.role = "designer"
+      @user.save!
       flash[:notice] = "成功新增設計師"
       redirect_to admin_designers_path
     else
