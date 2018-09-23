@@ -1,44 +1,85 @@
-<section id="cart-list" class="panel">
-  <div>
-    <h2>Shopping List</h2>
+<!-- Hero Section-->
+    <section class="hero">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <ol class="breadcrumb justify-content-center">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Shopping cart        </li>
+        </ol>
+        <!-- Hero Content-->
+        <div class="hero-content pb-5 text-center">
+          <h1 class="hero-heading">Shopping cart</h1>
+          <div class="row">   
+            <div class="col-xl-8 offset-xl-2"><p class="lead text-muted">This is a shopping list.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section>
+  <div class="container">
+    <div class="row mb-5"> 
+          <div class="col-lg-8">
+            <div class="cart">
+              <div class="cart-header text-center">
+                <div class="row">
+                    <div class="col-md-3">Item</div>
+                    <div class="col-md-7 d-none d-md-block">
+                      <div class="row">
+                        <div class="col-md-3">Price</div>
+                        <div class="col-md-5">Quantity</div>
+                        <div class="col-md-3">ToTal</div>
+                       
+                      </div>
+                    </div>
+                    </div>
+                </div>
+              <div class="cart-body">
+                <table>
+                  <% @items.each do |item| %>
+                  <tr class="product-<%= item.product.id %>">
+                    <td class="col-md-2 "><%= image_tag item.product.image.url, width:100 %><span><%= item.product.name %></span></td>
+                    <td class="col-md-5 "><span>$<%= item.product.price %></span></td>
+                    <td class="col-md-4">
+                      <%= link_to '+', adjust_item_product_path(item.product, type: "add"), method: :post, remote: true %></td>
+                        <td class="col-md-4"><span class="cart-<%= item.product.id %>-qty" ><%= item.quantity %></span></td>
+                      <td class="col-md-4"><%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post, remote: true %></td>
+                    
+                    <td class="item-<%= item.product.id%>-total"><span><%= item.item_total %></span></td>
+                    <td class="col-md-5"><%= link_to "Detele", remove_from_cart_product_path(item.product), method: :post, remote: true %></td>
+                  </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="block mb-5">
+              <div class="block-header">
+                <h6 class="text-uppercase mb-0">Order Summary</h6>
+              </div>
+              <div class="block-body bg-light pt-1">
+                <p class="text-sm">Shipping and additional costs are calculated based on values you have entered.</p>
+                <ul class="order-summary mb-0 list-unstyled">
+                  <li class="order-summary-item border-0"><span>Total</span><strong class="order-summary-total">$<%= current_cart.subtotal %></strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+    </div>      
   </div>
-  <table>
-    <tr>
-      <th></th>
-      <th></th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th></th>
-      <th></th>
-    </tr>
-    <% @items.each do |item| %>
-      <tr class="product-<%= item.product.id %>">
-
-        <td><%= image_tag item.product.image.url %></td>
-        <td><%= item.product.name %></td>
-        <td>$ <%= item.product.price %></td>
-        <td class="cart-item-adjust">
-          <%= link_to '+', adjust_item_product_path(item.product, type: "add"), method: :post, remote: true %>
-          <span class="cart-<%= item.product.id %>-qty" ><%= item.quantity %></span>
-          <%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post, remote: true %>
-        </td>
-        <td class="item-<%= item.product.id%>-total"><%= item.item_total %></td>
-        <td><%= link_to "Detele", remove_from_cart_product_path(item.product), method: :post, remote: true %></td>
-      </tr>
-    <% end %>
-    <tr>
-      <td colspan="4">Subtotal</td>
-      <td class="amount"><%= current_cart.subtotal %></td>
-      <td></td>
-    </tr>
-  </table>
 </section>
-
 <%= render partial: "shared/form_error", locals: { object: @order }%>
-
+<section>
+  <div class="container">
+    <div class="row mb-5 text-uppercase mb-0">
+      
 <%= form_for @order do |f| %>
-  <section class="panel">
-    <h2>Shpping Information</h2>
+  <div class="cart-header text-center">
+    <h5>Shpping Information</h5>
+  </div>
       <div class="form-group">
         <%= f.label :name %>
         <%= f.text_field :name %>
@@ -51,6 +92,11 @@
         <%= f.label :address %>
         <%= f.text_field :address %>
       </div>
-  </section>
+ 
    <%= f.submit "CHECKOUT", class: "btn" %>
  <% end %>
+
+</div>
+</div>
+
+</section>
