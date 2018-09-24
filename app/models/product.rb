@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  mount_uploader :image, ProductUploader
+  #mount_uploader :image, ProductUploader
   validates_presence_of :name, :color, :size, :description, :inventory, :category, :price
   belongs_to :designer
   belongs_to :category, optional: true

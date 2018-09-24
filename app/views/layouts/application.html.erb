@@ -9,6 +9,9 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Filestack -->
+    <%= filestack_js_include_tag %>
+    <%= filestack_js_init_tag %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -139,7 +142,7 @@
                     <div class="dropdown-item navbar-cart-product">
                       <div class="d-flex align-items-center">
                         <%= link_to product_path(item.product) do %>
-                          <%= image_tag item.product.image.url, class: "img-fluid navbar-cart-product-image" %>
+                          <%= image_tag item.product.image, class: "img-fluid navbar-cart-product-image" %>
                         <% end %>
                         <div class="w-100">
                           <%= link_to remove_from_cart_product_path(item.product), class: "close text-sm mr-2" do %>
