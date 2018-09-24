@@ -27,8 +27,9 @@
               </div>
             </div>
             <div class="py-2">
+              <span class="text-muted"><%= product.category.name %></span>
               <h3 class="h6 text-uppercase mb-1">
-                <%= link_to product.category.name, thirtyday_path(product), class:"text-dark" %>
+                <%= link_to product.name, thirtyday_path(product), class:"text-dark" %>
               </h3>
               <span class="text-muted"><%= product.price %></span>
               <%= button_to 'Add to Cart', add_to_cart_product_path(product), class: "btn btn-default", remote: true %>
