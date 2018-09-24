@@ -130,48 +130,51 @@
                   <% end %>
                 </div>
               <% end %>
-
-              <!-- Cart Dropdown-->
-              <li class="nav-item dropdown">
-                <a class="nav-link navbar-icon-link dropdown-toggle" data-toggle="dropdown" href="/cart" role="button" aria-haspopup="true" aria-expanded="false">
-                  <span><i class="fas fa-shopping-cart fa-2x"></i></span>
-                  <div class="navbar-icon-link-badge"><%= current_cart.cart_items.size %></div>
-                </a>
-                <div class="dropdown-menu">
-                  <% current_cart.cart_items.each do |item| %>
-                    <div class="dropdown-item navbar-cart-product">
-                      <div class="d-flex align-items-center">
-                        <%= link_to product_path(item.product) do %>
-                          <%= image_tag item.product.image, class: "img-fluid navbar-cart-product-image" %>
-                        <% end %>
-                        <div class="w-100">
-                          <%= link_to remove_from_cart_product_path(item.product), class: "close text-sm mr-2" do %>
-                            <i class="fa fa-times"></i>
-                          <% end %>
-                          <div class="pl-3">
-                            <%= link_to item.product.name, product_path(item.product), class: "navbar-cart-product-link" %>
-                            <small class="d-block text-muted">Quantity: <%= item.quantity %></small>
-                            <strong class="d-block text-sm">$<%= (item.product.price) * (item.quantity) %></strong>
+              <!-- Cart -->
+              <div class="nav-item dropdown">
+                <div class="d-none d-lg-block">
+                  <a id="cartdetails" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/cart" class="navbar-icon-link dropdown-toggle">
+                    <i class="fas fa-shopping-cart fa-2x"></i>
+                    <div class="navbar-icon-link-badge"><%= current_cart.cart_items.size %></div>
+                  </a>
+                  <div aria-labelledby="cartdetails" class="dropdown-menu dropdown-menu-right p-4">
+                    <div class="navbar-cart-product-wrapper">
+                      <% current_cart.cart_items.each do |item| %>
+                        <!-- cart item-->
+                        <div class="navbar-cart-product">
+                          <div class="d-flex align-items-center">
+                            <%= link_to product_path(item.product) do %>
+                              <%= image_tag item.product.image, class: "img-fluid navbar-cart-product-image" %>
+                            <% end %>
+                            <div class="w-100">
+                              <%= link_to remove_from_cart_product_path(item.product), method: :post, class: "close text-sm mr-2", remote: true do %>
+                                <i class="fa fa-times"></i>
+                              <% end %>
+                              <div class="pl-3">
+                                <%= link_to item.product.name, product_path(item.product), class: "navbar-cart-product-link" %>
+                                <small class="d-block text-muted">Quantity: <%= item.quantity %></small>
+                                <strong class="d-block text-sm">$<%= (item.product.price) * (item.quantity) %></strong>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      <% end %>                      
                     </div>
-                  <% end %>
-                  <div class="dropdown-divider"></div>
-                  <div class="navbar-cart-total">
-                    <span class="text-uppercase text-muted">Total</span>
-                    <strong class="text-uppercase">$<%= current_cart.subtotal %></strong>
-                  </div>
-                  <div class="dropdown-divider"></div>
-                  <div class="dropdown-item d-flex justify-content-between">
-                    <%= link_to cart_path, class: "btn btn-link text-dark mr-3" do %>
-                      View Cart
-                      <i class="fa-arrow-right fa"></i>
-                    <% end %>
-                    <%= link_to "Checkout", cart_path, class: "btn btn-outline-dark" %>
+                    <!-- total price-->
+                    <div class="navbar-cart-total">
+                      <span class="text-uppercase text-muted">Total</span>
+                      <strong class="text-uppercase">$<%= current_cart.subtotal %></strong>
+                    </div>
+                    <!-- buttons-->
+                    <div class="d-flex justify-content-between">
+                      <a href="/cart" class="btn btn-link text-dark mr-3">
+                        View Cart <i class="fa-arrow-right fa"></i>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </li>
+              </div>
+              <!-- Cart End -->
             </div>
           </div>
           <!-- spacer to center the menu correctly on mobile -->
