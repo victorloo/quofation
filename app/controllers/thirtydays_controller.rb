@@ -12,7 +12,7 @@ class ThirtydaysController < ApplicationController
   end
 
   def designers
-    @designers = Designer.order("RANDOM()")
+    @products = Product.where(thirtydays_status: true).order("RANDOM()")
   end
 
   def products
