@@ -1,19 +1,3 @@
-<div class="container">
-
-  <ul>
-    <li><%= button_to 'Add to CART', add_to_cart_product_path(@product), class:"btn btn-outline-primary", remote: true %></li>
-    <li><%= link_to "See Designer's works", designer_path(@product.designer) , class:"btn btn-outline-success" %></li>
-    <li><%= link_to "Products List", products_thirtydays_path, class:"btn btn-outline-warning" %></li>
-    <li><%= link_to "Designers List", designers_thirtydays_path, class:"btn btn-outline-dark" %></li>
-    <% if (current_user.designer) && (current_user.designer.chat_rooms) != nil %>
-      <li><%= link_to "Designer's ChatRooms", designer_chat_rooms_user_path(current_user), class:"btn btn-outline-danger" %></li>
-    <% elsif current_user.chat_rooms != nil %>
-      <li><%= link_to "Your's ChatRooms", user_chat_rooms_path(current_user), class:"btn btn-outline-danger" %></li>
-    <% end %>
-    <li><%= link_to "Go Back To 30 Days Index", thirtydays_path %></li>
-  </ul>
-  <hr>
-</div>
 <!-- Buy Product -->
 <section class="product-details">
   <div class="container-fluid">
@@ -27,6 +11,19 @@
       </div>
       <div class="d-flex align-items-center col-lg-6 col-xl-5 pl-lg-5 mb-5 order-1 order-lg-2">
         <div>
+          <!-- Breadcrumbs -->
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item">
+              <%= link_to '30 Days', products_thirtydays_path %>
+            </li>
+            <li class="breadcrumb-item">
+              <%= link_to 'Designers', designers_thirtydays_path %>
+            </li>
+            <li class="breadcrumb-item">
+              <%= link_to "Designer's works", designer_path(@product.designer) %>
+            </li>
+            <li class="breadcrumb-item active"><%= @product.category.name %></li>
+          </ol>
           <h1 class="mb-4"><%= @product.name %></h1>
           <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
             <ul class="list-inline mb-2 mb-sm-0">
@@ -40,58 +37,22 @@
             <%= @product.description %>
           </p>
 
-          <!-- Waiting for edit -->
+          <!-- Need to amend-->
           <form action="#">
             <div class="row">
               <div class="col-sm-6 col-lg-12 detail-option mb-3">
                 <h6 class="detail-option-heading">Size <span>(required)</span></h6>
                 <label for="size_0" class="btn btn-sm btn-outline-secondary detail-option-btn-label">
-
-                  Small
+                  <%= @product.size.name %>
                   <input type="radio" name="size" value="value_0" id="size_0" required class="input-invisible">
-                </label>
-                <label for="size_1" class="btn btn-sm btn-outline-secondary detail-option-btn-label">
-
-                  Medium
-                  <input type="radio" name="size" value="value_1" id="size_1" required class="input-invisible">
-                </label>
-                <label for="size_2" class="btn btn-sm btn-outline-secondary detail-option-btn-label">
-
-                  Large
-                  <input type="radio" name="size" value="value_2" id="size_2" required class="input-invisible">
-                </label>
-              </div>
-              <div class="col-sm-6 col-lg-12 detail-option mb-3">
-                <h6 class="detail-option-heading">Type <span>(required)</span></h6>
-                <label for="material_0" class="btn btn-sm btn-outline-secondary detail-option-btn-label">
-
-                  Hoodie
-                  <input type="radio" name="material" value="value_0" id="material_0" required class="input-invisible">
-                </label>
-                <label for="material_1" class="btn btn-sm btn-outline-secondary detail-option-btn-label">
-
-                  College
-                  <input type="radio" name="material" value="value_1" id="material_1" required class="input-invisible">
                 </label>
               </div>
               <div class="col-12 detail-option mb-3">
                 <h6 class="detail-option-heading">Colour <span>(required)</span></h6>
                 <ul class="list-inline mb-0 colours-wrapper">
                   <li class="list-inline-item">
-                    <label for="colour_Blue" style="background-color: #668cb9" class="btn-colour"> </label>
+                    <label for="colour_Blue" style="background-color: #<%= @product.color.hexcode %>" class="btn-colour"> </label>
                     <input type="radio" name="colour" value="value_Blue" id="colour_Blue" required class="input-invisible">
-                  </li>
-                  <li class="list-inline-item">
-                    <label for="colour_White" style="background-color: #fff" class="btn-colour"> </label>
-                    <input type="radio" name="colour" value="value_White" id="colour_White" required class="input-invisible">
-                  </li>
-                  <li class="list-inline-item">
-                    <label for="colour_Violet" style="background-color: #8b6ea4" class="btn-colour"> </label>
-                    <input type="radio" name="colour" value="value_Violet" id="colour_Violet" required class="input-invisible">
-                  </li>
-                  <li class="list-inline-item">
-                    <label for="colour_Red" style="background-color: #dd6265" class="btn-colour"> </label>
-                    <input type="radio" name="colour" value="value_Red" id="colour_Red" required class="input-invisible">
                   </li>
                 </ul>
               </div>
@@ -99,18 +60,17 @@
                 <label class="detail-option-heading font-weight-bold">Items <span>(required)</span></label>
                 <input name="items" type="number" value="1" class="form-control detail-quantity">
               </div>
-            </div>
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <button type="submit" class="btn btn-dark btn-lg mb-1"> <i class="fa fa-shopping-cart mr-2"></i>Add to
-                  Cart</button>
-              </li>
-              <li class="list-inline-item"><a href="#" class="btn btn-outline-secondary mb-1"> <i class="far fa-heart mr-2"></i>Add
-                  to wishlist</a></li>
-            </ul>
+            </div>            
           </form>
-          <!-- Waiting for edit End -->
-
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <%= button_to add_to_cart_product_path(@product), class:"btn btn-dark btn-lg mb-1", remote: true do %>
+              <i class="fa fa-shopping-cart mr-2"></i>
+              Add to Cart
+              <% end %>
+            </li>
+          </ul>
+          <!-- Need to amend end-->
         </div>
       </div>
     </div>
