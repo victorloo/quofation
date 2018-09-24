@@ -8,10 +8,11 @@ class ThirtydaysController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @comment = Comment.new
+    @products = Product.where(thirtydays_status: true).sample(6)
   end
 
   def designers
-    @designers = Designer.order("RANDOM()")
+    @products = Product.where(thirtydays_status: true).order("RANDOM()")
   end
 
   def products

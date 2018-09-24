@@ -1,79 +1,227 @@
-
-
-
-<div class="container">
-  <h1>This is the page Thirtydays#Show</h1>
-  <p>Show details</p>
-
-  <%= image_tag @product.image.url, width: '300px', class: "img-responsive center-block", alt: "Photo of Product" %>
-
-  <ul>
-    <li>Name: <%= @product.name %></li>
-    <li>Description: <%= @product.description %></li>
-    <li>Price: <%= @product.price %></li>
-    <li>Thirtydays: <%= @product.thirtydays_status.to_s %></li>
-    <li>Designer: <%= @product.designer.name %></li>
-  </ul>
-
-  <ul>
-    <li><%= button_to 'Add to CART', add_to_cart_product_path(@product), class:"btn btn-outline-primary", remote: true %></li>
-    <li><%= link_to "See Designer's works", designer_path(@product.designer) , class:"btn btn-outline-success" %></li>
-    <li><%= link_to "Products List", products_thirtydays_path, class:"btn btn-outline-warning" %></li>
-    <li><%= link_to "Designers List", designers_thirtydays_path, class:"btn btn-outline-dark" %></li>
-    <% if (current_user.designer) && (current_user.designer.chat_rooms) != nil %>
-      <li><%= link_to "Designer's ChatRooms", designer_chat_rooms_user_path(current_user), class:"btn btn-outline-danger" %></li>
-    <% elsif current_user.chat_rooms != nil %>
-      <li><%= link_to "Your's ChatRooms", user_chat_rooms_path(current_user), class:"btn btn-outline-danger" %></li>
-    <% end %>
-    <li><%= link_to "Go Back To 30 Days Index", thirtydays_path %></li>
-  </ul>
-
-  <hr>
-
-  <div>
-    <% @product.comments.each do |comment| %>
-      <% if current_user == comment.user %>
-      <div style="background-color: rgba(158, 158, 158, .14);">
-        <h4>
-          <%= comment.user.name %>
-        </h4>
-        <p>
-          <%= simple_format comment.content %>
-        </p>
-        <p class="text-muted">
-          <em>
-            <%= time_ago_in_words(comment.created_at) %></em>
-        </p>
-        <hr>
+<!-- Buy Product -->
+<section class="product-details">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 py-3 order-2 order-lg-1">
+        <div data-slider-id="1" class="owl-carousel owl-theme owl-dots-modern detail-full">
+          <div style="background: center center url('<%= @product.image.url %>') no-repeat; background-size: cover;"
+            class="detail-full-item">
+          </div>
+        </div>
       </div>
-      <% else %>
-      <div>
-        <h4>
-          <%= comment.user.name %>
-        </h4>
-        <p>
-          <%= simple_format comment.content %>
-        </p>
-        <p class="text-muted">
-          <em>
-            <%= time_ago_in_words(comment.created_at) %></em>
-        </p>
-        <hr>
+      <div class="d-flex align-items-center col-lg-6 col-xl-5 pl-lg-5 mb-5 order-1 order-lg-2">
+        <div>
+          <!-- Breadcrumbs -->
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item">
+              <%= link_to '30 Days', products_thirtydays_path %>
+            </li>
+            <li class="breadcrumb-item">
+              <%= link_to 'Designers', designers_thirtydays_path %>
+            </li>
+            <li class="breadcrumb-item">
+              <%= link_to "Designer's works", designer_path(@product.designer) %>
+            </li>
+            <li class="breadcrumb-item active"><%= @product.category.name %></li>
+          </ol>
+          <h1 class="mb-4"><%= @product.name %></h1>
+          <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
+            <ul class="list-inline mb-2 mb-sm-0">
+              <li class="list-inline-item h4 font-weight-light mb-0">$<%= @product.price %></li>
+            </ul>
+            <div class="d-flex align-items-center">
+              <span class="text-muted text-uppercase text-sm"><%= @product.comments.length %> reviews</span>
+            </div>
+          </div>
+          <p class="mb-4 text-muted">
+            <%= @product.description %>
+          </p>
+
+          <!-- Need to amend-->
+          <form action="#">
+            <div class="row">
+              <div class="col-sm-6 col-lg-12 detail-option mb-3">
+                <h6 class="detail-option-heading">Size <span>(required)</span></h6>
+                <label for="size_0" class="btn btn-sm btn-outline-secondary detail-option-btn-label">
+                  <%= @product.size.name %>
+                  <input type="radio" name="size" value="value_0" id="size_0" required class="input-invisible">
+                </label>
+              </div>
+              <div class="col-12 detail-option mb-3">
+                <h6 class="detail-option-heading">Colour <span>(required)</span></h6>
+                <ul class="list-inline mb-0 colours-wrapper">
+                  <li class="list-inline-item">
+                    <label for="colour_Blue" style="background-color: #<%= @product.color.hexcode %>" class="btn-colour"> </label>
+                    <input type="radio" name="colour" value="value_Blue" id="colour_Blue" required class="input-invisible">
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 detail-option mb-5">
+                <label class="detail-option-heading font-weight-bold">Items <span>(required)</span></label>
+                <input name="items" type="number" value="1" class="form-control detail-quantity">
+              </div>
+            </div>            
+          </form>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <%= button_to add_to_cart_product_path(@product), class:"btn btn-dark btn-lg mb-1", remote: true do %>
+              <i class="fa fa-shopping-cart mr-2"></i>
+              Add to Cart
+              <% end %>
+            </li>
+          </ul>
+          <!-- Need to amend end-->
+        </div>
       </div>
+    </div>
+  </div>
+</section>
+<!-- Buy Product End -->
+
+<!-- Product Detail -->
+<section class="mt-5">
+  <div class="container">
+    <ul role="tablist" class="nav nav-tabs flex-column flex-sm-row">
+      <li class="nav-item"><a data-toggle="tab" href="#description" role="tab" class="nav-link detail-nav-link active">Description</a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#additional-information" role="tab" class="nav-link detail-nav-link">Additional
+          Information</a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#reviews" role="tab" class="nav-link detail-nav-link">Reviews</a></li>
+    </ul>
+    <div class="tab-content py-4">
+      <div id="description" role="tabpanel" class="tab-pane active px-3">
+        <p class="text-muted">
+          <%= @product.description %>
+        </p>
+      </div>
+
+      <!-- Waiting for Edit -->
+      <div id="additional-information" role="tabpanel" class="tab-pane">
+        <div class="row">
+          <div class="col-lg-6">
+            <table class="table text-sm">
+              <tbody>
+                <tr>
+                  <th class="text-uppercase font-weight-normal border-0">Designer</th>
+                  <td class="text-muted border-0"><%= @product.designer.name %></td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase font-weight-normal ">Available packaging</th>
+                  <td class="text-muted ">LOLDuis aute irure dolor in reprehenderit</td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase font-weight-normal ">Weight</th>
+                  <td class="text-muted ">dolor sit amet</td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase font-weight-normal ">Sunt in culpa qui</th>
+                  <td class="text-muted ">Lorem ipsum dolor sit amet</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-lg-6">
+            <table class="table text-sm">
+              <tbody>
+                <tr>
+                  <th class="text-uppercase font-weight-normal border-0">Weight</th>
+                  <td class="text-muted border-0">dolor sit amet </td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase font-weight-normal ">Sunt in culpa qui</th>
+                  <td class="text-muted ">Lorem ipsum dolor sit amet </td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase font-weight-normal ">Product #</th>
+                  <td class="text-muted ">Lorem ipsum dolor sit amet </td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase font-weight-normal ">Available packaging</th>
+                  <td class="text-muted ">LOLDuis aute irure dolor in reprehenderit </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Waiting for Edit End -->
+
+      <div id="reviews" role="tabpanel" class="tab-pane">
+        <div class="row mb-5">
+          <div class="col-lg-10 col-xl-9">
+            <% @product.comments.each do |comment| %>
+              <div class="media review">
+                <div class="text-center mr-4 mr-xl-5">
+                  <%= image_tag comment.user.avatar, class: "review-image" %>
+                  <span class="text-uppercase text-muted"><%= time_ago_in_words(comment.updated_at) %></span>
+                </div>
+                <div class="media-body">
+                  <h5 class="mt-2 mb-1"><%= comment.user.name %></h5>
+                  <p class="text-muted">
+                    <%= comment.content %>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+            <div class="py-5 px-3">
+              <h5 class="text-uppercase mb-4">Leave a review</h5>
+              <div style="clear:both;">
+                <%= form_for [@product, @comment], url: "#{@product.id}/comments", id: "contact-form", class: "form" do |f| %>
+                  <div class="form-group">
+                    <%= f.label :content, "Comment text", class: "form-label" %>
+                    <%= f.text_area :content, rows: "4", id: "review", placeholder: "Enter your comment", required: "required", class: "form-control" %>
+                  </div>
+                  
+                  <div class="form-group">
+                    <%= f.button :submit, class: "btn btn-outline-dark" do %>
+                      Post comment
+                    <% end %>
+                    <%= f.button "Cancel", type: :reset, class: "btn" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Product Detail End -->
+
+<!-- Other Products -->
+<section class="my-5">
+  <div class="container">
+    <header class="text-center">
+      <h6 class="text-uppercase mb-5">You might also like</h6>
+    </header>
+    <div class="row">
+      <% @products.each do |rand_prod| %>
+        <!-- product-->
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="product">
+            <div class="product-image">
+              <%= image_tag rand_prod.image.url, alt: "product", class: "img-fluid" %>
+              <div class="product-hover-overlay">
+                <div class="product-hover-overlay-buttons">
+                  <%= link_to thirtyday_path(rand_prod), class:"btn btn-dark btn-buy" do %>
+                    <i class="fa-search fa"></i>
+                    <span class="btn-buy-label ml-2">View</span>
+                  <% end %>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="py-2">
+              <p class="text-muted text-sm mb-1"><%= rand_prod.category.name %></p>
+              <h3 class="h6 text-uppercase mb-1">
+                <%= link_to rand_prod.name, thirtyday_path(rand_prod), class:"text-dark" %>
+              </h3>
+              <span class="text-muted">$<%= rand_prod.price %></span>
+            </div>
+          </div>
+        </div>
+        <!-- /product-->
       <% end %>
-    <% end %>
-  </div>
-  
-  <div style="clear:both;">
-    <%= form_for [@product, @comment], url: "#{@product.id}/comments" do |f| %>
-    <div class="form-group">
-      <%= f.text_area :content, placeholder: "Give a comment", class: "form-control" %>
     </div>
-    <div class="form-group">
-      <%= f.submit class: "btn btn-primary" %>
-      <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
-    </div>
-    <% end %>
   </div>
-
-</div>
+</section>

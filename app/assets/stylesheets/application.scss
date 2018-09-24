@@ -15,8 +15,5 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 
 @import 'bootstrap';
-@import 'style';
 @import 'style.default';
-@import '_core';
-@import 'designers'
-
+@import 'style';
