@@ -36,7 +36,7 @@
           <!-- product masonry-->
           <div class="product card border-0">
             <div class="product-image">
-              <%= image_tag product.image.url, class: "img-fluid" %>
+              <%= image_tag product.image, class: "img-fluid" %>
               <div class="product-hover-overlay">
                 <div class="product-hover-overlay-buttons">
                   <%= link_to add_to_cart_product_path(product), method: :post, class:"btn btn-outline-dark btn-product-left", remote: true do %>

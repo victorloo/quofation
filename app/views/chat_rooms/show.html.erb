@@ -2,7 +2,7 @@
   <h1><%= @chat_room.title %></h1>
 
   <div class="mx-auto" style="width: 300px;">
-    <%= image_tag @chat_room.product.image.url, width: '300px', class: "img-responsive center-block" %>
+    <%= image_tag @chat_room.product.image, width: '300px', class: "img-responsive center-block" %>
   </div>
 
   <div id="messages" data-chat-room-id="<%= @chat_room.id %>">

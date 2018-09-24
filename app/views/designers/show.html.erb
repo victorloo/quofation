@@ -1,6 +1,6 @@
 <!-- Breadcrumbs + Hero-->
     <section class="position-relative dark-overlay py-3 py-lg-7">
-    <%= image_tag @designers.image.url, class: "bg-image" %>
+    <%= image_tag @designers.image, class: "bg-image" %>
       <div class="container overlay-content hero hero-page">
         <ul class="breadcrumb justify-content-center no-border mb-0">
           <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -31,7 +31,7 @@
               <div class="col-xl-3 col-lg-4 col-sm-6">
                 <div class="product">
                   <div class="product-image">
-                    <%= image_tag product.image.url, class: "img-fluid"%><alt="product" class="img-fluid">
+                    <%= image_tag product.image, class: "img-fluid"%><alt="product" class="img-fluid">
                     <div class="product-hover-overlay"><%= link_to "", designer_product_path(designer_id: @designer, id: product), class: "product-hover-overlay-link" %>
                     <div class="product-hover-overlay-buttons">
                     <%= button_to add_to_cart_product_path(product), remote: true, class: "btn btn-outline-dark btn-product-left" do%>
