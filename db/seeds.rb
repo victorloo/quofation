@@ -84,40 +84,43 @@ puts "Size created!"
 Color.destroy_all
 
 color_list = [
-  { name: "白色" },
-  { name: "黑色" },
-  { name: "紅色" },
-  { name: "水藍" },
-  { name: "亮橘" },
-  { name: "寶藍" },
-  { name: "鮮黃" },
-  { name: "中粉" },
-  { name: "淺灰" },
-  { name: "天空藍" },
-  { name: "深藍" },
-  { name: "紫色" },
-  { name: "紫紅" },
-  { name: "淺橘" },
-  { name: "亮綠" },
-  { name: "淺紫" },
-  { name: "橘色" },
-  { name: "湖水藍" },
-  { name: "暗紅" },
-  { name: "明黃" },
-  { name: "粉紫" },
-  { name: "中藍" },
-  { name: "粉色" },
-  { name: "粉桃" },
-  { name: "淺綠" },
-  { name: "棕色" },
-  { name: "淺黃" },
-  { name: "軍綠" },
-  { name: "酒紅" },
-  { name: "卡其" } 
+  { name: "白色", hexcode: "FFFFFF" },
+  { name: "黑色", hexcode: "000000" },
+  { name: "紅色", hexcode: "FF0000" },
+  { name: "水藍", hexcode: "7FFFD4" },
+  { name: "亮橘", hexcode: "FF4500" },
+  { name: "寶藍", hexcode: "4169E1" },
+  { name: "鮮黃", hexcode: "FFFF00" },
+  { name: "中粉", hexcode: "FF69B4" },
+  { name: "淺灰", hexcode: "D3D3D3" },
+  { name: "天空藍", hexcode: "87CEEB" },
+  { name: "深藍", hexcode: "00008B" },
+  { name: "紫色", hexcode: "800080" },
+  { name: "紫紅", hexcode: "FF00FF" },
+  { name: "深橘", hexcode: "FF8C00" },
+  { name: "亮綠", hexcode: "00FF00" },
+  { name: "淺紫", hexcode: "9400D3" },
+  { name: "橘色", hexcode: "FFA500" },
+  { name: "湖水藍", hexcode: "B0E0E6" },
+  { name: "暗紅", hexcode: "8B0000" },
+  { name: "明黃", hexcode: "FAFAD2" },
+  { name: "粉紫", hexcode: "EE82EE" },
+  { name: "中藍", hexcode: "0000CD" },
+  { name: "粉色", hexcode: "FFC0CB" },
+  { name: "粉桃", hexcode: "FFB6C1" },
+  { name: "淺綠", hexcode: "90EE90" },
+  { name: "棕色", hexcode: "A52A2A" },
+  { name: "淺黃", hexcode: "FFFFE0" },
+  { name: "軍綠", hexcode: "6B8E23" },
+  { name: "酒紅", hexcode: "722F37" },
+  { name: "卡其", hexcode: "F0E68C" } 
 ]
 
 color_list.each do |color|
-  Color.create( name: color[:name] )
+  Color.create( 
+    name: color[:name],
+    hexcode: color[:hexcode]
+  )
 end
 puts "Category created!"
 
