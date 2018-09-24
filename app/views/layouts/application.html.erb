@@ -68,13 +68,15 @@
                       <i class="far fa-comments fa-lg"></i>
                     <% end %>
                   </li>
+                  <% if current_user.role == "designer" %>
+                    <li class="list-inline-item pl-3 border-left">
+                      <%= link_to designer_chat_rooms_user_path(current_user), title: "Designer's ChatRooms" do %>
+                        <i class="fas fa-comment-alt fa-lg"></i>
+                      <% end %>
+                    </li>
+                  <% end %>
                   <li class="list-inline-item pl-3 border-left">
-                    <%= link_to designer_chat_rooms_user_path(current_user), title: "Designer's ChatRooms" do %>
-                      <i class="fas fa-comment-alt fa-lg"></i>
-                    <% end %>
-                  </li>
-                  <li class="list-inline-item pl-3 border-left">
-                    <%= link_to edit_user_password_path(current_user) do %>
+                    <%= link_to edit_user_path(current_user) do %>
                       <i class="far fa-edit fa-lg"></i>
                     <% end %>
                   </li>
