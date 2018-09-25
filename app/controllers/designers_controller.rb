@@ -1,5 +1,5 @@
 class DesignersController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @designers = Designer.page(params[:page]).per(8)
