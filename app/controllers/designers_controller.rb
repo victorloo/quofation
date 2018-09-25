@@ -6,8 +6,7 @@ class DesignersController < ApplicationController
   end
 
   def show
-    @designers = Designer.find(params[:id])
     @designer = Designer.find(params[:id])
-    @products = Product.page(params[:page]).per(6)
+    @products = @designer.products.page(params[:page]).per(6)
   end
 end
