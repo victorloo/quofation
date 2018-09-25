@@ -2,7 +2,7 @@
   <%= image_tag @products.image, class: "bg-image" %>
   <div class="container overlay-content hero hero-page">
     <ul class="breadcrumb justify-content-center no-border mb-0">
-      <li class="breadcrumb-item"><%= link_to "Back", admin_designer_path(params[:designer_id]) %></li>
+      <li class="breadcrumb-item"><%= link_to "Back", admin_designer_path(params[:designer_id]), style: "color: white;" %></li>
     </ul>
 
   </div>
@@ -28,28 +28,36 @@
                 </ul>
               </div>
               <p class="mb-4 text-muted"><%= @products.description %></p>
-              <form action="#">
-                <div class="row">
-                  <div class="col-sm-6 col-lg-12 detail-option mb-3">
-                    <h6 class="detail-option-heading">類型：<%= @products.category.name %></h6>
-                  </div>
-                  <div class="col-sm-6 col-lg-12 detail-option mb-3">
-                    <h6 class="detail-option-heading">尺寸：<%= @products.size.name %></h6>
-                  </div>
-                  <div class="col-sm-6 col-lg-12 detail-option mb-3">
-                    <h6 class="detail-option-heading">顏色：<%= @products.color.name %></h6>
-                  </div>
-                  <div class="col-sm-6 col-lg-12 detail-option mb-3">
-                    <h6 class="detail-option-heading">庫存：<%= @products.inventory.name %></h6>
-                  </div>
-                  <div class="col-12 detail-option mb-5">
-                    <label class="detail-option-heading font-weight-bold">Items <span>(required)</span></label>
-                    <input name="items" type="number" value="1" class="form-control detail-quantity">
-                  </div>
+                <form action="#">
+              <div class="row">
+                <div class="col-sm-6 col-lg-12 detail-option mb-3">
+                  <h6 class="detail-option-heading">Size <span>(required)</span></h6>
+                  <label for="size_0" class="btn btn-sm btn-outline-secondary detail-option-btn-label">
+                    <%= @products.size.name %>
+                    <input type="radio" name="size" value="value_0" id="size_0" required class="input-invisible">
+                  </label>
                 </div>
+                <div class="col-12 detail-option mb-3">
+                  <h6 class="detail-option-heading">Colour <span>(required)</span></h6>
+                  <ul class="list-inline mb-0 colours-wrapper">
+                    <li class="list-inline-item">
+                      <label for="colour_Blue" style="background-color: #<%= @products.color.hexcode %>" class="btn-colour"> </label>
+                      <input type="radio" name="colour" value="value_Blue" id="colour_Blue" required class="input-invisible">
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-12 detail-option mb-5">
+                  <label class="detail-option-heading font-weight-bold">Items <span>(required)</span></label>
+                  <input name="items" type="number" value="1" class="form-control detail-quantity">
+                </div>
+              </div>            
+            </form>
                 <ul class="list-inline">
                   <li class="list-inline-item">
-                    <button type="submit" class="btn btn-dark btn-lg mb-1"> <i class="fa fa-shopping-cart mr-2"></i><%= link_to "Add To Cart", admin_orders_path %></button>
+                    <%= button_to add_to_cart_product_path, method: :post, class:"btn btn-outline-dark btn-product-left", remote: true do %>
+                    <i class="fa fa-shopping-cart mr-2"></i>
+                    Add to Cart
+                    <% end %>
                   </li>
                 </ul>
               </form>
