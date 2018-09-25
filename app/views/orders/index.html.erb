@@ -34,7 +34,7 @@
                 <%= order.sn %>
               </th>
               <td class="py-4 align-middle">
-                <%= order.created_at %>/td>
+                <%= order.created_at.strftime("%m/%d/%Y") %></td>
               <td class="py-4 align-middle">
                 <%= order.amount %>
               </td>
@@ -47,7 +47,7 @@
                   <%= order.shipping_status %></span>
               </td>
               <td class="py-4 align-middle">
-                <%= link_to "View", orders_path(order), class: "btn btn-outline-dark btn-sm" %>
+                <%= link_to "View", order_path(order), class: "btn btn-outline-dark btn-sm" %>
               </td>
             </tr>
             <% end %>
