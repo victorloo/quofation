@@ -25,8 +25,6 @@ class Admin::DesignersController < ApplicationController
 
   def show
     #原程式碼命名為set_designer
-    @designers = Designer.find(params[:id])
-    @designer = Designer.find(params[:id])
     @products = Product.page(params[:page]).per(10)
   end
 
@@ -57,6 +55,10 @@ class Admin::DesignersController < ApplicationController
   end
 
   def set_designer
-    @designer = Designer.find(params[:id])
+    if current_user.role == "designer"
+      @designer = current_user.designer
+    else
+      @designer = Designer.find(params[:id])
+    end
   end
 end

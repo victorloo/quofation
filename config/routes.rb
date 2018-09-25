@@ -13,8 +13,6 @@ Rails.application.routes.draw do
   
   resource :cart
 
-  resource :orders
-
   resources :users, except: [:index, :new, :create, :destroy] do
     resources :chat_rooms, only: [:index, :show]
     get :designer_chat_rooms, on: :member, to: "chat_rooms#designer"
