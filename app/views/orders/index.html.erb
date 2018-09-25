@@ -1,0 +1,130 @@
+<!-- Hero Section-->
+<section class="hero">
+  <div class="container">
+    <!-- Hero Content-->
+    <div class="hero-content pb-5 text-center">
+      <h1 class="hero-heading">Order List</h1>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-xl-9">
+        <table class="table table-borderless table-hover table-responsive-md">
+          <thead class="bg-light">
+            <tr>
+              <th class="py-4 text-uppercase text-sm">Order</th>
+              <th class="py-4 text-uppercase text-sm">Date</th>
+              <th class="py-4 text-uppercase text-sm">Subtotal</th>
+              <th class="py-4 text-uppercase text-sm">Payment</th>
+              <th class="py-4 text-uppercase text-sm">Shipping</th>
+              <th class="py-4 text-uppercase text-sm">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @orders.length == 0 %>
+            <tr>
+              <td colspan="6" class="py-4 align-middle">沒有任何訂單</td>
+            </tr>
+            <% end %>
+            <% @orders.each do |order| %>
+            <tr>
+              <th class="py-4 align-middle">
+                <%= order.sn %>
+              </th>
+              <td class="py-4 align-middle">
+                <%= order.created_at %>/td>
+              <td class="py-4 align-middle">
+                <%= order.amount %>
+              </td>
+              <td class="py-4 align-middle">
+                <span class="badge text-uppercase badge-info p-2">
+                  <%= order.payment_status %></span>
+              </td>
+              <td class="py-4 align-middle">
+                <span class="badge text-uppercase badge-info p-2">
+                  <%= order.shipping_status %></span>
+              </td>
+              <td class="py-4 align-middle">
+                <%= link_to "View", orders_path(order), class: "btn btn-outline-dark btn-sm" %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- Customer Sidebar-->
+      <div class="col-xl-3 col-lg-4 mb-5">
+        <div class="customer-sidebar card border-0">
+          <div class="customer-profile">
+            <%= link_to user_path(@user), class: "d-inine-block" do %>
+            <%= image_tag @user.avatar, class: "img-fluid rounded-circle customer-image" %>
+            <% end %>
+            <h5>
+              <%= @user.name %>
+            </h5>
+            <% unless (@user.city == nil)  %>
+            <p class="text-muted text-sm mb-0">
+              <%= @user.city %>
+            </p>
+            <% end %>
+          </div>
+          <nav class="list-group customer-nav">
+            <%= link_to user_path(@user), class: "list-group-item d-flex justify-content-between align-items-center" do %>
+            <span>
+              <i class="fas fa-tachometer-alt"></i>
+              Dashboard
+            </span>
+            <% end %>
+            <%= link_to orders_path, class: "active list-group-item d-flex justify-content-between align-items-center" do %>
+            <span>
+              <i class="fas fa-list-ul"></i>
+              Orders
+            </span>
+            <div class="badge badge-pill badge-light font-weight-normal px-3">
+              <%= current_user.orders.size %>
+            </div>
+            <% end %>
+            <%= link_to user_chat_rooms_path(@user), class: "list-group-item d-flex justify-content-between align-items-center" do %>
+            <span>
+              <i class="far fa-comments"></i>
+              Chatrooms
+            </span>
+            <div class="badge badge-pill badge-light font-weight-normal px-3">
+              <%= @chatrooms.size %>
+            </div>
+            <% end %>
+            <% if current_user.role == "designer" %>
+              <%= link_to designer_chat_rooms_user_path(id: @user), class: "list-group-item d-flex justify-content-between align-items-center" do %>
+              <span>
+              <i class="fas fa-comment-alt"></i>
+              Designer's
+            </span>
+            <div class="badge badge-pill badge-light font-weight-normal px-3">
+              <%= @des_chars.size %>
+            </div>
+            <% end %>
+            <% end %>
+            <%= link_to edit_user_path(@user), class: "list-group-item d-flex justify-content-between align-items-center" do %>
+            <span>
+              <i class="far fa-edit"></i>
+              Profile
+            </span>
+            <% end %>
+            <!--
+            <a href="customer-addresses.html" class="list-group-item d-flex justify-content-between align-items-center">
+              <span>
+                <svg class="svg-icon svg-icon-heavy mr-2">
+                  <use xlink:href="#navigation-map-1"> </use>
+                </svg>Addresses
+              </span>
+            </a>
+            -->
+          </nav>
+        </div>
+      </div>
+      <!-- /Customer Sidebar-->
+    </div>
+  </div>
+</section>

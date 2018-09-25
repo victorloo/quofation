@@ -1,5 +1,12 @@
 class OrdersController < ApplicationController
   
+  def index
+    @user = current_user
+    @orders = @user.orders
+    @chatrooms = @user.chat_rooms
+    @des_chars = current_user.designer.chat_rooms
+  end
+
   def show
     @orders = current_user.orders.order(created_at: :desc)
   end
