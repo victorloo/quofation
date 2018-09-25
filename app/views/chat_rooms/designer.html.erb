@@ -22,9 +22,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td colspan="6" class="py-4 align-middle">沒有任何聊天室</td>
-            </tr>
+            <% if @des_chars.length == 0 %>
+              <tr>
+                <td colspan="6" class="py-4 align-middle">沒有任何聊天室</td>
+              </tr>
+            <% end %>
+            
             <% @des_chars.each do |dcr| %>
               <tr>
                 <th class="py-4 align-middle">#</th>
