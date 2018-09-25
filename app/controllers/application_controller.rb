@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+  before_action :set_image
 
   #view 呼叫controller方法 使用helper_method
   helper_method :current_cart
@@ -37,6 +38,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_image
+    current_user.update(avatar: FFaker::Avatar.image) if current_user && (current_user.avatar.nil? or current_user.avatar.empty?)
+  end
 
   protected
    
