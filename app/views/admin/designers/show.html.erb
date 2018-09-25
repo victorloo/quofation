@@ -4,10 +4,10 @@
     <%= image_tag @designers.image.url, class: "bg-image" %>
       <div class="container overlay-content hero hero-page">
         <ul class="breadcrumb justify-content-center no-border mb-0">
-          <li class="breadcrumb-item"><a href="/">前端</a></li>
-          <li class="breadcrumb-item"><%= link_to 'Admin', admin_designers_path %></li>
-          <li class="breadcrumb-item"><%= link_to 'Create New Product', new_admin_designer_product_path(designer_id: @designer) %></a></li>
-          <li class="breadcrumb-item"><%= link_to 'Categories', admin_designer_categories_path(designer_id: @designer) %></a></li>
+          <li class="breadcrumb-item"><a href="/", style="color: white;">前端</a></li>
+          <li class="breadcrumb-item"><%= link_to 'Admin', admin_designers_path, style: "color: white;" %></li>
+          <li class="breadcrumb-item"><%= link_to 'Create New Product', new_admin_designer_product_path(designer_id: @designer), style: "color: white;" %></a></li>
+          <li class="breadcrumb-item"><%= link_to 'Categories', admin_designer_categories_path(designer_id: @designer), style: "color: white;" %></a></li>
         </ul>
         <div class="hero-content pb-5 text-center text-white">
           <h1 class="hero-heading"><%= @designers.brandname %></h1>
