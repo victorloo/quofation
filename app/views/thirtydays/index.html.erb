@@ -16,7 +16,7 @@
         <div class="product-slider-item col-4" id="no-margin">
           <div class="product">
             <div class="product-image">
-              <%= image_tag product.image.url, alt: "product", class: "img-fluid" %>
+              <%= image_tag product.image, alt: "product", class: "img-fluid" %>
               <div class="product-hover-overlay">
                 <div class="product-hover-overlay-buttons">
                   <%= link_to thirtyday_path(product), class:"btn btn-dark btn-buy" do %>
@@ -60,7 +60,7 @@
         <div class="col-lg-4 col-6">
           <div class="mb-30px">
             <%= link_to designer_path(product.designer) do %>
-              <%= image_tag(product.designer.image.url, class: "img-fluid") %>
+              <%= image_tag(product.designer.image, class: "img-fluid") %>
             <% end %>
             <div class="mt-3">
               <h5 class="my-2">
@@ -85,7 +85,7 @@
 
 <!-- Divider Section-->
 <section class="py-6 position-relative light-overlay">
-  <%= image_tag @rand_prod.image.url, class: "bg-image" %>
+  <%= image_tag @rand_prod.image, class: "bg-image" %>
   <div class="container">
     <div class="overlay-content text-center text-dark">
       <h3 class="display-1 font-weight-bold text-serif mb-4">See More</h3>

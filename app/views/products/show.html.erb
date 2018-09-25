@@ -1,5 +1,5 @@
 <section class="position-relative dark-overlay py-3 py-lg-7">
-  <%= image_tag @products.image.url, class: "bg-image" %>
+  <%= image_tag @products.image, class: "bg-image" %>
   <div class="container overlay-content hero hero-page">
     <ul class="breadcrumb justify-content-center no-border mb-0">
       <li class="breadcrumb-item"><%= link_to'Back', designer_path(@products.designer), style: "color: white;" %></li>
@@ -13,7 +13,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-6 py-3 order-2 order-lg-1">
-            <%= image_tag @products.image.url,width: "500px", class: "img-responsive center-block" %>
+            <%= image_tag @products.image,width: "500px", class: "img-responsive center-block" %>
           </div>
 
           <div class="d-flex align-items-center col-lg-6 col-xl-5 pl-lg-5 mb-5 order-1 order-lg-2">
