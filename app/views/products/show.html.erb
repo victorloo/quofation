@@ -54,7 +54,10 @@
             </form>
                 <ul class="list-inline">
                   <li class="list-inline-item">
-                    <button type="submit" class="btn btn-dark btn-lg mb-1"> <i class="fa fa-shopping-cart mr-2"></i>Add to Cart</button>
+                    <%= button_to add_to_cart_product_path, method: :post, class:"btn btn-outline-dark btn-product-left", remote: true do %>
+                    <i class="fa fa-shopping-cart mr-2"></i>
+                    Add to Cart
+                    <% end %>
                   </li>
                 </ul>
               </form>
