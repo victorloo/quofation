@@ -2,9 +2,9 @@ class OrdersController < ApplicationController
   
   def index
     @user = current_user
-    @orders = @user.orders
+    @orders = @user.orders.order(created_at: :desc)
     @chatrooms = @user.chat_rooms
-    @des_chars = current_user.designer.chat_rooms
+    @des_chars = current_user.designer.chat_rooms if current_user.role == "designer"
   end
 
   def show
