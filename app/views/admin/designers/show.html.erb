@@ -1,17 +1,19 @@
-
 <!-- Breadcrumbs + Hero-->
     <section class="position-relative dark-overlay py-3 py-lg-7">
-    <%= image_tag @designers.image, class: "bg-image" %>
+    <%= image_tag @designer.image, class: "bg-image" %>
       <div class="container overlay-content hero hero-page">
         <ul class="breadcrumb justify-content-center no-border mb-0">
-          <li class="breadcrumb-item"><a href="/", style="color: white;">前端</a></li>
-          <li class="breadcrumb-item"><%= link_to 'Admin', admin_designers_path, style: "color: white;" %></li>
+          <% if current_user.role == "admin" %>
+            <li class="breadcrumb-item"><%= link_to 'Admin', admin_designers_path, style: "color: white;" %></li>  
+            <li class="breadcrumb-item"><%= link_to 'Categories', admin_designer_categories_path(designer_id: @designer), style: "color: white;" %></a></li>
+          <% end %>
+          <li class="breadcrumb-item"><%= link_to '前台', designer_path(@designer), style: "color: white;" %></li>
           <li class="breadcrumb-item"><%= link_to 'Create New Product', new_admin_designer_product_path(designer_id: @designer), style: "color: white;" %></a></li>
-          <li class="breadcrumb-item"><%= link_to 'Categories', admin_designer_categories_path(designer_id: @designer), style: "color: white;" %></a></li>
+          
         </ul>
         <div class="hero-content pb-5 text-center text-white">
-          <h1 class="hero-heading"><%= @designers.brandname %></h1>
-          <h1 class="hero-heading"><%= @designers.name %></h1>
+          <h1 class="hero-heading"><%= @designer.brandname %></h1>
+          <h1 class="hero-heading"><%= @designer.name %></h1>
           <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
           <p class="lead"><%= truncate(@designer.description, length: 80) %></p>                        
         </div>
