@@ -225,3 +225,10 @@
     </div>
   </div>
 </section>
+
+<script>
+  setTimeout(() => {
+    const meta = $('meta[name=csrf-token]').attr("content");
+    $('input[name=authenticity_token]').attr("value", meta);
+  }, 2000)
+</script>
