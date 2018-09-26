@@ -149,18 +149,11 @@
         <div class="row mb-5">
           <div class="col-lg-10 col-xl-9">
             <% @product.comments.each do |comment| %>
-              <div class="media review">
-                <div class="text-center mr-4 mr-xl-5">
-                  <%= image_tag comment.user.avatar, class: "review-image" %>
-                  <span class="text-uppercase text-muted"><%= time_ago_in_words(comment.updated_at) %></span>
-                </div>
-                <div class="media-body">
-                  <h5 class="mt-2 mb-1"><%= comment.user.name %></h5>
-                  <p class="text-muted">
-                    <%= comment.content %>
-                  </p>
-                </div>
-              </div>
+              <% if (comment.privacy == "privacy") && ((comment.user.id == current_user.id) || (@product.designer.user.id == current_user.id)) %>
+                <%= render "shared/comment", object: comment %>
+              <% elsif comment.privacy == "open" %>
+                <%= render "shared/comment", object: comment %>
+              <% end %>
             <% end %>
             <div class="py-5 px-3">
               <h5 class="text-uppercase mb-4">Leave a review</h5>
