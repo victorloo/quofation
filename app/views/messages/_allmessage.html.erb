@@ -1,0 +1,13 @@
+<% @chat_room.messages.each do |message| %>
+  <div class="card col-lg-12 message">
+    <div class="card-block">
+      <div class="row <%= (message.user.id == current_user.id ? 'me' : 'other') %>">
+        <div class="col-md-12">
+          <p class="card-text">
+            <%= message.body %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
