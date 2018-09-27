@@ -149,28 +149,28 @@
         <div class="row mb-5">
           <div class="col-lg-10 col-xl-9">
             <% @product.comments.each do |comment| %>
-              <div class="media review">
-                <div class="text-center mr-4 mr-xl-5">
-                  <%= image_tag comment.user.avatar, class: "review-image" %>
-                  <span class="text-uppercase text-muted"><%= time_ago_in_words(comment.updated_at) %></span>
-                </div>
-                <div class="media-body">
-                  <h5 class="mt-2 mb-1"><%= comment.user.name %></h5>
-                  <p class="text-muted">
-                    <%= comment.content %>
-                  </p>
-                </div>
-              </div>
+              <% if (comment.privacy == "privacy") && ((comment.user.id == current_user.id) || (@product.designer.user.id == current_user.id)) %>
+                <%= render "shared/comment", object: comment %>
+              <% elsif comment.privacy == "open" %>
+                <%= render "shared/comment", object: comment %>
+              <% end %>
             <% end %>
             <div class="py-5 px-3">
               <h5 class="text-uppercase mb-4">Leave a review</h5>
               <div style="clear:both;">
                 <%= form_for [@product, @comment], url: "#{@product.id}/comments", id: "contact-form", class: "form" do |f| %>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <%= f.label :privacy, "Privacy: ", class: "form-label" %>
+                        <%= f.collection_radio_buttons :privacy, Comment::PRIVACY, :last, :first, { checked: Comment::PRIVACY.first }  %>
+                      </div>
+                    </div>
+                  </div>
                   <div class="form-group">
                     <%= f.label :content, "Comment text", class: "form-label" %>
                     <%= f.text_area :content, rows: "4", id: "review", placeholder: "Enter your comment", required: "required", class: "form-control" %>
                   </div>
-                  
                   <div class="form-group">
                     <%= f.button :submit, class: "btn btn-outline-dark" do %>
                       Post comment
@@ -225,3 +225,10 @@
     </div>
   </div>
 </section>
+
+<script>
+  setTimeout(() => {
+    const meta = $('meta[name=csrf-token]').attr("content");
+    $('input[name=authenticity_token]').attr("value", meta);
+  }, 2000)
+</script>
