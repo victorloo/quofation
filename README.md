@@ -2,10 +2,21 @@
 ## 目錄
 1. [INTRODUCTION](#introductionN)
 2. [PRODUCT OBJECTIVES](#product-objectives)
+	- [解決的問題](#解決的問題)
+	- [整合的項目](#整合的項目)
+	- [目標](#目標)
 3. [User stories](#user-stories)
+	- [使用者](#使用者)
+	- [會員](#會員)
+	- [設計師](#設計師)
+	- [Admin](#Admin)
 4. [PRODUCT SCOPE](#product-scope)
-5. [專案環境](#)
-6. [如何開始](#)
+	- [Authenticatin](#authentication權限認證)
+	- [網站前台](#網站前台)
+	- [網站後台](#網站後台)
+5. [專案環境](#專案環境)
+6. [如何開始](#如何開始)
+7. [使用 Fake Data](#使用-fake-data)
 ## INTRODUCTION
 希望為台灣服裝獨立設計師建立新的販售渠道，跳脫以往的參展找尋buyer或獨立販售狀態。
 * 由設計師端，希望加強商品量產力道並提供與消費者直接溝通的管道
@@ -63,7 +74,8 @@
 * Admin可以管理30days商品頁面出現時間
 
 ## PRODUCT SCOPE
-###「Quofation服裝設計師電商平台」是由Ruby on Rails所建構出來的Web Application，並提供了以下功能及服務：
+
+### Quofation服裝設計師電商平台，是由Ruby on Rails所建構出來的Web Application，並提供了以下功能及服務：
 #### Authentication(權限認證)
 * 註冊及登入管道：
 	* 透過email註冊及登入
