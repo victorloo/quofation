@@ -1,7 +1,7 @@
 <section class="mt-5">
   <div class="container">
     <div class="row mb-5">
-      <div>
+      <div class="message-container">
         <div id="messages" data-chat-room-id="<%= @chat_room.id %>" class="row">
           <%= render partial: "messages/allmessage", local: @chat_room.messages %> 
         </div>
