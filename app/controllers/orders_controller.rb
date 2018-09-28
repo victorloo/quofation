@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :checkout_spgateway
   
   def index
     @user = current_user
@@ -68,8 +69,6 @@ class OrdersController < ApplicationController
         payment_method: params[:payment_method],
         amount: @order.amount
       )
-
-      
 
       render layout: false
     end
