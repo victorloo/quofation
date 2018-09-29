@@ -65,7 +65,15 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
+  config.action_mailer.smtp_settings = {
+    :address => ENV['MAILGUN_SMTP_SERVER'],
+    :port => ENV['MAILGUN_SMTP_PORT'],
+    :domain => 'pre-release-quofation.herokuapp.com',
+    :user_name => ENV['MAILGUN_SMTP_LOGIN'],
+    :password => ENV['MAILGUN_SMTP_PASSWORD'],
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
   config.action_mailer.default_url_options = { host: "pre-release-quofation.herokuapp.com" }
 
   # Ignore bad email addresses and do not raise email delivery errors.
