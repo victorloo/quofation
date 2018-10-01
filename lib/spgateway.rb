@@ -60,13 +60,14 @@ class Spgateway
     decipher.padding = 0
     decipher.key = self.hash_key
     decipher.iv = self.hash_iv
-     binary_encrypted = [trade_info].pack('H*') # hex to binary
+    binary_encrypted = [trade_info].pack('H*') # hex to binary
     plain = decipher.update(binary_encrypted) + decipher.final
      # strip last padding
     if plain[-1] != '}'
       plain = plain[0, plain.index(plain[-1])]
     end
-     return JSON.parse(plain)
+    new_plain = plain + '"}}'
+    return JSON.parse(new_plain)
   end
 
   def encrypt(params_data)
@@ -83,3 +84,19 @@ class Spgateway
     Digest::SHA256.hexdigest(str).upcase
   end
 end
+
+"{
+  \"Status\":\"SUCCESS\",
+  \"Message\":\"\\u6388\\u6b0a\\u6210\\u529f\",
+  \"Result\":{
+    \"MerchantID\":\"MS33470893\",
+    \"Amt\":493,
+    \"TradeNo\":\"18100122395808852\",
+    \"MerchantOrderNo\":\"19\",
+    \"RespondType\":\"JSON\",
+    \"IP\":\"220.136.176.33\",
+    \"EscrowBank\":\"HNCB\",
+    \"PaymentType\":\"CREDIT\",
+    \"PayTime\":\"2018-10-01\"
+  }
+}"
