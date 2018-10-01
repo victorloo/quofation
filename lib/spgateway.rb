@@ -86,19 +86,3 @@ class Spgateway
     Digest::SHA256.hexdigest(str).upcase
   end
 end
-
-"{
-  \"Status\":\"SUCCESS\",
-  \"Message\":\"\\u6388\\u6b0a\\u6210\\u529f\",
-  \"Result\":{
-    \"MerchantID\":\"MS33470893\",
-    \"Amt\":493,
-    \"TradeNo\":\"18100122395808852\",
-    \"MerchantOrderNo\":\"19\",
-    \"RespondType\":\"JSON\",
-    \"IP\":\"220.136.176.33\",
-    \"EscrowBank\":\"HNCB\",
-    \"PaymentType\":\"CREDIT\",
-    \"PayTime\":\"2018-10-01\"
-  }
-}"
