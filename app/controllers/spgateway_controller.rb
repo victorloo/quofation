@@ -1,4 +1,5 @@
 class SpgatewayController < ActionController::Base
+  skip_before_action :verify_authenticity_token
   
   def return
     payment = Payment.find_and_process(spagatway_params)
