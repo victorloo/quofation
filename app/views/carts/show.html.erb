@@ -25,19 +25,19 @@
                 <table>
                   <tr>
                     <td width="250">Item</td>
-                    <td width="200">Price</td>
+                    <td width="250">Price</td>
                     <td width="250">Quatity</td>
-                    <td width="200">Total</td>
-                    <td width="200"></td>
+                    <td width="250">Total</td>
+                    <td width="250"></td>
                     <td width="250">Order Summary</td>
                   </tr>
                   <% @items.each do |item| %>
                   <tr bgcolor="#ffffff" ,class="product-<%= item.product.id %>">
                     <td width="250"><%= image_tag item.product.image, width:100 %></br><span><%= item.product.name %></span></td>
-                    <td width="200"><span>$<%= item.product.price %></span></td>
+                    <td width="250"><span>$<%= item.product.price %></span></td>
                     <td width="250"><span class="cart-<%= item.product.id %>-qty" ><%= link_to '+', adjust_item_product_path(item.product, type: "add"), method: :post, remote: true %><%= item.quantity %><%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post, remote: true %></span></td>
                     <td class="item-<%= item.product.id%>-total"><span><%= item.item_total %></span></td>
-                    <td width="200"><%= link_to "Detele", remove_from_cart_product_path(item.product), method: :post, remote: true %></td>
+                    <td width="250"><%= link_to "Detele", remove_from_cart_product_path(item.product), method: :post, remote: true %></td>
                     <td width="250">$<%= current_cart.subtotal %></td>
                   </tr>
                   <% end %>
