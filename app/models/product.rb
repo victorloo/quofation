@@ -3,9 +3,9 @@ class Product < ApplicationRecord
   validates_presence_of :name, :color, :size, :description, :inventory, :category, :price
   belongs_to :designer
   belongs_to :category, optional: true
-  belongs_to :size, optional: true
-  belongs_to :color, optional: true
-  belongs_to :inventory, optional: true
+  has_many :inventories, dependent: :destroy
+  has_many :colors, through: :inventories
+  has_many :sizes, through: :inventories 
   has_many :chat_rooms, dependent: :destroy
   has_many :chat_room_users, through: :chatrooms
   has_many :comments, dependent: :destroy
