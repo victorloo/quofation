@@ -58,6 +58,7 @@ namespace :dev do
     Rake::Task['db:seed'].execute
     Rake::Task['dev:fake_designers'].execute
     Rake::Task['dev:fake_products'].execute
+    Rake::Task['fake_inventories'].execute
     Rake::Task['dev:fake_comments'].execute
   end
 
@@ -132,6 +133,22 @@ namespace :dev do
     end
     puts "have created fake products"
     puts "now you have #{Product.count} products data"
+  end
+
+  task fake_inventories: :environment do
+    Inventory.destroy_all
+    Product.all.each do |product|
+      3.times do |i|
+        Inventory.create!(
+          amount: rand(2..5),
+          product_id: product.id,
+          color_id: Color.all.sample.id,
+          size_id: Size.all.sample.id
+        )
+      end
+    end
+    puts "have created fake inventories"
+    puts "now you have #{Inventory.count} inventories data"
   end
 
   task fake_comments: :environment do
