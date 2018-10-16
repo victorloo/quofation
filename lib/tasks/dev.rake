@@ -115,10 +115,7 @@ namespace :dev do
         thirtydays_status: false,
         designer_id: Designer.all.sample.id,
         image: product_image.sample,
-        category_id: Category.all.sample.id,
-        size_id: Size.all.sample.id,
-        color_id: Color.all.sample.id,
-        inventory_id: Inventory.all.sample.id
+        category_id: Category.all.sample.id
       )
     end
     # 30 Days Products
@@ -130,10 +127,7 @@ namespace :dev do
         thirtydays_status: true,
         designer_id: Designer.all.sample.id,
         image: product_image.sample,
-        category_id: Category.all.sample.id,
-        size_id: Size.all.sample.id,
-        color_id: Color.all.sample.id,
-        inventory_id: Inventory.all.sample.id
+        category_id: Category.all.sample.id
       )
     end
     puts "have created fake products"
