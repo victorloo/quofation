@@ -72,9 +72,11 @@
   </div>
 </section>
 <%= render partial: "shared/form_error", locals: { object: @order }%>
+
 <section>
+  
   <div class="container">
-    <div class="row mb-5 text-uppercase mb-0">
+    <div class="row mb-5 text-uppercase mb-0 checkout">
       
 <%= form_for @order do |f| %>
   <div class="cart-header text-center">
@@ -93,7 +95,7 @@
         <%= f.text_field :address %>
       </div>
  
-   <%= f.submit "CHECKOUT", class: "btn" %>
+   <%= f.submit "CHECKOUT", class: "btn btn-success btn-lg" %>
  <% end %>
 
 </div>
