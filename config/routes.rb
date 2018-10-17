@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   
   resource :cart
+  resources :cart_items, only: [:create, :update, :destroy]
 
   resources :users, except: [:index, :new, :create, :destroy] do
     resources :chat_rooms, only: [:index, :show]
