@@ -1,54 +1,59 @@
 <% if @product.errors.any? %>
-  <h2>We have some errors here !</h2>
-  <ul>
-    <% @product.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+<h2>We have some errors here !</h2>
+<ul>
+  <% @product.errors.full_messages.each do |msg| %>
+  <li>
+    <%= msg %>
+  </li>
+  <% end %>
+</ul>
 <% end %>
 
 
 <%= form_for  [:admin, @designer, @product] do |f| %>
-  
-  <div class="block-header">
-    <h6 class="text-uppercase mb-0">Create New Product</h6>
+<div class="block-header">
+  <h6 class="text-uppercase mb-0">Basic Setting</h6>
+</div>
+<div class="block-body">
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= f.label :category %>
+      <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: true}, {class: "form-control"} %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= f.label :name, "Name" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= f.label :price, "Price" %>
+      <%= f.number_field :price, value: 1, class: "form-control" %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= f.label :description, "Description" %>
+      <%= f.text_area :description, placeholder: "Add some Description", class: "form-control" %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= f.label :image, "Photo" %>
+      <%= image_tag @product.image, width: '300px' if @product.image? %>
+      <%= f.filestack_field :image, 'Upload Image',  pickerOptions: { accept: 'image/*', 'fromSources': 'local_file_system'}, id: 'unique-id', class: "form-control" %>
+    </div>
   </div>
-  <div class="block-body">
-    <div class="row">
-  <div class="form-group col-md-6">
-    <%= f.label :category %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: true}, {class: "form-control"} %>
+</div>
+
+<div id="inventories">
+  <%= f.fields_for :inventories do |inventory| %>
+  <%= render "inventory_fields", :f => inventory %>
+  <% end %>
+</div>
+<div class="form-group links col-md-6">
+  <%= link_to_add_association "Add Inventory", f, :inventories, class: "btn btn-light" %>
+</div>
+<div class="block-body">
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
   </div>
-  <div class="form-group col-md-6">
-    <%= f.label :size %>
-    <%= f.collection_select :size_id, Size.all, :id, :name, {prompt: true}, {class: "form-control"} %>
-  </div>
-  <div class="form-group col-md-6">
-    <%= f.label :color %>
-    <%= f.collection_select :color_id, Color.all, :id, :name, {prompt: true}, {class: "form-control"} %>
-  </div>
-  <div class="form-group col-md-6">
-    <%= f.label :name, "Name" %>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-  <div class="form-group col-md-6">
-    <%= f.label :price, "Price" %>
-    <%= f.text_field :price, class: "form-control" %>
-  </div>
-  <div class="form-group col-md-6">
-    <%= f.label :description, "Description" %>
-    <%= f.text_area :description, class: "form-control" %>
-  </div>
-  <div class="form-group col-md-6">
-    <%= f.label :inventory %>
-    <%= f.collection_select :inventory_id, Inventory.all, :id, :name, {prompt: true}, {class: "form-control"} %>
-  </div>
-  <div class="form-group col-md-6">
-    <%= f.label :image, "Photo" %>
-    <%= image_tag @product.image, width: '300px' if @product.image? %>
-    <%= f.filestack_field :image, 'Upload Image',  pickerOptions: { accept: 'image/*', 'fromSources': 'local_file_system'}, id: 'unique-id', class: "form-control" %>
-  </div>
-  <div class="form-group col-md-6">
-    <%= f.submit class: "btn btn-primary" %>
-  </div>
+</div>
+
 <% end %>
