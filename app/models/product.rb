@@ -13,4 +13,5 @@ class Product < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :carts, through: :cart_items
 
+  accepts_nested_attributes_for :inventories, reject_if: :all_blank, allow_destroy: true
 end
