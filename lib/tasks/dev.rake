@@ -139,11 +139,15 @@ namespace :dev do
     Inventory.destroy_all
     Product.all.each do |product|
       3.times do |i|
+        color = Color.all.sample
+        size = Size.all.sample
         Inventory.create!(
           amount: rand(2..5),
           product_id: product.id,
-          color_id: Color.all.sample.id,
-          size_id: Size.all.sample.id
+          color_id: color.id,
+          size_id: size.id,
+          color_name: color.name,
+          size_name: size.name
         )
       end
     end
