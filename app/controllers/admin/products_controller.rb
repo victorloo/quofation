@@ -37,7 +37,13 @@ class Admin::ProductsController < ApplicationController
   def update
     @designer = Designer.find(params[:designer_id])
     @product = Product.find(params[:id])
-    if @product.update(product_params) 
+    if @product.update(product_params)
+      @product.inventories.each do |inventory|
+        inventory.update!(
+          color_name: inventory.color.name,
+          size_name: inventory.size.name
+        )
+      end
       flash[:notice] = "product was successfully updated"
       redirect_to admin_designer_path(params[:designer_id])
     else
