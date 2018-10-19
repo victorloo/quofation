@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @orders = current_user.orders.order(created_at: :desc)
+    @order = Order.find(params[:id])
   end
 
   def create
@@ -78,7 +78,6 @@ class OrdersController < ApplicationController
       render layout: false
     end
   end
-
 
   private
    
