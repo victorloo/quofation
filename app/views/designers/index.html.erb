@@ -1,62 +1,75 @@
-
-
- <!-- Hero Section-->
-    <section class="hero">
-      <div class="container">
-        <!-- Breadcrumbs -->
-        <ol class="breadcrumb justify-content-center">
-          <li class="breadcrumb-item">Welcome</a></li>
-        </ol>
-        <!-- Hero Content-->
-        <div class="hero-content pb-5 text-center">
-          <h1 class="hero-heading">QuoFation</h1>
-          <div class="row">   
-            <div class="col-xl-8 offset-xl-2"><p class="lead text-muted">In Here, You Could Quote Any Fasion You Like.</p></div>
-          </div>
+<!-- Hero Section-->
+<section class="hero">
+  <div class="container">
+    <!-- Breadcrumbs -->
+    <ol class="breadcrumb justify-content-center">
+      <li class="breadcrumb-item">Welcome</a></li>
+    </ol>
+    <!-- Hero Content-->
+    <div class="hero-content pb-5 text-center">
+      <h1 class="hero-heading">QuoFation</h1>
+      <div class="row">
+        <div class="col-xl-8 offset-xl-2">
+          <p class="lead text-muted">In Here, You Could Quote Any Fasion You Like.</p>
         </div>
       </div>
-    </section>
-
-
-      <div class="container">
-        <div class="row">
-          <!-- Grid -->
-          <div class="products-grid col-12 sidebar-none">
-            <header class="product-grid-header">
-            </header>
-            <div class="row">
-            <% @designers.each do |designer| %>
-              <!-- product-->
-              <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="product">
-                  <div class="product-image">
-                    <%= image_tag designer.image, width: '300px', class: "img-fluid" %><alt="product" class="img-fluid">
-                    <div class="product-hover-overlay"><%= link_to "", designer_path(designer), class: "product-hover-overlay-link" %>
-                    <div class="product-hover-overlay-buttons">
-                    <%= link_to designer_path(designer), class: "btn btn-dark btn-buy" do%>
-                    <i class="fa-search fa"></i>
-                    <span class="btn-buy-label ml-2">View</span>
-                    <% end %>
-
-                  </div>
-                </div>
-              </div>
-                  <div class="py-2">
-                     <h3 class="h6 text-uppercase mb-1"><h3><%= link_to designer.name, designer_path(designer) %></h3></p></h3>
-                  </div>
-                </div>
-              </div>
-              <!-- /product-->
-              <% end %>
-
-
-
-
-
-    <!-- 有generate kaminari paginate bootstrap style -->
-    <div class="text-center">
-    <%= paginate @designers %>
     </div>
+  </div>
+</section>
+<div class="container">
+  <div class="row">
+    <div class="mr-auto ml-auto">
+      <div class="clock"></div>
+    </div>
+  </div>
+</div>
 
-      
+<script type="text/javascript">
+  let date = new Date(), y = date.getFullYear(), m = date.getMonth();
+  let nextFirstDay = new Date(y, m + 1, 1)
+  let difSecond = (nextFirstDay.getTime() - date.getTime()) / 1000;
+  let clock = $('.clock').FlipClock(difSecond, {
+    clockFace: 'DailyCounter',
+    countdown: true
+  });
+</script>
 
+<div class="container">
+  <div class="row">
+    <!-- Grid -->
+    <div class="products-grid col-12 sidebar-none">
+      <div class="row">
+        <!-- Designers -->
+        <% @designers.each do |designer| %>
+        <div class="col-xl-3 col-lg-4 col-sm-6">
+          <div class="product">
+            <div class="product-image">
+              <%= image_tag designer.image, width: '300px', class: "img-fluid" %>
+              <div class="product-hover-overlay">
+                <%= link_to "", designer_path(designer), class: "product-hover-overlay-link" %>
+                <div class="product-hover-overlay-buttons">
+                  <%= link_to designer_path(designer), class: "btn btn-dark btn-buy" do%>
+                  <i class="fa-search fa"></i>
+                  <span class="btn-buy-label ml-2">View</span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="py-2">
+              <h3 class="h6 text-uppercase mb-1">
+                <%= link_to designer.name, designer_path(designer) %>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <!-- Designers End -->
+
+        <!-- 有generate kaminari paginate bootstrap style -->
+        <div class="text-center">
+          <%= paginate @designers %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
