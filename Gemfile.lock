@@ -76,6 +76,7 @@ GEM
     chromedriver-helper (1.2.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    cocoon (1.2.11)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -106,6 +107,8 @@ GEM
     filestack-rails (3.2.0)
       filestack (~> 2.4.0)
       rails (>= 4.0)
+    flipclockjs-rails (0.7.7)
+      jquery-rails (>= 1.0.17)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     highline (2.0.0)
@@ -275,10 +278,12 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave
   chromedriver-helper
+  cocoon (~> 1.2, >= 1.2.11)
   coffee-rails (~> 4.2)
   devise (~> 4.5)
   ffaker (~> 2.10)
   filestack-rails (~> 3.2)
+  flipclockjs-rails (~> 0.7.7)
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.3)
   kaminari

@@ -58,6 +58,7 @@ namespace :dev do
     Rake::Task['db:seed'].execute
     Rake::Task['dev:fake_designers'].execute
     Rake::Task['dev:fake_products'].execute
+    Rake::Task['fake_inventories'].execute
     Rake::Task['dev:fake_comments'].execute
   end
 
@@ -115,10 +116,7 @@ namespace :dev do
         thirtydays_status: false,
         designer_id: Designer.all.sample.id,
         image: product_image.sample,
-        category_id: Category.all.sample.id,
-        size_id: Size.all.sample.id,
-        color_id: Color.all.sample.id,
-        inventory_id: Inventory.all.sample.id
+        category_id: Category.all.sample.id
       )
     end
     # 30 Days Products
@@ -130,14 +128,31 @@ namespace :dev do
         thirtydays_status: true,
         designer_id: Designer.all.sample.id,
         image: product_image.sample,
-        category_id: Category.all.sample.id,
-        size_id: Size.all.sample.id,
-        color_id: Color.all.sample.id,
-        inventory_id: Inventory.all.sample.id
+        category_id: Category.all.sample.id
       )
     end
     puts "have created fake products"
     puts "now you have #{Product.count} products data"
+  end
+
+  task fake_inventories: :environment do
+    Inventory.destroy_all
+    Product.all.each do |product|
+      3.times do |i|
+        color = Color.all.sample
+        size = Size.all.sample
+        Inventory.create!(
+          amount: rand(2..5),
+          product_id: product.id,
+          color_id: color.id,
+          size_id: size.id,
+          color_name: color.name,
+          size_name: size.name
+        )
+      end
+    end
+    puts "have created fake inventories"
+    puts "now you have #{Inventory.count} inventories data"
   end
 
   task fake_comments: :environment do

@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @orders = current_user.orders.order(created_at: :desc)
+    @order = Order.find(params[:id])
   end
 
   def create
@@ -25,6 +25,11 @@ class OrdersController < ApplicationController
       @order.amount = current_cart.subtotal
 
       if @order.save
+        current_cart.cart_items.each do |item|
+          item.inventory.update!(
+            amount: item.inventory.amount-1
+          )
+        end
         current_cart.destroy
         session.delete(:new_order_data)
 
@@ -73,7 +78,6 @@ class OrdersController < ApplicationController
       render layout: false
     end
   end
-
 
   private
    

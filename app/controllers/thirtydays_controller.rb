@@ -8,7 +8,10 @@ class ThirtydaysController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @comment = Comment.new
+    @cart_item = CartItem.new
     @products = Product.where(thirtydays_status: true).sample(6)
+    @designer_products = @product.designer.products.sample(6)
+    @category_products = @product.category.products.sample(6)
   end
 
   def designers

@@ -1,65 +1,85 @@
 <!-- Hero Section-->
 <section class="hero">
-      <div class="container">
-        <!-- Breadcrumbs -->
-        <ol class="breadcrumb justify-content-center">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item"><a href="customer-orders.html">Orders</a></li>
-          <li class="breadcrumb-item active">Order List</li>
-        </ol>
+  <div class="container">
+    <!-- Breadcrumbs -->
+    <ol class="breadcrumb justify-content-center">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="customer-orders.html">Orders</a></li>
+      <li class="breadcrumb-item active">Order List</li>
+    </ol>
+  </div>
+  <!-- Hero Content-->
+  <div class="hero-content pb-5 text-center">
+    <h1 class="hero-heading">
+      Order #
+      <%= @order.sn %>
+    </h1>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2">
+        <p class="lead text-muted">
+          <p class="text-muted">
+            If you have any questions, please feel free to <a href="contact.html">contact us</a>,
+            our customer service center is working for you 24/7.
+          </p>
       </div>
-      <!-- Hero Content-->
-      <div class="hero-content pb-5 text-center">
-          <h1 class="hero-heading">
-            <% @orders.each do |order| %>
-              Order # <%= order.sn %>
-            <% end %>
-          </h1>
-          <div class="row">   
-            <div class="col-xl-8 offset-xl-2"><p class="lead text-muted"><p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p></div>
-          </div>
-      </div>
+    </div>
+  </div>
 </section>
 <section>
   <div class="container">
     <div class="col-lg-12 col-xl-12 ">
-      <% @orders.each do |order| %>
-        <div class="cart-header text-center">
-          <h2>Order # <%= order.sn %></h2>
+      <div class="cart-header text-center">
+        <h2>
+          Order #
+          <%= @order.sn %>
+        </h2>
+      </div>
+      <div class="cart-body">
+        <div class="cart-item">
+          <table>
+            <% @order.order_items.each do |item| %>
+            <td>
+              <tr class="col-md-2 ">
+                <%= image_tag item.product.image, width:100 %><span class="col-md-3 text-center">
+                  <%= item.quantity %></span> x <span class="col-md-3 text-center">
+                  <%= item.price %></span></tr>
+              <tr class="col-md-3">
+                Subtotal
+                <%= @order.subtotal %>
+              </tr>
+              <% end %>
+            </td>
+          </table>
         </div>
-        <div class="cart-body">
-          <div class="cart-item">
-            <table>
-              <% order.order_items.each do |item| %>
-              <td>
-                <tr class="col-md-2 "><%= image_tag item.product.image, width:100 %><span class="col-md-3 text-center"><%= item.quantity %></span> x <span class="col-md-3 text-center"><%= item.price %></span></tr>
-                <tr class="col-md-3">Subtotal <%= order.subtotal %></tr>
-                <% end %>
-              </td>
-            </table>
-          </div>
-        </div>
-            <hr>
-            <div class="block-header">
-              <h6 class="text-uppercase mb-0">Shipping Information</h6>
-              <p><%= order.name %></p>
-              <p><%= order.phone %></p>
-              <p><%= order.address %></p>
-              <p>Payment Status: <%= order.payment_status %></p>
-              <p>Shipping Status: <%= order.shipping_status %></p>
+      </div>
+      <hr>
+      <div class="block-header">
+        <h6 class="text-uppercase mb-0">Shipping Information</h6>
+        <p>
+          <%= @order.name %>
+        </p>
+        <p>
+          <%= @order.phone %>
+        </p>
+        <p>
+          <%= @order.address %>
+        </p>
+        <p>Payment Status:
+          <%= @order.payment_status %>
+        </p>
+        <p>Shipping Status:
+          <%= @order.shipping_status %>
+        </p>
 
-              <% if order.payment_status == "not_paid" && order.shipping_status != "cancelled" %>
-                <% Payment::PAYMENT_METHODS.each do |method| %>
-                  <%= link_to method, checkout_spgateway_order_path(order, payment_method: method), method: :post, class: "btn" %>
-                <% end %>
-              <% end %>
-              <% if order.shipping_status == "not_shipped" %>
-                <%= link_to "Cancel Order", order_path(order), method: :patch, class: "btn" %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+        <% if @order.payment_status == "not_paid" && @order.shipping_status != "cancelled" %>
+        <% Payment::PAYMENT_METHODS.each do |method| %>
+        <%= link_to method, checkout_spgateway_order_path(@order, payment_method: method), method: :post, class: "btn" %>
+        <% end %>
+        <% end %>
+        <% if @order.shipping_status == "not_shipped" %>
+        <%= link_to "Cancel Order", order_path(@order), method: :patch, class: "btn" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </section>

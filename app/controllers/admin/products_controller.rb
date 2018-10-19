@@ -37,7 +37,13 @@ class Admin::ProductsController < ApplicationController
   def update
     @designer = Designer.find(params[:designer_id])
     @product = Product.find(params[:id])
-    if @product.update(product_params) 
+    if @product.update(product_params)
+      @product.inventories.each do |inventory|
+        inventory.update!(
+          color_name: inventory.color.name,
+          size_name: inventory.size.name
+        )
+      end
       flash[:notice] = "product was successfully updated"
       redirect_to admin_designer_path(params[:designer_id])
     else
@@ -58,7 +64,9 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :image, :category_id, :size_id, :thirtydays_status, :color_id, :inventory_id, photos_attributes: [:image])
+    params.require(:product).permit(
+      :name, :price, :description, :image, :category_id, :thirtydays_status, photos_attributes: [:image],
+      inventories_attributes: [:id, :amount, :product_id, :color_id, :size_id, :_destroy])
   end
 
   def set_product
