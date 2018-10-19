@@ -25,6 +25,11 @@ class OrdersController < ApplicationController
       @order.amount = current_cart.subtotal
 
       if @order.save
+        current_cart.cart_items.each do |item|
+          item.inventory.update!(
+            amount: item.inventory.amount-1
+          )
+        end
         current_cart.destroy
         session.delete(:new_order_data)
 
