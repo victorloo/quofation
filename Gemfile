@@ -51,6 +51,8 @@ gem 'simple_form'
 gem 'filestack-rails', '~> 3.2'
 # Nested Form
 gem 'cocoon', '~> 1.2', '>= 1.2.11'
+# Counterdown Clck
+gem 'flipclockjs-rails', '~> 0.7.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
