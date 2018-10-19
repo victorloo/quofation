@@ -122,7 +122,7 @@ color_list.each do |color|
     hexcode: color[:hexcode]
   )
 end
-puts "Category created!"
+puts "Color created!"
 
 # Admin
 
@@ -133,3 +133,43 @@ User.create(
   role: "admin"
 )
 puts "admin has created"
+
+# Default Designer
+Designer.create(
+  name: "Lato",
+  brandname: "Roboto",
+  description: "It has a mechanical skeleton and the forms are largely geometric.",
+  image: "https://i.imgur.com/2Vl6IKF.jpg",
+  user_id: User.all.where(role: "admin").first.id
+)
+puts "Default Designer Lato has created"
+
+# Default Product
+Product.create(
+  name: 'V sign',
+  description: "Some days you get the bear, and some days the bear gets you.",
+  price: 850,
+  image: 'https://i.imgur.com/d5LBdoq.jpg',
+  designer_id: Designer.first.id,
+  category_id: Category.find(9).id
+)
+puts "Default Product V sign has created"
+
+# Default Inventories
+Inventory.create(
+  amount: 5,
+  product_id: Product.find(1).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(1).id,
+  color_name: "black",
+  size_name: "S"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(1).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(2).id,
+  color_name: "black",
+  size_name: "M"
+)
+puts "Default Inventory have created"
