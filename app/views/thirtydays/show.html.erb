@@ -43,43 +43,55 @@
             <%= @product.description %>
           </p>
 
-          <!-- Need to amend-->
-          <form action="#">
-            <div class="row">
-              <div class="col-sm-6 col-lg-12 detail-option mb-3">
-                <h6 class="detail-option-heading">Size <span>(required)</span></h6>
-                <label for="size_0" class="btn btn-sm btn-outline-secondary detail-option-btn-label">
-                  some size
-                  <input type="radio" name="size" value="value_0" id="size_0" required class="input-invisible">
-                </label>
-              </div>
-              <div class="col-12 detail-option mb-3">
-                <h6 class="detail-option-heading">Colour <span>(required)</span></h6>
-                <ul class="list-inline mb-0 colours-wrapper">
-                  <li class="list-inline-item">
-                    <!--
-                    <label for="colour_Blue" style="background-color: #<%#= @product.color.hexcode %>" class="btn-colour">
-                    </label>
-                    -->
-                    <input type="radio" name="colour" value="value_Blue" id="colour_Blue" required class="input-invisible">
-                  </li>
-                </ul>
-              </div>
-              <div class="col-12 detail-option mb-5">
-                <label class="detail-option-heading font-weight-bold">Items <span>(required)</span></label>
-                <input name="items" type="number" value="1" class="form-control detail-quantity">
+          <!-- Rails Form -->
+          <div class="row">
+            <div class="container">
+              <ul role="tablist" class="nav nav-tabs flex-column flex-sm-row">
+                <% @product.colors.uniq.each do |color| %>
+                <li class="nav-item">
+                  <a data-toggle="tab" href="#<%= color.name%>" role="tab" class="nav-link detail-nav-link <%= 'active' if @product.inventories.first.color == color %>">
+                    <div class="btn-colour" style="background: #<%= color.hexcode%>"></div>
+                  </a>
+                </li>
+                <% end %>
+              </ul>
+              <div class="tab-content py-4">
+                <% @product.colors.uniq.each do |color| %>
+                <div id="<%= color.name %>" role="tabpanel" class="tab-pane <%= 'active' if @product.inventories.first.color == color %>">
+                  <%= form_for @cart_item do |f| %>
+                  <div class="row">
+                    <div class="col-sm-6 col-lg-12 detail-option mb-3">
+                      <%= f.label :size_name, 'Size', class: "detail-option-heading font-weight-bold" do %>
+                      Size <span>(required)</span>
+                      <% end %>
+                      <%= f.select :size_name, @product.inventories.where(color_name: color.name).map{ |i| [i.size.name, i.size.id] }, {}, {class: "custom-select"} %>
+                    </div>
+                    <div>
+                      <%= f.hidden_field :product_id, value: @product.id %>
+                      <%= f.hidden_field :color_name , value: color.name %>
+                      <%= f.hidden_field :color_id , value: color.id %>
+                    </div>
+                    <div class="col-12 detail-option mb-5">
+                      <%= f.label :quantity, class: "detail-option-heading font-weight-bold" do %>
+                      Items <span>(only 1)</span>
+                      <% end %>
+                      <%= f.number_field :quantity, value: 1, max: 1, min: 1, class: "form-control detail-quantity" %>
+                    </div>
+                  </div>
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <%= f.button :submit, class: "btn btn-dark btn-lg mb-1" do %>
+                      <i class="fa fa-shopping-cart mr-2"></i>
+                      Add to Cart
+                      <% end %>
+                    </li>
+                  </ul>
+                  <% end %>
+                </div>
+                <% end %>
               </div>
             </div>
-          </form>
-          <ul class="list-inline">
-            <li class="list-inline-item">
-              <%= button_to add_to_cart_product_path(@product), class:"btn btn-dark btn-lg mb-1", remote: true do %>
-              <i class="fa fa-shopping-cart mr-2"></i>
-              Add to Cart
-              <% end %>
-            </li>
-          </ul>
-          <!-- Need to amend end-->
+          </div>
         </div>
       </div>
     </div>
