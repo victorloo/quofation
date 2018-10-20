@@ -18,3 +18,5 @@
 //= require turbolinks
 //= require_tree .
 //= require cable
+//= require cocoon
+//= require flipclock.min

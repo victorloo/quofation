@@ -11,8 +11,10 @@ class Order < ApplicationRecord
       self.order_items.build(
         product_id: item.product.id,
         quantity: item.quantity,
-        price: item.product.price
-      )
+        price: item.product.price,
+        size_name: item.size_name,
+        color_name: item.color_name
+        )
     end
   end
 

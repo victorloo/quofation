@@ -1,84 +1,117 @@
 <!-- Breadcrumbs + Hero-->
-    <section class="position-relative dark-overlay py-3 py-lg-7">
-    <%= image_tag @designer.image, class: "bg-image" %>
-      <div class="container overlay-content hero hero-page">
-        <ul class="breadcrumb justify-content-center no-border mb-0">
-          <% if current_user.role == "admin" %>
-            <li class="breadcrumb-item"><%= link_to 'Admin', admin_designers_path, style: "color: white;" %></li>  
-            <li class="breadcrumb-item"><%= link_to 'Categories', admin_designer_categories_path(designer_id: @designer), style: "color: white;" %></a></li>
-          <% end %>
-          <li class="breadcrumb-item"><%= link_to '前台', designer_path(@designer), style: "color: white;" %></li>
-          <li class="breadcrumb-item"><%= link_to 'Create New Product', new_admin_designer_product_path(designer_id: @designer), style: "color: white;" %></a></li>
-          
-        </ul>
-        <div class="hero-content pb-5 text-center text-white">
-          <h1 class="hero-heading"><%= @designer.brandname %></h1>
-          <h1 class="hero-heading"><%= @designer.name %></h1>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-          <p class="lead"><%= truncate(@designer.description, length: 80) %></p>                        
-        </div>
-      </div>
-    </section>
-    <main class="pt-5">
-      <div class="container">
-        <div class="row">
+<section class="position-relative dark-overlay py-3 py-lg-7">
+  <%= image_tag @designer.image, class: "bg-image" %>
+  <div class="container overlay-content hero hero-page">
+    <ul class="breadcrumb justify-content-center no-border mb-0">
+      <% if current_user.role == "admin" %>
+      <li class="breadcrumb-item">
+        <%= link_to 'Admin', admin_designers_path, style: "color: white;" %>
+      </li>
+      <li class="breadcrumb-item">
+        <%= link_to 'Categories', admin_designer_categories_path(designer_id: @designer), style: "color: white;" %></a></li>
+      <% end %>
+      <li class="breadcrumb-item">
+        <%= link_to '前台', designer_path(@designer), style: "color: white;" %>
+      </li>
+      <li class="breadcrumb-item">
+        <%= link_to 'Create New Product', new_admin_designer_product_path(designer_id: @designer), style: "color: white;" %></a></li>
 
-
- <div class="clearfix"></div>
-
- <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-xl-12">
-            <table class="table table-borderless table-hover table-responsive-md">
-              <thead class="bg-light">
-                <tr>
-                  <th class="py-4 text-uppercase text-sm">#</th>
-                  <th class="py-4 text-uppercase text-sm">Name</th>
-                  <th class="py-4 text-uppercase text-sm">Category</th>
-                  <th class="py-4 text-uppercase text-sm">Size</th>
-                  <th class="py-4 text-uppercase text-sm">Color</th>
-                  <th class="py-4 text-uppercase text-sm">Price</th>
-                  <th class="py-4 text-uppercase text-sm">Description</th>
-                  <th class="py-4 text-uppercase text-sm">庫存</th>
-                  <th class="py-4 text-uppercase text-sm">30天狀態</th>
-                  <th class="py-4 text-uppercase text-sm">Function</th>
-                  <th class="py-4 text-uppercase text-sm">Order</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @designer.products.each do |product| %>
-                <tr>
-                  <td class="py-4 align-middle"><%= product.id %></td>
-                  <td class="py-4 align-middle"><%= link_to product.name, admin_designer_product_path(designer_id: @designer, id: product) %></td>
-                  <td class="py-4 align-middle"><%= product.category.name %></td>
-                  <td class="py-4 align-middle"><%= product.size.name %></td>
-                  <td class="py-4 align-middle"><%= product.color.name %></td>
-                  <td class="py-4 align-middle"><%= product.price %></td>
-                  <td class="py-4 align-middle"><%= product.description %></td>
-                  <td class="py-4 align-middle"><%= product.inventory.name %></td>
-                  <td class="py-4 align-middle">
-                    <%= simple_form_for [:admin, @designer, product], html: { class: 'form-inline' } do |f| %>
+    </ul>
+    <div class="hero-content pb-5 text-center text-white">
+      <h1 class="hero-heading">
+        <%= @designer.brandname %>
+      </h1>
+      <h1 class="hero-heading">
+        <%= @designer.name %>
+      </h1>
+      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+      <p class="lead">
+        <%= truncate(@designer.description, length: 80) %>
+      </p>
+    </div>
+  </div>
+</section>
+<main class="pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="clearfix"></div>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-xl-12">
+              <table class="table table-borderless table-hover table-responsive-md">
+                <thead class="bg-light">
+                  <tr>
+                    <th class="py-4 text-uppercase text-sm">#</th>
+                    <th class="py-4 text-uppercase text-sm">Name</th>
+                    <th class="py-4 text-uppercase text-sm">Category</th>
+                    <th class="py-4 text-uppercase text-sm">Price</th>
+                    <th class="py-4 text-uppercase text-sm">Description</th>
+                    <th class="py-4 text-uppercase text-sm">庫存</th>
+                    <th class="py-4 text-uppercase text-sm">30天狀態</th>
+                    <th class="py-4 text-uppercase text-sm">Function</th>
+                    <th class="py-4 text-uppercase text-sm">Order</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @designer.products.each do |product| %>
+                  <tr>
+                    <td class="py-4 align-middle">
+                      <%= product.id %>
+                    </td>
+                    <td class="py-4 align-middle">
+                      <%= link_to product.name, admin_designer_product_path(designer_id: @designer, id: product) %>
+                    </td>
+                    <td class="py-4 align-middle">
+                      <%= product.category.name %>
+                    </td>
+                    <td class="py-4 align-middle">
+                      <%= product.price %>
+                    </td>
+                    <td class="py-4 align-middle">
+                      <%= product.description %>
+                    </td>
+                    <td class="py-4 align-middle">
+                      <% product.colors.uniq.each do |color| %>
+                      <h6>
+                        <%= color.name %>
+                      </h6>
+                      <ul>
+                        <% product.inventories.where(color_id: color.id).each do |inventory| %>
+                        <li>
+                          <strong>
+                            <%= inventory.size.name %>
+                          </strong>:
+                          <%= inventory.amount %>
+                        </li>
+                        <% end %>
+                      </ul>
+                      <% end %>
+                    </td>
+                    <td class="py-4 align-middle">
+                      <%= simple_form_for [:admin, @designer, product], html: { class: 'form-inline' } do |f| %>
                       <%= f.input :thirtydays_status, label: false, as: :select, include_blank: false %> 
-                      <%= f.button :submit, class: 'btn btn-primary ml-2' %>
-                    <% end %>
-                  </td>
-                  <td class="py-4 align-middle">
-                    <%= link_to 'Edit', edit_admin_designer_product_path(designer_id: @designer, id: product) %>
-                    <%= link_to 'Delete', admin_designer_product_path(designer_id: @designer, id: product), method: :delete, data: {confirm:"Are you sure?"} %>
-                  </td>
-                   <td class="py-4 align-middle"><%= link_to "Orders", admin_orders_path %></td>
-                </tr>
-              </tbody>
-              <% end %>
-            </table>
+                      <%= f.button :submit, 'Update', class: 'btn btn-primary ml-2' %>
+                      <% end %>
+                    </td>
+                    <td class="py-4 align-middle">
+                      <%= link_to 'Edit', edit_admin_designer_product_path(designer_id: @designer, id: product) %>
+                      <%= link_to 'Delete', admin_designer_product_path(designer_id: @designer, id: product), method: :delete, data: {confirm:"Are you sure?"} %>
+                    </td>
+                    <td class="py-4 align-middle">
+                      <%= link_to "Orders", admin_orders_path %>
+                    </td>
+                  </tr>
+                </tbody>
+                <% end %>
+              </table>
+            </div>
+            <div class="text-center">
+              <%= paginate @products %>
+            </div>
           </div>
-        </tbody>
-      </table>
-      
-      <div class="text-center">
-        <%= paginate @products %>
-      </div>
-
-
-
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
