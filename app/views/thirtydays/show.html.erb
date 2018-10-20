@@ -4,8 +4,7 @@
     <div class="row">
       <div class="col-lg-6 py-3 order-2 order-lg-1">
         <div data-slider-id="1" class="owl-carousel owl-theme owl-dots-modern detail-full">
-          <div style="background: center center url('<%= @product.image %>') no-repeat; background-size: cover;"
-            class="detail-full-item">
+          <div style="background: center center url('<%= @product.image %>') no-repeat; background-size: cover;" class="detail-full-item">
           </div>
         </div>
       </div>
@@ -22,15 +21,22 @@
             <li class="breadcrumb-item">
               <%= link_to "Designer's works", designer_path(@product.designer) %>
             </li>
-            <li class="breadcrumb-item active"><%= @product.category.name %></li>
+            <li class="breadcrumb-item active">
+              <%= @product.category.name %>
+            </li>
           </ol>
-          <h1 class="mb-4"><%= @product.name %></h1>
+          <h1 class="mb-4">
+            <%= @product.name %>
+          </h1>
           <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
             <ul class="list-inline mb-2 mb-sm-0">
-              <li class="list-inline-item h4 font-weight-light mb-0">$<%= @product.price %></li>
+              <li class="list-inline-item h4 font-weight-light mb-0">$
+                <%= @product.price %>
+              </li>
             </ul>
             <div class="d-flex align-items-center">
-              <span class="text-muted text-uppercase text-sm"><%= @product.comments.length %> reviews</span>
+              <span class="text-muted text-uppercase text-sm">
+                <%= @product.comments.length %> reviews</span>
             </div>
           </div>
           <p class="mb-4 text-muted">
@@ -43,7 +49,7 @@
               <div class="col-sm-6 col-lg-12 detail-option mb-3">
                 <h6 class="detail-option-heading">Size <span>(required)</span></h6>
                 <label for="size_0" class="btn btn-sm btn-outline-secondary detail-option-btn-label">
-                  <%= @product.size.name %>
+                  some size
                   <input type="radio" name="size" value="value_0" id="size_0" required class="input-invisible">
                 </label>
               </div>
@@ -51,7 +57,10 @@
                 <h6 class="detail-option-heading">Colour <span>(required)</span></h6>
                 <ul class="list-inline mb-0 colours-wrapper">
                   <li class="list-inline-item">
-                    <label for="colour_Blue" style="background-color: #<%= @product.color.hexcode %>" class="btn-colour"> </label>
+                    <!--
+                    <label for="colour_Blue" style="background-color: #<%#= @product.color.hexcode %>" class="btn-colour">
+                    </label>
+                    -->
                     <input type="radio" name="colour" value="value_Blue" id="colour_Blue" required class="input-invisible">
                   </li>
                 </ul>
@@ -60,7 +69,7 @@
                 <label class="detail-option-heading font-weight-bold">Items <span>(required)</span></label>
                 <input name="items" type="number" value="1" class="form-control detail-quantity">
               </div>
-            </div>            
+            </div>
           </form>
           <ul class="list-inline">
             <li class="list-inline-item">
@@ -78,105 +87,45 @@
 </section>
 <!-- Buy Product End -->
 
-<!-- Product Detail -->
+<!-- Product Review -->
 <section class="mt-5">
   <div class="container">
     <ul role="tablist" class="nav nav-tabs flex-column flex-sm-row">
-      <li class="nav-item"><a data-toggle="tab" href="#description" role="tab" class="nav-link detail-nav-link active">Description</a></li>
-      <li class="nav-item"><a data-toggle="tab" href="#additional-information" role="tab" class="nav-link detail-nav-link">Additional
-          Information</a></li>
-      <li class="nav-item"><a data-toggle="tab" href="#reviews" role="tab" class="nav-link detail-nav-link">Reviews</a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#reviews" role="tab" class="nav-link detail-nav-link active">Reviews</a></li>
     </ul>
     <div class="tab-content py-4">
-      <div id="description" role="tabpanel" class="tab-pane active px-3">
-        <p class="text-muted">
-          <%= @product.description %>
-        </p>
-      </div>
-
-      <!-- Waiting for Edit -->
-      <div id="additional-information" role="tabpanel" class="tab-pane">
-        <div class="row">
-          <div class="col-lg-6">
-            <table class="table text-sm">
-              <tbody>
-                <tr>
-                  <th class="text-uppercase font-weight-normal border-0">Designer</th>
-                  <td class="text-muted border-0"><%= @product.designer.name %></td>
-                </tr>
-                <tr>
-                  <th class="text-uppercase font-weight-normal ">Available packaging</th>
-                  <td class="text-muted ">LOLDuis aute irure dolor in reprehenderit</td>
-                </tr>
-                <tr>
-                  <th class="text-uppercase font-weight-normal ">Weight</th>
-                  <td class="text-muted ">dolor sit amet</td>
-                </tr>
-                <tr>
-                  <th class="text-uppercase font-weight-normal ">Sunt in culpa qui</th>
-                  <td class="text-muted ">Lorem ipsum dolor sit amet</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="col-lg-6">
-            <table class="table text-sm">
-              <tbody>
-                <tr>
-                  <th class="text-uppercase font-weight-normal border-0">Weight</th>
-                  <td class="text-muted border-0">dolor sit amet </td>
-                </tr>
-                <tr>
-                  <th class="text-uppercase font-weight-normal ">Sunt in culpa qui</th>
-                  <td class="text-muted ">Lorem ipsum dolor sit amet </td>
-                </tr>
-                <tr>
-                  <th class="text-uppercase font-weight-normal ">Product #</th>
-                  <td class="text-muted ">Lorem ipsum dolor sit amet </td>
-                </tr>
-                <tr>
-                  <th class="text-uppercase font-weight-normal ">Available packaging</th>
-                  <td class="text-muted ">LOLDuis aute irure dolor in reprehenderit </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <!-- Waiting for Edit End -->
-
-      <div id="reviews" role="tabpanel" class="tab-pane">
+      <div id="reviews" role="tabpanel" class="tab-pane active">
         <div class="row mb-5">
           <div class="col-lg-10 col-xl-9">
             <% @product.comments.each do |comment| %>
-              <% if (comment.privacy == "privacy") && ((comment.user.id == current_user.id) || (@product.designer.user.id == current_user.id)) %>
-                <%= render "shared/comment", object: comment %>
-              <% elsif comment.privacy == "open" %>
-                <%= render "shared/comment", object: comment %>
-              <% end %>
+            <% if (comment.privacy == "privacy") && ((comment.user.id == current_user.id) || (@product.designer.user.id == current_user.id)) %>
+            <%= render "shared/comment", object: comment %>
+            <% elsif comment.privacy == "open" %>
+            <%= render "shared/comment", object: comment %>
+            <% end %>
             <% end %>
             <div class="py-5 px-3">
               <h5 class="text-uppercase mb-4">Leave a review</h5>
               <div style="clear:both;">
                 <%= form_for [@product, @comment], url: "#{@product.id}/comments", id: "contact-form", class: "form" do |f| %>
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <%= f.label :privacy, "Privacy: ", class: "form-label" %>
-                        <%= f.collection_radio_buttons :privacy, Comment::PRIVACY, :last, :first, { checked: Comment::PRIVACY.first }  %>
-                      </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <%= f.label :privacy, "Privacy: ", class: "form-label" %>
+                      <%= f.collection_radio_buttons :privacy, Comment::PRIVACY, :last, :first, { checked: Comment::PRIVACY.first }  %>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <%= f.label :content, "Comment text", class: "form-label" %>
-                    <%= f.text_area :content, rows: "4", id: "review", placeholder: "Enter your comment", required: "required", class: "form-control" %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.button :submit, class: "btn btn-outline-dark" do %>
-                      Post comment
-                    <% end %>
-                    <%= f.button "Cancel", type: :reset, class: "btn" %>
-                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :content, "Comment text", class: "form-label" %>
+                  <%= f.text_area :content, rows: "4", id: "review", placeholder: "Enter your comment", required: "required", class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <%= f.button :submit, class: "btn btn-outline-dark" do %>
+                  Post comment
+                  <% end %>
+                  <%= f.button "Cancel", type: :reset, class: "btn" %>
+                </div>
                 <% end %>
               </div>
             </div>
@@ -189,42 +138,132 @@
 <!-- Product Detail End -->
 
 <!-- Other Products -->
-<section class="my-5">
+<section class="mt-5">
   <div class="container">
-    <header class="text-center">
-      <h6 class="text-uppercase mb-5">You might also like</h6>
-    </header>
-    <div class="row">
-      <% @products.each do |rand_prod| %>
-        <!-- product-->
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="product">
-            <div class="product-image">
-              <%= image_tag rand_prod.image, alt: "product", class: "img-fluid" %>
-              <div class="product-hover-overlay">
-                <div class="product-hover-overlay-buttons">
-                  <%= link_to thirtyday_path(rand_prod), class:"btn btn-dark btn-buy" do %>
+    <ul role="tablist" class="nav nav-tabs flex-column flex-sm-row">
+      <li class="nav-item">
+        <a data-toggle="tab" href="#rand-product" role="tab" class="nav-link detail-nav-link active">
+          You might also like
+        </a>
+      </li>
+      <li class="nav-item">
+        <a data-toggle="tab" href="#designer-product" role="tab" class="nav-link detail-nav-link">
+          Designer's Product
+        </a>
+      </li>
+      <li class="nav-item">
+        <a data-toggle="tab" href="#category-product" role="tab" class="nav-link detail-nav-link">
+          Category's Product
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content py-4">
+      <div id="rand-product" role="tabpanel" class="tab-pane active px-3">
+        <div class="row">
+          <% @products.each do |rand_prod| %>
+          <!-- product-->
+          <div class="col-lg-2 col-md-4 col-6">
+            <div class="product">
+              <div class="product-image">
+                <%= image_tag rand_prod.image, alt: "product", class: "img-fluid" %>
+                <div class="product-hover-overlay">
+                  <div class="product-hover-overlay-buttons">
+                    <%= link_to thirtyday_path(rand_prod), class:"btn btn-dark btn-buy" do %>
                     <i class="fa-search fa"></i>
                     <span class="btn-buy-label ml-2">View</span>
-                  <% end %>
-                  </a>
+                    <% end %>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="py-2">
-              <p class="text-muted text-sm mb-1"><%= rand_prod.category.name %></p>
-              <h3 class="h6 text-uppercase mb-1">
-                <%= link_to rand_prod.name, thirtyday_path(rand_prod), class:"text-dark" %>
-              </h3>
-              <span class="text-muted">$<%= rand_prod.price %></span>
+              <div class="py-2">
+                <p class="text-muted text-sm mb-1">
+                  <%= rand_prod.category.name %>
+                </p>
+                <h3 class="h6 text-uppercase mb-1">
+                  <%= link_to rand_prod.name, thirtyday_path(rand_prod), class:"text-dark" %>
+                </h3>
+                <span class="text-muted">$
+                  <%= rand_prod.price %></span>
+              </div>
             </div>
           </div>
+          <!-- /product-->
+          <% end %>
         </div>
-        <!-- /product-->
-      <% end %>
+      </div>
+      <div id="designer-product" role="tabpanel" class="tab-pane">
+        <div class="row">
+          <% @designer_products.each do |des_prod| %>
+          <!-- product-->
+          <div class="col-lg-2 col-md-4 col-6">
+            <div class="product">
+              <div class="product-image">
+                <%= image_tag des_prod.image, alt: "product", class: "img-fluid" %>
+                <div class="product-hover-overlay">
+                  <div class="product-hover-overlay-buttons">
+                    <%= link_to thirtyday_path(des_prod), class:"btn btn-dark btn-buy" do %>
+                    <i class="fa-search fa"></i>
+                    <span class="btn-buy-label ml-2">View</span>
+                    <% end %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="py-2">
+                <p class="text-muted text-sm mb-1">
+                  <%= des_prod.category.name %>
+                </p>
+                <h3 class="h6 text-uppercase mb-1">
+                  <%= link_to des_prod.name, thirtyday_path(des_prod), class:"text-dark" %>
+                </h3>
+                <span class="text-muted">$
+                  <%= des_prod.price %></span>
+              </div>
+            </div>
+          </div>
+          <!-- /product-->
+          <% end %>
+        </div>
+      </div>
+      <div id="category-product" role="tabpanel" class="tab-pane">
+        <div class="row">
+          <% @category_products.each do |cat_prod| %>
+          <!-- product-->
+          <div class="col-lg-2 col-md-4 col-6">
+            <div class="product">
+              <div class="product-image">
+                <%= image_tag cat_prod.image, alt: "product", class: "img-fluid" %>
+                <div class="product-hover-overlay">
+                  <div class="product-hover-overlay-buttons">
+                    <%= link_to thirtyday_path(cat_prod), class:"btn btn-dark btn-buy" do %>
+                    <i class="fa-search fa"></i>
+                    <span class="btn-buy-label ml-2">View</span>
+                    <% end %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="py-2">
+                <p class="text-muted text-sm mb-1">
+                  <%= cat_prod.category.name %>
+                </p>
+                <h3 class="h6 text-uppercase mb-1">
+                  <%= link_to cat_prod.name, thirtyday_path(cat_prod), class:"text-dark" %>
+                </h3>
+                <span class="text-muted">$
+                  <%= cat_prod.price %></span>
+              </div>
+            </div>
+          </div>
+          <!-- /product-->
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+<!-- Other Products End -->
 
 <script>
   setTimeout(() => {
