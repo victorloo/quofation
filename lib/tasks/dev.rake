@@ -63,7 +63,7 @@ namespace :dev do
   end
 
   task fake_users: :environment do
-    User.destroy_all
+    #User.destroy_all
     # User: Designer
     20.times do |i|
       User.create!(
@@ -90,7 +90,7 @@ namespace :dev do
 
   #designer fake file
   task fake_designers: :environment do
-    Designer.destroy_all
+    #Designer.destroy_all
     first_designer_id =  User.where(role: "designer").first.id
     20.times do |i|
       Designer.create!(
@@ -106,7 +106,7 @@ namespace :dev do
   end
 
   task fake_products: :environment do
-    Product.destroy_all
+    #Product.destroy_all
     # Normal Products
     20.times do |i|
       Product.create!(
@@ -136,7 +136,7 @@ namespace :dev do
   end
 
   task fake_inventories: :environment do
-    Inventory.destroy_all
+    #Inventory.destroy_all
     Product.all.each do |product|
       3.times do |i|
         color = Color.all.sample
@@ -156,7 +156,7 @@ namespace :dev do
   end
 
   task fake_comments: :environment do
-    Comment.destroy_all
+    #Comment.destroy_all
 
     Product.where(thirtydays_status: true).each do |product|
       3.times do |i|
