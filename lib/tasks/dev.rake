@@ -58,7 +58,7 @@ namespace :dev do
     Rake::Task['db:seed'].execute
     Rake::Task['dev:fake_designers'].execute
     Rake::Task['dev:fake_products'].execute
-    Rake::Task['fake_inventories'].execute
+    Rake::Task['dev:fake_inventories'].execute
     Rake::Task['dev:fake_comments'].execute
   end
 
