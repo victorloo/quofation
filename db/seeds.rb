@@ -10,17 +10,17 @@
 Category.destroy_all
 
 category_list = [
-  { name: "上衣" },
-  { name: "洋裝" },
-  { name: "襯衫.罩衫" },
-  { name: "外套" },
-  { name: "短夾克" },
-  { name: "大衣" },
-  { name: "褲子" },
-  { name: "裙子" },
-  { name: "T恤.剪裁上衣" },
-  { name: "襪類" },
-  { name: "包包" }
+  { name: "Tops" },
+  { name: "Dress" },
+  { name: "Shirt" },
+  { name: "Jacket" },
+  { name: "Short Jacket" },
+  { name: "Coat" },
+  { name: "Pants" },
+  { name: "Skirt" },
+  { name: "Tshirt" },
+  { name: "Socks" },
+  { name: "Bags" }
 ]
 
 
@@ -139,9 +139,9 @@ Designer.create(
   name: "Lato",
   brandname: "Roboto",
   description: "It has a mechanical skeleton and the forms are largely geometric.",
-  image: "https://i.imgur.com/2Vl6IKF.jpg",
+  image: "https://cdn.filestackcontent.com/y7KKELPS9WXxGKEmwXeA",
   user_id: User.all.where(role: "admin").first.id
-)
+  )
 puts "Default Designer Lato has created"
 
 # Default Product
@@ -149,7 +149,8 @@ Product.create(
   name: 'V sign',
   description: "Some days you get the bear, and some days the bear gets you.",
   price: 850,
-  image: 'https://i.imgur.com/d5LBdoq.jpg',
+  thirtydays_status: true,
+  image: "https://cdn.filestackcontent.com/lypFCItUShKZ51cWbJdZ",
   designer_id: Designer.first.id,
   category_id: Category.find(9).id
 )
@@ -173,3 +174,185 @@ Inventory.create(
   size_name: "M"
 )
 puts "Default Inventory have created"
+
+# Default Designer 2
+Designer.create(
+  name: "Jason Vitcor",
+  brandname: "Dreamer",
+  description: "Dream as you can.",
+  image: "https://cdn.filestackcontent.com/feb2C88MTrmQJ6AIMKkq",
+  user_id: User.all.where(role: "admin").first.id
+)
+puts "Default Designer 1 Jason has created"
+
+# Default Product 2
+Product.create(
+  name: 'Flyer',
+  description: "Fly high, Dream high",
+  price: 1250,
+  thirtydays_status: true,
+  image: "https://cdn.filestackcontent.com/GRj4TauOSO7ADJYJ40aj",
+  designer_id: Designer.first.id,
+  category_id: Category.find(9).id
+)
+puts "Default Product Flyer sign has created"
+
+
+# Default Designer 3
+Designer.create(
+  name: "Vivian Lo",
+  brandname: "Queen",
+  description: "A king next to a Queen",
+  image: "https://cdn.filestackcontent.com/mVt16KsrRJKA79420VYw",
+  user_id: User.all.where(role: "admin").first.id
+)
+puts "Default Designer 3 Vivian has created"
+
+# Default Product 3
+Product.create(
+  name: 'Soft',
+  description: "Comfortable and easy to dress",
+  price: 2250,
+  thirtydays_status: true,
+  image: "https://cdn.filestackcontent.com/2bBe8k9nRXac2U24oLQ5",
+  designer_id: Designer.first.id,
+  category_id: Category.find(9).id
+)
+puts "Default Product soft sign has created"
+
+
+# Default Designer 4
+Designer.create(
+  name: "Johnny Wu",
+  brandname: "KKOKK",
+  description: "Kick Kick Out Kick Kick",
+  image: "https://cdn.filestackcontent.com/fS9kzPEwQqyYcanWNN9S",
+  user_id: User.all.where(role: "admin").first.id
+)
+puts "Default Designer Johnny has created"
+
+# Default Product 4
+Product.create(
+  name: 'Kick Vol',
+  description: "Volumn up",
+  price: 3150,
+  thirtydays_status: true,
+  image: "https://cdn.filestackcontent.com/S0BltFvQCqvQwKGYPGxD",
+  designer_id: Designer.first.id,
+  category_id: Category.find(9).id
+)
+puts "Default Product kick vol sign has created"
+
+
+
+# Default Designer 5
+Designer.create(
+  name: "Denny Chen",
+  brandname: "QDennyQ",
+  description: "Don't cry Denny",
+  image: "https://cdn.filestackcontent.com/WFYQ1naT82sCXStLqYuw",
+  user_id: User.all.where(role: "admin").first.id
+)
+puts "Default Designer Denny has created"
+
+# Default Product 5
+Product.create(
+  name: 'QQQQQQQ',
+  description: "QQ cat",
+  price: 2850,
+  thirtydays_status: true,
+  image: "https://cdn.filestackcontent.com/srlvrsgSzvaaXOH3AU8g",
+  designer_id: Designer.first.id,
+  category_id: Category.find(9).id
+)
+puts "Default Product QQQQQQQ sign has created"
+
+
+# Default Designer 6
+Designer.create(
+  name: "Tim Duncan",
+  brandname: "Timmy",
+  description: "Timmy 5 champs",
+  image: "https://cdn.filestackcontent.com/yfbEVp1RZGgQe77WaJuP",
+  user_id: User.all.where(role: "admin").first.id
+)
+puts "Default Designer Tim Duncan has created"
+
+# Default Product 6
+Product.create(
+  name: '21',
+  description: "21",
+  price: 2980,
+  thirtydays_status: true,
+  image: "https://cdn.filestackcontent.com/VsbuXnLR72fyty2CFKNg",
+  designer_id: Designer.first.id,
+  category_id: Category.find(9).id
+)
+puts "Default Product 21 sign has created"
+
+
+# Default Designer 7
+Designer.create(
+  name: "Shelly",
+  brandname: "Shiiiiiiih",
+  description: "Shih, don't make a sound",
+  image: "https://cdn.filestackcontent.com/L0cAulB1QFOfBLmu67jC",
+  user_id: User.all.where(role: "admin").first.id
+)
+puts "Default Designer Shelly has created"
+
+# Default Product 7
+Product.create(
+  name: 'Sh!!!!!!h',
+  description: "!!",
+  price: 1980,
+  thirtydays_status: true,
+  image: "https://cdn.filestackcontent.com/KF3ExWydT9CrPJ5oGaZC",
+  designer_id: Designer.first.id,
+  category_id: Category.find(9).id
+)
+puts "Default Product Sh!!!!!h sign has created"
+
+# Default Designer 8
+Designer.create(
+  name: "Dr. Paper",
+  brandname: "$ $ bill yo",
+  description: "Shih, don't make a sound",
+  image: "https://cdn.filestackcontent.com/erQpNfJAQS63Zs0BbUab",
+  user_id: User.all.where(role: "admin").first.id
+)
+puts "Default Designer Dr. paper has created"
+
+# Default Product 8
+Product.create(
+  name: 'Pepper',
+  description: "$$",
+  price: 1380,
+  thirtydays_status: true,
+  image: "https://cdn.filestackcontent.com/kdgTg1jTliUO3RgXCgeh",
+  designer_id: Designer.first.id,
+  category_id: Category.find(9).id
+)
+puts "Default Product Pepper sign has created"
+
+# Default Designer 9
+Designer.create( 
+  name: "Cris Over",
+  brandname: "XoverX",
+  description: "Cross Over",
+  image: "https://cdn.filestackcontent.com/bMQHxRatQVyak8liIzsm",
+  user_id: User.all.where(role: "admin").first.id
+)
+puts "Default Designer Cris Over has created"
+
+# Default Product 9
+Product.create(
+  name: 'Xmen',
+  description: "Wolve",
+  price: 1380,
+  thirtydays_status: true,
+  image: "https://cdn.filestackcontent.com/ECfEIwWARaOmVrkL5VcF",
+  designer_id: Designer.first.id,
+  category_id: Category.find(9).id
+)
+puts "Default Product Xmen sign has created"
