@@ -16,23 +16,7 @@
     </div>
   </div>
 </section>
-<div class="container">
-  <div class="row">
-    <div class="mr-auto ml-auto">
-      <div class="clock"></div>
-    </div>
-  </div>
-</div>
-
-<script type="text/javascript">
-  let date = new Date(), y = date.getFullYear(), m = date.getMonth();
-  let nextFirstDay = new Date(y, m + 1, 1)
-  let difSecond = (nextFirstDay.getTime() - date.getTime()) / 1000;
-  let clock = $('.clock').FlipClock(difSecond, {
-    clockFace: 'DailyCounter',
-    countdown: true
-  });
-</script>
+<%= render "shared/counterClock" %>
 
 <div class="container">
   <div class="row">
