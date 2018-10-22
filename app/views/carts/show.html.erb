@@ -60,28 +60,45 @@
 </section>
 </br>
 <%= render partial: "shared/form_error", locals: { object: @order }%>
+
 <section>
+
   <div class="container">
     <div class="row mb-5 text-uppercase mb-0 checkout">
-      <%= form_for @order do |f| %>
-      <div class="cart-header text-center">
-        <h5>Shpping Information</h5>
-      </div>
-      <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-      </div>
-      <div class="form-group">
-        <%= f.label :phone %>
-        <%= f.text_field :phone %>
-      </div>
-      <div class="form-group">
-        <%= f.label :address %>
-        <%= f.text_field :address %>
-      </div>
-      <%= f.submit "CHECKOUT", class: "btn btn-success btn-lg" %>
-      <% end %>
+      <<<<<<< HEAD <%=form_for @order do |f| %>
+        <div class="cart-header text-center">
+          <h5>Shpping Information</h5>
+        </div>
+        =======
+
+        <%= form_for @order do |f| %>
+        <div class="cart-header text-center">
+          <h5>Shpping Information</h5>
+        </div>
+        >>>>>>> e09d375b03562f35aac5d5c68565732b17dc6e8f
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="form-group">
+          <%= f.label :phone %>
+          <%= f.text_field :phone %>
+        </div>
+        <div class="form-group">
+          <%= f.label :address %>
+          <%= f.text_field :address %>
+        </div>
+        <<<<<<< HEAD <%=f.submit "CHECKOUT" , class: "btn btn-success btn-lg" %>
+          <% end %>
     </div>
   </div>
+  =======
+
+  <%= f.submit "CHECKOUT", class: "btn btn-success btn-lg" %>
+  <% end %>
+
+  </div>
+  </div>
+  >>>>>>> e09d375b03562f35aac5d5c68565732b17dc6e8f
 
 </section>
