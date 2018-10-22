@@ -83,3 +83,9 @@
 .links {
   padding-left: 1.6em;
 }
+
+/* Fix Height of Designer's photo at root page */
+.trim {
+  height: 160px;
+  overflow: hidden;
+}
