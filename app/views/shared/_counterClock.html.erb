@@ -8,31 +8,34 @@
 
 <script type="text/javascript">
   // Setup variables
-  let date = new Date(), y = date.getFullYear(), m = date.getMonth();
-  let nextFirstDay = new Date(y, m + 1, 1), fifthDay = new Date(y, m, 5), ninthDay = new Date(y, m, 9);
-  let color = "#ccc";
-  const calDif = targetDate => (targetDate.getTime() - date.getTime()) / 1000;
-  let difSecond = calDif(nextFirstDay);
-  // Define color by according today's date
-  if (date.getDate() < 9) {
-    if (date.getDate() < 5) {
-      color = "red";
-      difSecond = calDif(fifthDay);
-    } else {
-      color = "teal";
-      difSecond = calDif(ninthDay);
-    }
-  }
-  let clock = $('.clock').FlipClock(difSecond, {
-    clockFace: 'DailyCounter',
-    countdown: true,
-    callbacks: {
-      start: function () {
-        $(".inn").css("color", color);
-      },
-      interval: function () {
-        $(".inn").css("color", color);
+  setTimeout(() => {
+    let date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    let nextFirstDay = new Date(y, m + 1, 1), fifthDay = new Date(y, m, 5), ninthDay = new Date(y, m, 9);
+    let color = "#ccc";
+    const calDif = targetDate => (targetDate.getTime() - date.getTime()) / 1000;
+    let difSecond = calDif(nextFirstDay);
+    // Define color by according today's date
+    if (date.getDate() < 9) {
+      if (date.getDate() < 5) {
+        color = "red";
+        difSecond = calDif(fifthDay);
+      } else {
+        color = "teal";
+        difSecond = calDif(ninthDay);
       }
     }
-  });
+    let clock = $('.clock').FlipClock(difSecond, {
+      clockFace: 'DailyCounter',
+      countdown: true,
+      callbacks: {
+        start: function () {
+          $(".inn").css("color", color);
+        },
+        interval: function () {
+          $(".inn").css("color", color);
+        }
+      }
+    });
+  }, 10)
+
 </script>
