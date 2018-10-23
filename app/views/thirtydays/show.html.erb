@@ -80,10 +80,7 @@
                   </div>
                   <ul class="list-inline">
                     <li class="list-inline-item">
-                      <%= f.button :submit, class: "btn btn-dark btn-lg mb-1" do %>
-                      <i class="fa fa-shopping-cart mr-2"></i>
-                      Add to Cart
-                      <% end %>
+                      <%= render "shared/addToCartButton", f: f %>
                     </li>
                   </ul>
                   <% end %>
