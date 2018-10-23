@@ -20,7 +20,8 @@ class ThirtydaysController < ApplicationController
   end
 
   def category
-    @products = Product.where(thirtydays_status: true).order("RANDOM()")
+    @category = Category.find(params[:id])
+    @products = @category.products.where(thirtydays_status: true).order("RANDOM()")
   end
   
 end
