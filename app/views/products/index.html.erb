@@ -1,53 +1,61 @@
-<p>This is Index#Product</p>
+<!-- Hero Section-->
+<section class="hero">
+  <div class="container">
+   
+    <!-- Hero Content-->
+    <div class="hero-content pb-5 text-center">
+      <h1 class="hero-heading">All Products</h1>
+      <div class="row">
+        <div class="col-xl-8 offset-xl-2">
+          <p class="lead text-muted">
+            Best Quality and Best Choice
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="container">
-  <div>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="" alt="First slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="" alt="Third slide">
-        </div>
+  <div class="row">
+    <!-- Grid -->
+    <div class="products-grid col-12 sidebar-none">
+      <header class="product-grid-header">
+        
+      </header>
+      <div class="card-columns product-columns">
+        <% @products.each do |product| %>
+          <!-- product masonry-->
+          <div class="product card border-0">
+            <div class="product-image">
+              <%= image_tag product.image, class: "img-fluid" %>
+              <div class="product-hover-overlay">
+                <div class="product-hover-overlay-buttons">
+                  <%= link_to add_to_cart_product_path(product), method: :post, class:"btn btn-outline-dark btn-product-left", remote: true do %>
+                    <i class="fa fa-shopping-cart"></i>
+                  <% end %>
+                  <%= link_to product_path(designer_id: @designer, id: product), class: "btn btn-dark btn-buy" do %>
+                    <i class="fa-search fa mr-2"></i>View
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="py-2">
+              <p class="text-muted text-sm mb-1"><%= product.category.name %></p>
+              <h3 class="h6 text-uppercase mb-1">
+                <%= link_to product.name, product_path(designer_id: @designer, id: product), class: "text-dark" %>
+              </h3>
+              <span class="text-muted">$<%= product.price %></span>
+            </div>
+          </div>
+          <!-- /product masonry-->
+        <% end %>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
+    <!-- / Grid End-->
   </div>
-  <div>
-    <h1>首頁</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat pariatur deleniti eaque quo sit, illo ratione
-      aliquam explicabo quos eum rerum laborum debitis rem molestias. Ipsa est harum ea doloremque!</p>
-    <div class="card-deck">
-      <% @designer.products.each do |product| %>
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">
-            <%= product.name %>
-          </h5>
-          <p class="card-text">
-            <%= product.description %>
-          </p>
-          <a href="#" class="btn btn-primary">ADD TO CART</a>
-        </div>
-      </div>
-      <% end %>
-    </div>
-  </div>
+</div>
+
+<div class="text-center">
+  <%= paginate @products %>
 </div>
