@@ -11,6 +11,9 @@ class ThirtydaysController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
+    if @product.thirtydays_status == false
+      redirect_to designer_product_path(designer_id: @product.designer.id, id: @product.id)
+    end
     @comment = Comment.new
     @cart_item = CartItem.new
     @products = Product.where(thirtydays_status: true).sample(6)
