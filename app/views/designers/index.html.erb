@@ -1,48 +1,36 @@
 <!-- Hero Section-->
-
-
- <section>
-      <div style="background: #f8d5cf;" class="d-flex align-items-center position-relative"><img src="https://cdn.filestackcontent.com/yOsRtdLwT1yqdADuH6Px" alt="" class="bg-image">
-        <div class="container py-6">
-          <div class="row">
-            <div class="col-lg-8 col-xl-12 mx-auto text-black text-center">
-              <h5 class="text-uppercase text-black font-weight-light mb-4 letter-spacing-10"> 1 Customer could buy 1 product.   </h5>
-              <h1 class="mb-5 display-2 text-black font-weight-bold text-serif">Try It on <br> Return it in 30 days  </h1>
-              <h5 class="text-uppercase text-black font-weight-bold mb-4 letter-spacing-10"> Activity Will Start at   </h5>
-              <div class="container">
-                <div class="row">
-                  <div class="mr-auto ml-auto">
-                    <div class="clock"></div>
-                  </div>
-                </div>
-              </div>
-
-              <script type="text/javascript">
-                let date = new Date(), y = date.getFullYear(), m = date.getMonth();
-                let nextFirstDay = new Date(y, m + 1, 1)
-                let difSecond = (nextFirstDay.getTime() - date.getTime()) / 1000;
-                let clock = $('.clock').FlipClock(difSecond, {
-                  clockFace: 'DailyCounter',
-                  countdown: true
-                });
-              </script>
-              <br>
-              <p> <a href="../thirtydays.html" class="btn btn-dark">View Products        </a></p>
-            </div>
-          </div>
+<section>
+  <div style="background: #f8d5cf;" class="d-flex align-items-center position-relative">
+    <img src="https://cdn.filestackcontent.com/yOsRtdLwT1yqdADuH6Px" alt="" class="bg-image">
+    <div class="container py-6">
+      <div class="row">
+        <div class="col-lg-8 col-xl-12 mx-auto text-black text-center">
+          <h5 class="text-uppercase text-black font-weight-light mb-4 letter-spacing-10">
+            1 Customer could buy 1 product.
+          </h5>
+          <h1 class="mb-5 display-2 text-black font-weight-bold text-serif">Try It on <br> Return it in 30 days</h1>
+          <h5 class="text-uppercase text-black font-weight-bold mb-4 letter-spacing-10"> Activity Will Start at</h5>
+          <%= render "shared/counterClock" %>
+          <br>
+          <p>
+            <a href="../thirtydays.html" class="btn btn-dark">View Products</a>
+          </p>
         </div>
       </div>
-    </section>
-    <!-- Our picks section-->
-    <section>
-      <div class="container py-3">
-        <div class="row">
-          <div class="col-xl-8 mx-auto text-center mb-2">
-            <h2 class="text-uppercase">Our Selection of Designers</h2>
-            <p class="lead text-muted">Visit them and enjoy their products </p>
-          </div>
-        </div>  
-    </section>
+    </div>
+  </div>
+</section>
+<!-- Our picks section-->
+<section>
+  <div class="container py-3">
+    <div class="row">
+      <div class="col-xl-8 mx-auto text-center mb-2">
+        <h2 class="text-uppercase">Our Selection of Designers</h2>
+        <p class="lead text-muted">Visit them and enjoy their products </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="container">
   <div class="row">
@@ -54,7 +42,7 @@
         <div class="col-xl-3 col-lg-4 col-sm-6">
           <div class="product">
             <div class="product-image">
-              <%= image_tag designer.image, width: '300px', class: "img-fluid" %>
+              <%= image_tag designer.image, width: '300px', class: "img-fluid trim" %>
               <div class="product-hover-overlay">
                 <%= link_to "", designer_path(designer), class: "product-hover-overlay-link" %>
                 <div class="product-hover-overlay-buttons">
@@ -76,7 +64,7 @@
         <!-- Designers End -->
 
         <!-- 有generate kaminari paginate bootstrap style -->
-        <div class="text-center">
+        <div class="mr-auto ml-auto">
           <%= paginate @designers %>
         </div>
       </div>

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   resources :designers, only: [:index, :show] do
-    resources :products, only: [:index, :show]
+    resources :products, only: [:index, :show] do
+      resources :comments, only: [:create, :destroy]
+    end
   end
   resources :products, only: [:index, :show] do
     post :add_to_cart, on: :member
@@ -23,8 +25,7 @@ Rails.application.routes.draw do
 
   resources :thirtydays, only: [:index, :show] do
     collection do
-      get :designers, to: "thirtydays#designers"
-      get :products, to: "thirtydays#products"
+      get :category, to: "thirtydays#category"
     end
     resources :comments, only: [:create, :destroy]
   end

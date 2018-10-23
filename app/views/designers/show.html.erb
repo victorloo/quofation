@@ -3,10 +3,16 @@
   <%= image_tag @designer.image, class: "bg-image" %>
   <div class="container overlay-content hero hero-page">
     <div class="hero-content pb-5 text-center text-white">
-      <h1 class="hero-heading"><%= @designer.brandname %></h1>
-      <h1 class="hero-heading"><%= @designer.name %></h1>
+      <h1 class="hero-heading">
+        <%= @designer.brandname %>
+      </h1>
+      <h1 class="hero-heading">
+        <%= @designer.name %>
+      </h1>
       <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-      <p class="lead"><%= truncate(@designer.description, length: 80) %></p>                        
+      <p class="lead">
+        <%= truncate(@designer.description, length: 80) %>
+      </p>
     </div>
   </div>
 </section>
@@ -20,31 +26,31 @@
         </div>
       </header>
       <div class="card-columns product-columns">
-         <% @designer.products.each do |product| %>
-          <!-- product masonry-->
-          <div class="product card border-0">
-            <div class="product-image">
-              <%= image_tag product.image, class: "img-fluid" %>
-              <div class="product-hover-overlay">
-                <div class="product-hover-overlay-buttons">
-                  <%= link_to add_to_cart_product_path(product), method: :post, class:"btn btn-outline-dark btn-product-left", remote: true do %>
-                    <i class="fa fa-shopping-cart"></i>
-                  <% end %>
-                  <%= link_to designer_product_path(designer_id: @designer, id: product), class: "btn btn-dark btn-buy" do %>
-                    <i class="fa-search fa mr-2"></i>View
-                  <% end %>
-                </div>
+        <% @designer.products.each do |product| %>
+        <!-- product masonry-->
+        <div class="product card border-0">
+          <div class="product-image">
+            <%= image_tag product.image, class: "img-fluid designer-show-img" %>
+            <div class="product-hover-overlay">
+              <div class="product-hover-overlay-buttons">
+                <%= link_to designer_product_path(designer_id: @designer, id: product), class: "btn btn-dark btn-buy" do %>
+                <i class="fa-search fa mr-2"></i>View
+                <% end %>
               </div>
             </div>
-            <div class="py-2">
-              <p class="text-muted text-sm mb-1"><%= product.category.name %></p>
-              <h3 class="h6 text-uppercase mb-1">
-                <%= link_to product.name, designer_product_path(designer_id: @designer, id: product), class: "text-dark" %>
-              </h3>
-              <span class="text-muted">$<%= product.price %></span>
-            </div>
           </div>
-          <!-- /product masonry-->
+          <div class="py-2">
+            <p class="text-muted text-sm mb-1">
+              <%= product.category.name %>
+            </p>
+            <h3 class="h6 text-uppercase mb-1">
+              <%= link_to product.name, designer_product_path(designer_id: @designer, id: product), class: "text-dark" %>
+            </h3>
+            <span class="text-muted">$
+              <%= product.price %></span>
+          </div>
+        </div>
+        <!-- /product masonry-->
         <% end %>
       </div>
     </div>

@@ -8,7 +8,8 @@ class Admin::ProductsController < ApplicationController
 
   def show
     @designer = Designer.find(params[:designer_id])
-    @product = Product.find(params[:id])
+    @cart_item = CartItem.new
+    @admin_product = true
   end
 
   def new
@@ -18,7 +19,6 @@ class Admin::ProductsController < ApplicationController
 
   def edit
     @designer = Designer.find(params[:designer_id])
-    @product = Product.find(params[:id])
   end
 
   def create
@@ -37,7 +37,6 @@ class Admin::ProductsController < ApplicationController
 
   def update
     @designer = Designer.find(params[:designer_id])
-    @product = Product.find(params[:id])
     if @product.update(product_params)
       automatically_add_attributes
       flash[:notice] = "product was successfully updated"
@@ -50,7 +49,6 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     @designer = Designer.find(params[:designer_id])
-    @product = Product.find(params[:id])
     @product.destroy
     redirect_to admin_designer_path(params[:designer_id]) 
     flash[:alert] = "product was deleted"
@@ -67,7 +65,7 @@ class Admin::ProductsController < ApplicationController
 
   def set_product
     @designer = Designer.find(params[:designer_id])
-    @products = Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def automatically_add_attributes

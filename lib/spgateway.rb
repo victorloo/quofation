@@ -60,13 +60,16 @@ class Spgateway
     decipher.padding = 0
     decipher.key = self.hash_key
     decipher.iv = self.hash_iv
-     binary_encrypted = [trade_info].pack('H*') # hex to binary
+    binary_encrypted = [trade_info].pack('H*') # hex to binary
     plain = decipher.update(binary_encrypted) + decipher.final
      # strip last padding
     if plain[-1] != '}'
       plain = plain[0, plain.index(plain[-1])]
     end
-     return JSON.parse(plain)
+    if (plain[-1] != "}") && (plain[-2] != "}")
+      plain = plain + '"}}'  
+    end
+    return JSON.parse(plain)
   end
 
   def encrypt(params_data)

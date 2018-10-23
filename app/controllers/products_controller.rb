@@ -4,7 +4,12 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @products = Product.find(params[:id])
+    @product = Product.find(params[:id])
+    @comment = Comment.new
+    @cart_item = CartItem.new
+    @products = Product.all.sample(6)
+    @designer_products = @product.designer.products.sample(6)
+    @category_products = @product.category.products.sample(6)
   end
   
   def add_to_cart
@@ -19,6 +24,9 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     cart_item = current_cart.cart_items.find_by(product_id: @product)
     cart_item.destroy
+    @product.update(
+      add_to_cart_count: @product.add_to_cart_count -= 1
+    )
 
     flash[:notice] = "移除商品成功！"
     redirect_back(fallback_location: root_path)

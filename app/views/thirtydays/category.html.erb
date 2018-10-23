@@ -1,0 +1,65 @@
+<!-- Hero Section-->
+<section class="hero">
+  <div class="container">
+    <!-- Breadcrumbs -->
+    <!-- Hero Content-->
+    <div class="hero-content pb-5 text-center">
+      <h1 class="hero-heading">
+        <%= @category.name %>
+      </h1>
+      <div class="row">
+        <div class="col-xl-8 offset-xl-2">
+          <p class="lead text-muted">
+            Category Description
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="row">
+    <!-- Grid -->
+    <div class="products-grid col-12 sidebar-none">
+      <header class="product-grid-header">
+        <div class="mr-3 mb-3">
+          Showing <strong>
+            <%= @products.size %></strong>
+          products
+        </div>
+      </header>
+      <div class="card-columns product-columns">
+        <% @products.each do |product| %>
+        <!-- product masonry-->
+        <div class="product card border-0">
+          <div class="product-image">
+            <%= image_tag product.image, class: "img-fluid" %>
+            <div class="product-hover-overlay">
+              <div class="product-hover-overlay-buttons">
+                <%= link_to thirtyday_path(product), class: "btn btn-dark btn-buy" do %>
+                <i class="fa-search fa mr-2"></i>View
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="py-2">
+            <h3 class="h6 text-uppercase mb-1">
+              <%= link_to product.name, thirtyday_path(product), class: "text-dark" %>
+            </h3>
+            <span class="text-muted">$
+              <%= product.price %>
+            </span>
+            <span style="float: right; color: red;">
+              <i class="fab fa-hotjar"></i>
+              <%= product.add_to_cart_count %>
+            </span>
+          </div>
+        </div>
+        <!-- /product masonry-->
+        <% end %>
+      </div>
+    </div>
+    <!-- / Grid End-->
+  </div>
+</div>
