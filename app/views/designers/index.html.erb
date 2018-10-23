@@ -1,22 +1,36 @@
 <!-- Hero Section-->
-<section class="hero">
-  <div class="container">
-    <!-- Breadcrumbs -->
-    <ol class="breadcrumb justify-content-center">
-      <li class="breadcrumb-item">Welcome</a></li>
-    </ol>
-    <!-- Hero Content-->
-    <div class="hero-content pb-5 text-center">
-      <h1 class="hero-heading">QuoFation</h1>
+<section>
+  <div style="background: #f8d5cf;" class="d-flex align-items-center position-relative">
+    <img src="https://cdn.filestackcontent.com/yOsRtdLwT1yqdADuH6Px" alt="" class="bg-image">
+    <div class="container py-6">
       <div class="row">
-        <div class="col-xl-8 offset-xl-2">
-          <p class="lead text-muted">In Here, You Could Quote Any Fasion You Like.</p>
+        <div class="col-lg-8 col-xl-12 mx-auto text-black text-center">
+          <h5 class="text-uppercase text-black font-weight-light mb-4 letter-spacing-10">
+            1 Customer could buy 1 product.
+          </h5>
+          <h1 class="mb-5 display-2 text-black font-weight-bold text-serif">Try It on <br> Return it in 30 days</h1>
+          <h5 class="text-uppercase text-black font-weight-bold mb-4 letter-spacing-10"> Activity Will Start at</h5>
+          <%= render "shared/counterClock" %>
+          <br>
+          <p>
+            <a href="../thirtydays.html" class="btn btn-dark">View Products</a>
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-<%= render "shared/counterClock" %>
+<!-- Our picks section-->
+<section>
+  <div class="container py-3">
+    <div class="row">
+      <div class="col-xl-8 mx-auto text-center mb-2">
+        <h2 class="text-uppercase">Our Selection of Designers</h2>
+        <p class="lead text-muted">Visit them and enjoy their products </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="container">
   <div class="row">
