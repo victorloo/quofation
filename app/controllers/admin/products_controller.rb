@@ -8,6 +8,8 @@ class Admin::ProductsController < ApplicationController
 
   def show
     @designer = Designer.find(params[:designer_id])
+    @cart_item = CartItem.new
+    @admin_product = true
   end
 
   def new

@@ -73,6 +73,12 @@
                   </div>
                   <ul class="list-inline">
                     <li class="list-inline-item">
+                      <% if @admin_product %>
+                      <div class="btn btn-dark btn-lg mb-1">
+                        <i class="fa fa-shopping-cart mr-2"></i>
+                        Add to Cart
+                      </div>
+                      <% else %>
                       <% if (current_cart.products.where(thirtydays_status: true).size > 0) && (product.thirtydays_status) %>
                       <div class="btn btn-dark btn-lg mb-1">
                         <i class="fa fa-shopping-cart mr-2"></i>
@@ -82,6 +88,7 @@
                       <%= f.button :submit, class: "btn btn-dark btn-lg mb-1" do %>
                       <i class="fa fa-shopping-cart mr-2"></i>
                       Add to Cart
+                      <% end %>
                       <% end %>
                       <% end %>
                     </li>
