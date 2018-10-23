@@ -15,41 +15,44 @@
           <div class="block-header"><strong class="text-uppercase">Change your password</strong></div>
           <div class="block-body">
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-              <div class="row">
-                <div class="col-sm-12">
-                  <p class="text-muted"><%= devise_error_messages! %></p>
-                </div>
-              </div>  
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <%= f.label :current_password, 'Old password', class: "form-label" %>
-                    <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
-                  </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <p class="text-muted">
+                  <%= devise_error_messages! %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= f.label :current_password, 'Old password', class: "form-label" %>
+                  <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <%= f.label :password, 'New password', class: "form-label" %>
-                    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-                    <% if @minimum_password_length %>
-                      <p class="text-muted"><%= @minimum_password_length %> characters minimum</em></p>
-                    <% end %>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <%= f.label :password_confirmation, 'Retype new password', class: "form-label" %>
-                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-                  </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= f.label :password, 'New password', class: "form-label" %>
+                  <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+                  <% if @minimum_password_length %>
+                  <p class="text-muted">
+                    <%= @minimum_password_length %> characters minimum</em></p>
+                  <% end %>
                 </div>
               </div>
-              <div class="text-center mt-4">
-                <%= button_tag  class: "btn btn-outline-dark" do %>
-                  <i class="far fa-save mr-2"></i>Change password
-                <% end %>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= f.label :password_confirmation, 'Retype new password', class: "form-label" %>
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+                </div>
               </div>
+            </div>
+            <div class="text-center mt-4">
+              <%= button_tag  class: "btn btn-outline-dark" do %>
+              <i class="far fa-save mr-2"></i>Change password
+              <% end %>
+            </div>
             <% end %>
           </div>
         </div>
@@ -58,61 +61,57 @@
       <div class="col-xl-3 col-lg-4 mb-5">
         <div class="customer-sidebar card border-0">
           <div class="customer-profile">
-            <%= link_to  user_path(@user), class: "d-inine-block" do %>
-              <%= image_tag @user.avatar, class: "img-fluid rounded-circle customer-image" %>
-            <% end %>
-            <h5><%= @user.name %></h5>
+            <%= image_tag @user.avatar, class: "img-fluid rounded-circle customer-image" %>
+            <h5>
+              <%= @user.name %>
+            </h5>
             <% unless (@user.city == nil)  %>
-              <p class="text-muted text-sm mb-0"><%= @user.city %></p>
+            <p class="text-muted text-sm mb-0">
+              <%= @user.city %>
+            </p>
             <% end %>
           </div>
           <nav class="list-group customer-nav">
-            <%= link_to user_path(@user), class: "list-group-item d-flex justify-content-between align-items-center" do %>
-              <span>
-                <i class="fas fa-tachometer-alt"></i>
-                Dashboard
-              </span>
-            <% end %>
             <%= link_to orders_path, class: "list-group-item d-flex justify-content-between align-items-center" do %>
-              <span>
-                <i class="fas fa-list-ul"></i>
-                Orders
-              </span>
-              <div class="badge badge-pill badge-light font-weight-normal px-3">
-                <%= current_user.orders.size %>
-              </div>
+            <span>
+              <i class="fas fa-list-ul"></i>
+              Orders
+            </span>
+            <div class="badge badge-pill badge-light font-weight-normal px-3">
+              <%= current_user.orders.size %>
+            </div>
             <% end %>
             <%= link_to user_chat_rooms_path(@user), class: "list-group-item d-flex justify-content-between align-items-center" do %>
-              <span>
-                <i class="far fa-comments"></i>
-                Chatrooms
-              </span>
-              <div class="badge badge-pill badge-light font-weight-normal px-3">
-                <%= current_user.chat_rooms.size %>
-              </div>
+            <span>
+              <i class="far fa-comments"></i>
+              Chatrooms
+            </span>
+            <div class="badge badge-pill badge-light font-weight-normal px-3">
+              <%= current_user.chat_rooms.size %>
+            </div>
             <% end %>
             <% if current_user.role == "designer" %>
-              <%= link_to designer_chat_rooms_user_path, class: "list-group-item d-flex justify-content-between align-items-center" do %>
-                <span>
-                  <i class="fas fa-comment-alt"></i>
-                  Designer's
-                </span>
-                <div class="badge badge-pill badge-light font-weight-normal px-3">
-                  <%= current_user.designer.chat_rooms.size %>
-                </div>
-              <% end %>
+            <%= link_to designer_chat_rooms_user_path, class: "list-group-item d-flex justify-content-between align-items-center" do %>
+            <span>
+              <i class="fas fa-comment-alt"></i>
+              Designer's
+            </span>
+            <div class="badge badge-pill badge-light font-weight-normal px-3">
+              <%= current_user.designer.chat_rooms.size %>
+            </div>
+            <% end %>
             <% end %>
             <%= link_to edit_user_path(@user), class: "list-group-item d-flex justify-content-between align-items-center" do %>
-              <span>
-                <i class="far fa-edit"></i>
-                Profile
-              </span>
+            <span>
+              <i class="far fa-edit"></i>
+              Profile
+            </span>
             <% end %>
             <%= link_to edit_user_registration_path, class:"active list-group-item d-flex justify-content-between align-items-center" do %>
-              <span>
-                <i class="fas fa-key"></i>
-                Password
-              </span>
+            <span>
+              <i class="fas fa-key"></i>
+              Password
+            </span>
             <% end %>
           </nav>
         </div>

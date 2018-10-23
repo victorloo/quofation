@@ -12,111 +12,107 @@
     <div class="row mb-5">
       <div class="col-lg-8 col-xl-9">
         <%= simple_form_for @user do |f| %>
-          <div class="block">
-            <!-- Profile -->
-            <div class="block-header">
-              <h6 class="text-uppercase mb-0">Profile and Address</h6>
-            </div>
-            <div class="block-body">
-              <div class="row">
-                
-                  <div class="form-group col-md-6">
-                    <%= f.input :name, class: "form-control", :label_html => { class: "form-label" } %>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <%= f.input :realname, placeholder: "Name for Address", class: "form-control", :label_html => { class: "form-label" } %>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <%= f.input :phone, placeholder: "Phone for Address", class: "form-control", :label_html => { class: "form-label" } %>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <%= f.label :avatar, "Avatar", class: "form-label" %>
-                    <%= f.filestack_field :avatar, 'Upload Your Avatar!', pickerOptions: { accept: 'image/*', 'fromSources': 'local_file_system'}, id: 'unique-id', class: "form-control" %>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <%= f.input :zip, placeholder: "Zip code for Address", class: "form-control", :label_html => { class: "form-label" } %>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <%= f.input :city, placeholder: "City for Address", class: "form-control", :label_html => { class: "form-label" } %>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <%= f.input :dist, placeholder: "District fo Address", class: "form-control", :label_html => { class: "form-label" } %>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <%= f.input :address, placeholder: "Road fo Address", class: "form-control", :label_html => { class: "form-label" } %>
-                  </div>
-                
+        <div class="block">
+          <!-- Profile -->
+          <div class="block-header">
+            <h6 class="text-uppercase mb-0">Profile and Address</h6>
+          </div>
+          <div class="block-body">
+            <div class="row">
+
+              <div class="form-group col-md-6">
+                <%= f.input :name, class: "form-control", :label_html => { class: "form-label" } %>
               </div>
-              <!-- Profile end -->
+              <div class="form-group col-md-6">
+                <%= f.input :realname, placeholder: "Name for Address", class: "form-control", :label_html => { class: "form-label" } %>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.input :phone, placeholder: "Phone for Address", class: "form-control", :label_html => { class: "form-label" } %>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.label :avatar, "Avatar", class: "form-label" %>
+                <%= f.filestack_field :avatar, 'Upload Your Avatar!', pickerOptions: { accept: 'image/*', 'fromSources': 'local_file_system'}, id: 'unique-id', class: "form-control" %>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.input :zip, placeholder: "Zip code for Address", class: "form-control", :label_html => { class: "form-label" } %>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.input :city, placeholder: "City for Address", class: "form-control", :label_html => { class: "form-label" } %>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.input :dist, placeholder: "District fo Address", class: "form-control", :label_html => { class: "form-label" } %>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.input :address, placeholder: "Road fo Address", class: "form-control", :label_html => { class: "form-label" } %>
+              </div>
+
             </div>
+            <!-- Profile end -->
           </div>
-          <div class="form-group mt-3 text-center">
-            <%= button_tag  class: "btn btn-outline-dark" do %>
-              <i class="far fa-save mr-2"></i> Save changes
-            <% end %>
-          </div>
-          
+        </div>
+        <div class="form-group mt-3 text-center">
+          <%= button_tag  class: "btn btn-outline-dark" do %>
+          <i class="far fa-save mr-2"></i> Save changes
+          <% end %>
+        </div>
+
         <% end %>
       </div>
       <!-- Customer Sidebar-->
       <div class="col-xl-3 col-lg-4 mb-5">
         <div class="customer-sidebar card border-0">
           <div class="customer-profile">
-            <%= link_to  user_path(@user), class: "d-inine-block" do %>
-              <%= image_tag @user.avatar, class: "img-fluid rounded-circle customer-image" %>
-            <% end %>
-            <h5><%= @user.name %></h5>
+            <%= image_tag @user.avatar, class: "img-fluid rounded-circle customer-image" %>
+            <h5>
+              <%= @user.name %>
+            </h5>
             <% unless (@user.city == nil)  %>
-              <p class="text-muted text-sm mb-0"><%= @user.city %></p>
+            <p class="text-muted text-sm mb-0">
+              <%= @user.city %>
+            </p>
             <% end %>
           </div>
           <nav class="list-group customer-nav">
-            <%= link_to user_path(@user), class: "list-group-item d-flex justify-content-between align-items-center" do %>
-              <span>
-                <i class="fas fa-tachometer-alt"></i>
-                Dashboard
-              </span>
-            <% end %>
             <%= link_to orders_path, class: "list-group-item d-flex justify-content-between align-items-center" do %>
-              <span>
-                <i class="fas fa-list-ul"></i>
-                Orders
-              </span>
-              <div class="badge badge-pill badge-light font-weight-normal px-3">
-                <%= current_user.orders.size %>
-              </div>
+            <span>
+              <i class="fas fa-list-ul"></i>
+              Orders
+            </span>
+            <div class="badge badge-pill badge-light font-weight-normal px-3">
+              <%= current_user.orders.size %>
+            </div>
             <% end %>
             <%= link_to user_chat_rooms_path(@user), class: "list-group-item d-flex justify-content-between align-items-center" do %>
-              <span>
-                <i class="far fa-comments"></i>
-                Chatrooms
-              </span>
-              <div class="badge badge-pill badge-light font-weight-normal px-3">
-                <%= @chatrooms.size %>
-              </div>
+            <span>
+              <i class="far fa-comments"></i>
+              Chatrooms
+            </span>
+            <div class="badge badge-pill badge-light font-weight-normal px-3">
+              <%= @chatrooms.size %>
+            </div>
             <% end %>
-              <% if current_user.role == "designer" %>
-                <%= link_to designer_chat_rooms_user_path, class: "list-group-item d-flex justify-content-between align-items-center" do %>
-                <span>
-                  <i class="fas fa-comment-alt"></i>
-                  Designer's
-                </span>
-                <div class="badge badge-pill badge-light font-weight-normal px-3">
-                  <%= @des_chars.size %>
-                </div>
-              <% end %>
+            <% if current_user.role == "designer" %>
+            <%= link_to designer_chat_rooms_user_path, class: "list-group-item d-flex justify-content-between align-items-center" do %>
+            <span>
+              <i class="fas fa-comment-alt"></i>
+              Designer's
+            </span>
+            <div class="badge badge-pill badge-light font-weight-normal px-3">
+              <%= @des_chars.size %>
+            </div>
+            <% end %>
             <% end %>
             <%= link_to edit_user_path(@user), class: "active list-group-item d-flex justify-content-between align-items-center" do %>
-              <span>
-                <i class="far fa-edit"></i>
-                Profile
-              </span>
+            <span>
+              <i class="far fa-edit"></i>
+              Profile
+            </span>
             <% end %>
             <%= link_to edit_user_registration_path, class:"list-group-item d-flex justify-content-between align-items-center" do %>
-              <span>
-                <i class="fas fa-key"></i>
-                Password
-              </span>
+            <span>
+              <i class="fas fa-key"></i>
+              Password
+            </span>
             <% end %>
           </nav>
         </div>
