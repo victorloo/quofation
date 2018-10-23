@@ -14,6 +14,14 @@ class CartItemsController < ApplicationController
     end
   end
 
+  def update
+    @item = CartItem.find(params[:id])
+    if @item.update(cart_item_params)
+      flash[:notice] = "You choose another qunatity"
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
   private
 
   def cart_item_params
