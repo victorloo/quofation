@@ -4,7 +4,12 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @products = Product.find(params[:id])
+    @product = Product.find(params[:id])
+    @comment = Comment.new
+    @cart_item = CartItem.new
+    @products = Product.all.sample(6)
+    @designer_products = @product.designer.products.sample(6)
+    @category_products = @product.category.products.sample(6)
   end
   
   def add_to_cart
