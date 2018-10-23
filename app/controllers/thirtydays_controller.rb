@@ -5,8 +5,6 @@ class ThirtydaysController < ApplicationController
     Category.all.each do |cc|
       @category.push(cc)  if cc.products.where(thirtydays_status: true).size > 0
     end
-    @products = Product.where(thirtydays_status: true).order(add_to_cart_count: :desc).limit(3)
-    @rand_prod = Product.where(thirtydays_status: true).sample
   end
   
   def show
