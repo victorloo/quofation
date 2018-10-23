@@ -21,10 +21,6 @@ class ThirtydaysController < ApplicationController
     @category_products = @product.category.products.sample(6)
   end
 
-  def designers
-    @products = Product.where(thirtydays_status: true).order("RANDOM()")
-  end
-
   def products
     @products = Product.where(thirtydays_status: true).order("RANDOM()")
   end

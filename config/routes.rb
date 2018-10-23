@@ -25,7 +25,6 @@ Rails.application.routes.draw do
 
   resources :thirtydays, only: [:index, :show] do
     collection do
-      get :designers, to: "thirtydays#designers"
       get :products, to: "thirtydays#products"
     end
     resources :comments, only: [:create, :destroy]
