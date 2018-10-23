@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   resources :thirtydays, only: [:index, :show] do
     collection do
-      get :products, to: "thirtydays#products"
+      get :category, to: "thirtydays#category"
     end
     resources :comments, only: [:create, :destroy]
   end
