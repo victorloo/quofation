@@ -1,1 +1,3 @@
-<%= render partial: "shared/productShow/productShow", locals: {product: @product, comment: @comment, cart_item: @cart_item, products: @products, designer_products: @designer_products, category_products: @category_products} %>
+<%= render partial: "shared/productShow/productShow", locals: {product: @product, cart_item: @cart_item} %>
+<%= render partial: "shared/productShow/reviews", locals: {product: @product, new_comment: @comment} %>
+<%= render partial: "shared/productShow/other30days", locals: {products: @products, designer_products: @designer_products, category_products: @category_products} %>
