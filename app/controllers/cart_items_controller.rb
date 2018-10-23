@@ -6,6 +6,9 @@ class CartItemsController < ApplicationController
     @invnetory = Inventory.where(color_id: cart_item_params[:color_id], size_id: @size.id, product_id: cart_item_params[:product_id]).first
     @cart_item.inventory_id = @invnetory.id
     if @cart_item.save
+      @cart_item.product.update(
+        add_to_cart_count: @cart_item.product.add_to_cart_count += 1
+      )
       flash[:notice] = "Product was successfully added to cart."
       redirect_back(fallback_location: root_path)
     else
