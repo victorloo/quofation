@@ -19,7 +19,7 @@
     </div>
   </div>
 </section>
-<section>
+<section class="mb-5">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-xl-12">
@@ -53,8 +53,10 @@
                 </span>
               </td>
               <td class="py-4 align-middle">
-                <span class="badge text-uppercase p-2 <%= order.shipping_status == 'shipped' ? 'badge-danger' : 'badge-info' %>">
-                  <%= order.shipping_status %>
+                <span class="badge text-uppercase p-2 <%= order.shipping_count == order.order_items.size ? 'badge-danger' : 'badge-info' %>">
+                  <%= order.shipping_count %>
+                  /
+                  <%= order.order_items.size %>
                 </span>
               </td>
               <td class="py-4 align-middle">
