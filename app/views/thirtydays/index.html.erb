@@ -61,18 +61,10 @@
     </div>
     <!-- Products of Category end -->
   </div>
-</section>
-<!-- 30 Days Products end -->
-<!-- See More Button -->
-<section class="py-6 position-relative light-overlay">
-  <%= image_tag category.products.sample.image, class: "bg-image" %>
-  <div class="container">
-    <div class="overlay-content text-center text-dark">
-      <h3 class="display-1 font-weight-bold text-serif mb-4">
-        <%= link_to "See More", category_thirtydays_path(id: category.id), class: "btn btn-lg btn-block btn-outline-dark btn-font-lg" %>
-      </h3>
-    </div>
+   <div class="text-center">
+  <%= link_to "See More", category_thirtydays_path(id: category.id), class: "btn btn-outline-dark mx-1 mb-1" %>
   </div>
 </section>
-<!-- See More Button End -->
+<!-- 30 Days Products end -->
+
 <% end %>
