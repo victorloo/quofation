@@ -5,4 +5,10 @@ class OrderItem < ApplicationRecord
   def item_total
     self.quantity * self.product.price
   end
+
+  SHIPPING_STATUS = [
+    ["Not Shipped", :not_shipped],
+    ["Shipped",:shipped]
+  ]
+  
 end
