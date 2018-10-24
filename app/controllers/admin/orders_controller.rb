@@ -1,7 +1,20 @@
 class Admin::OrdersController < ApplicationController
   before_action :set_order, except: [:index, :update_order_item]
   def index
-    @orders = Order.all
+    if current_user.admin?
+      @orders = Order.all  
+    elsif current_user.role == "designer"
+      @designer = current_user.designer
+      @products = @designer.products
+      @orders = []
+      @products.each do |product|
+        if product.orders.size > 0 
+          product.orders.each do |order|
+            @orders.push(order)    
+          end
+        end
+      end
+    end
   end
 
   def edit

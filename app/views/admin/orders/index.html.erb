@@ -13,7 +13,9 @@
       <h1 class="hero-heading">All Orders</h1>
       <div class="row">
         <div class="col-xl-8 offset-xl-2">
-          <p class="lead">Display all orders for admin.</p>
+          <p class="lead">Display all orders for
+            <%= current_user.role %>.
+          </p>
         </div>
       </div>
     </div>
@@ -61,7 +63,6 @@
               </td>
               <td class="py-4 align-middle">
                 <%= link_to "View", admin_order_path(order), class: "btn btn-outline-dark btn-sm" %>
-                <%= link_to "Edit", edit_admin_order_path(order), class: "btn btn-outline-dark btn-sm" %>
                 <%= link_to "Delete", admin_order_path(order), method: :delete, data: {confirm:"Are you sure?"}, class: "btn btn-outline-danger btn-sm" %>
               </td>
             </tr>
