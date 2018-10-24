@@ -93,12 +93,14 @@
                     <span class="badge text-uppercase p-2 <%= item.shipping_status == 'shipped' ? 'badge-success' : 'badge-info' %>">
                       <%= item.shipping_status.split("_").join(" ") %>
                     </span>
+                    <% if item.product.designer.user == current_user || current_user.admin? %>
                     <span>
                       <%= simple_form_for [:admin, item] do |f| %>
                       <%= f.input :shipping_status, label: false, collection: OrderItem::SHIPPING_STATUS, label_method: :first, value_method: :second, include_blank: false %>
                       <%= f.button :submit, 'Update', class: "btn btn-outline-dark ml-2" %>
                       <% end %>
                     </span>
+                    <% end %>
                   </div>
                 </div>
               </div>
