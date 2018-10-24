@@ -5,6 +5,9 @@
       <div class="col-lg-6 py-3 order-2 order-lg-1">
         <div data-slider-id="1" class="owl-carousel owl-theme owl-dots-modern detail-full">
           <div style="background: center center url('<%= product.image %>') no-repeat; background-size: cover;" class="detail-full-item">
+            <% if product.thirtydays_status %>
+            <div class="ribbon ribbon-primary" style="margin-left: 1vw;">30 Days</div>
+            <% end %>
           </div>
         </div>
       </div>
