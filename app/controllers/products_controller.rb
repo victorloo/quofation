@@ -1,6 +1,9 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.page(params[:page]).per(9)
+    @category = []
+    Category.all.each do |cc|
+      @category.push(cc)  if cc.products.size > 0
+    end
   end
 
   def show
@@ -10,6 +13,11 @@ class ProductsController < ApplicationController
     @products = Product.all.sample(6)
     @designer_products = @product.designer.products.sample(6)
     @category_products = @product.category.products.sample(6)
+  end
+
+  def category
+    @category = Category.find(params[:id])
+    @products = @category.products.where(thirtydays_status: true).order("RANDOM()")
   end
   
   def add_to_cart
