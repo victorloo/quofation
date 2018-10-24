@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     end
     root "designers#index"
     resources :orders
+    resources :order_items, only: :update, to: "orders#update_order_item"
     resources :chat_rooms, except: [:create, :new, :show]
   end
   

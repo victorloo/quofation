@@ -26,9 +26,5 @@ class Order < ApplicationRecord
     ["Not Paid", :not_paid],
     ["Paid", :paid]
   ]
-   SHIPPING_STATUS = [
-    ["Not Shipped", :not_shipped],
-    ["Shipped",:shipped]
-  ]
 
 end

@@ -10,6 +10,7 @@ module Quofation
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    config.time_zone = "Taipei"
 
     config.filestack_rails.api_key = "APkKnpC1uRG2WeteQ05rQz"
     config.filestack_rails.client_name = "simple_twitter"
