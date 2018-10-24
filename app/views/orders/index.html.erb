@@ -41,7 +41,7 @@
               </td>
               <td class="py-4 align-middle">
                 <span class="badge text-uppercase p-2 <%= order.payment_status == 'paid' ? 'badge-success' : 'badge-info' %>">
-                  <%= order.payment_status %></span>
+                  <%= order.payment_status.split("_").join(" ") %></span>
               </td>
               <td class="py-4 align-middle">
                 <span class="badge text-uppercase p-2 <%= order.shipping_count == order.order_items.size ? 'badge-danger' : 'badge-info' %>">
