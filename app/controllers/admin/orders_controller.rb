@@ -17,6 +17,16 @@ class Admin::OrdersController < ApplicationController
     end
   end
 
+  def show
+    if current_user.role == 'designer'
+      item_leng = []
+      @order.order_items.each do |item|
+        item_leng.push(item) if item.product.designer.user == current_user
+      end
+      redirect_to admin_orders_path, notice: "Maybe you go to wrong order" if item_leng.size < 1
+    end
+  end
+
   def edit
     @order = Order.find(params[:id])
   end
