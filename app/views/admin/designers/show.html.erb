@@ -89,10 +89,12 @@
                       <% end %>
                     </td>
                     <td class="py-4 align-middle">
-                      <%= simple_form_for [:admin, @designer, product], html: { class: 'form-inline' } do |f| %>
-                      <%= f.input :thirtydays_status, label: false, as: :select, include_blank: false %> 
-                      <%= f.button :submit, 'Update', class: 'btn btn-primary ml-2' %>
-                      <% end %>
+                      <span>
+                        <%= simple_form_for [:admin, @designer, product] do |f| %>
+                        <%= f.input :thirtydays_status, label: false, as: :select, include_blank: false, class: "form-control" %> 
+                        <%= f.button :submit, 'Update', class: 'btn btn-primary ml-2' %>
+                        <% end %>
+                      </span>
                     </td>
                     <td class="py-4 align-middle">
                       <%= link_to 'Edit', edit_admin_designer_product_path(designer_id: @designer, id: product) %>
