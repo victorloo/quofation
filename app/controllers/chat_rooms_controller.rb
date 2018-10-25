@@ -9,6 +9,9 @@ class ChatRoomsController < ApplicationController
 
   def show
     @chat_room = ChatRoom.includes(:messages).find_by(id: params[:id])
+    if @chat_room.user != current_user && @chat_room.product.designer.user != current_user
+      redirect_to user_chat_rooms_path(current_user), alert: "Maybe you go to wrong chat room"
+    end
     @message = Message.new
   end
 
