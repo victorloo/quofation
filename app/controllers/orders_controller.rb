@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
           end
         end
 
-        #UserMailer.notify_order_create(@order).deliver_now!
+        UserMailer.notify_order_create(@order).deliver_now!
         redirect_to orders_path, notice: "new order created"
       else
         @items = current_cart.cart_items
