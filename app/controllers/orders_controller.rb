@@ -55,8 +55,7 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    if @order.shipping_status == "not_shipped"
-      
+    if @order.payment_status == 'not_paid' && @order.order_items.where(shipping_status: "not_shipped").size > 0
       @order.destroy
       redirect_to orders_path, alert: "order##{@order.sn} cancelled."
     end
