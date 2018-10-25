@@ -16,7 +16,7 @@
           <!-- Breadcrumbs -->
           <ol class="breadcrumb justify-content-center">
             <li class="breadcrumb-item">
-              <%= link_to "Designer's works", designer_path(product.designer) %>
+              <%= link_to "Designer Wardrobe ", designer_path(product.designer) %>
             </li>
             <li class="breadcrumb-item active">
               <%= product.category.name %>
@@ -85,7 +85,7 @@
                       <% if (current_cart.products.where(thirtydays_status: true).size > 0) && (product.thirtydays_status) %>
                       <div class="btn btn-dark btn-lg mb-1">
                         <i class="fa fa-shopping-cart mr-2"></i>
-                        Enough
+                        Occupied
                       </div>
                       <% else %>
                       <%= f.button :submit, class: "btn btn-dark btn-lg mb-1" do %>

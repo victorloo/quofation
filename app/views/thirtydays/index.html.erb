@@ -5,10 +5,15 @@
     <% if @category.find_index(category) == 0 %>
     <div class="row">
       <div class="col-xl-8 mx-auto text-center mb-5">
-        <h2 class="text-uppercase">30 Days Products</h2>
-        <p class="lead text-muted">
-          See these 30 Days Products
-        </p>
+        <h2 class="text-uppercase">Try it on
+        <br> Refund it in 30 days 
+        </h2>
+        <h1 class="lead text-muted">
+          <ul>1 customer limited to buy 1</ul>
+          <ul>1st to 5th date in each month could add 1 product to cart</ul>
+          <ul>5th to 8th date could make the payment</ul>
+          <ul>Pay the fastest, get the best</ul>
+        </h1>
       </div>
     </div>
     <% end %>
@@ -18,7 +23,7 @@
           <%= category.name %>
         </h2>
         <p class="lead text-muted">
-          See these
+          Bestselling of
           <%= category.name %>
         </p>
       </div>
@@ -59,18 +64,10 @@
     </div>
     <!-- Products of Category end -->
   </div>
-</section>
-<!-- 30 Days Products end -->
-<!-- See More Button -->
-<section class="py-6 position-relative light-overlay">
-  <%= image_tag category.products.sample.image, class: "bg-image" %>
-  <div class="container">
-    <div class="overlay-content text-center text-dark">
-      <h3 class="display-1 font-weight-bold text-serif mb-4">
-        <%= link_to "See More", category_thirtydays_path(id: category.id), class: "btn btn-lg btn-block btn-outline-dark btn-font-lg" %>
-      </h3>
-    </div>
+   <div class="text-center">
+  <%= link_to "See More", category_thirtydays_path(id: category.id), class: "btn btn-outline-dark mx-1 mb-1" %>
   </div>
 </section>
-<!-- See More Button End -->
+<!-- 30 Days Products end -->
+
 <% end %>

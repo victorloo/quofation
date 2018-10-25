@@ -1,61 +1,69 @@
-<!-- Hero Section-->
-<section class="hero">
+<% @category.each do |category| %>
+<!-- 30 Days Products -->
+<section class="py-6 <%= @category.find_index(category) % 2 == 0 ? 'bg-gray-100' : nil %>">
   <div class="container">
-   
-    <!-- Hero Content-->
-    <div class="hero-content pb-5 text-center">
-      <h1 class="hero-heading">All Products</h1>
-      <div class="row">
-        <div class="col-xl-8 offset-xl-2">
-          <p class="lead text-muted">
-            Best Quality and Best Choice
-          </p>
-        </div>
+    <% if @category.find_index(category) == 0 %>
+    <div class="row">
+      <div class="col-xl-8 mx-auto text-center mb-5">
+        <h2 class="text-uppercase">All Products</h2>
+        <p class="lead text-muted">
+          You don't wear 70% of the items in your closet - so clear out your wardrobe and buy some hew clothes.
+        </p>
       </div>
     </div>
-  </div>
-</section>
+    <% end %>
 
-<div class="container">
-  <div class="row">
-    <!-- Grid -->
-    <div class="products-grid col-12 sidebar-none">
-      <header class="product-grid-header">
-        
-      </header>
-      <div class="card-columns product-columns">
-        <% @products.each do |product| %>
-          <!-- product masonry-->
-          <div class="product card border-0">
-            <div class="product-image">
-              <%= image_tag product.image, class: "img-fluid" %>
-              <div class="product-hover-overlay">
-                <div class="product-hover-overlay-buttons">
-                  <%= link_to add_to_cart_product_path(product), method: :post, class:"btn btn-outline-dark btn-product-left", remote: true do %>
-                    <i class="fa fa-shopping-cart"></i>
-                  <% end %>
-                  <%= link_to product_path(designer_id: @designer, id: product), class: "btn btn-dark btn-buy" do %>
-                    <i class="fa-search fa mr-2"></i>View
-                  <% end %>
-                </div>
+    <div class="row">
+      <div class="col-xl-8 mx-auto text-center mb-5">
+        <h2 class="text-uppercase">
+          <%= category.name %>
+        </h2>
+        <p class="lead text-muted">
+          Try some
+          <%= category.name %>
+        </p>
+      </div>
+    </div>
+    <!-- Products of Category -->
+    <div class="row">
+      <% category.products.order(add_to_cart_count: :desc).limit(4).each do |product| %>
+      <div class="product-slider-item col-3" id="no-margin">
+        <div class="product">
+          <div class="product-image">
+            <%= image_tag product.image, alt: "product", class: "img-fluid products-index-img" %>
+            <div class="product-hover-overlay">
+              <div class="product-hover-overlay-buttons">
+                <%= link_to product_path(product), class:"btn btn-dark btn-buy" do %>
+                <i class="fa-search fa"></i>
+                <span class="btn-buy-label ml-2">View</span>
+                <% end %>
               </div>
             </div>
-            <div class="py-2">
-              <p class="text-muted text-sm mb-1"><%= product.category.name %></p>
-              <h3 class="h6 text-uppercase mb-1">
-                <%= link_to product.name, product_path(designer_id: @designer, id: product), class: "text-dark" %>
-              </h3>
-              <span class="text-muted">$<%= product.price %></span>
-            </div>
           </div>
-          <!-- /product masonry-->
-        <% end %>
+          <div class="py-2">
+            <h3 class="h6 text-uppercase mb-1">
+              <%= link_to product.name, product_path(product), class:"text-dark" %>
+            </h3>
+            <span class="text-muted font-weight-bold">
+              $
+              <%= product.price %>
+            </span>
+            <span style="float: right; color: red;">
+              <i class="fab fa-hotjar"></i>
+              <%= product.add_to_cart_count %>
+            </span>
+          </div>
+        </div>
       </div>
+      <% end %> 
     </div>
-    <!-- / Grid End-->
+    <!-- Products of Category end -->
   </div>
-</div>
+  <div class="text-center">
+  <%= link_to "See More", category_products_path(id: category.id), class: "btn btn-outline-dark mx-1 mb-1" %>
+  </div>
+  
+</section>
+<!-- all Days Products end -->
 
-<div class="text-center">
-  <%= paginate @products %>
-</div>
+<% end %>
