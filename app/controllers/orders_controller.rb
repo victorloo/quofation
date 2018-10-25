@@ -67,11 +67,17 @@ class OrdersController < ApplicationController
       flash[:alert] = "Order has been paid."
       redirect_to orders_path
     else
+      if Payment.all.empty?
+        rand_id = 1 + rand(999)
+      else
+        rand_id = Payment.last.id + 1 +rand(999)
+      end
       @payment = Payment.create!(
         sn: Time.now.to_i,
         order_id: @order.id,
         payment_method: params[:payment_method],
-        amount: @order.amount
+        amount: @order.amount,
+        rand_id: rand_id
       )
 
       render layout: false

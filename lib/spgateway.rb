@@ -22,7 +22,7 @@ class Spgateway
       Version: 1.4,
       RespondType: "JSON",
       TimeStamp: @payment.created_at.to_i,
-      MerchantOrderNo: "#{@payment.id}QA",
+      MerchantOrderNo: "#{@payment.rand_id}QuoFation",
       Amt: @payment.amount,
       ItemDesc: @payment.order.name,
       ReturnURL: return_url,
