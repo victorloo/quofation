@@ -1,6 +1,6 @@
 <% @category.each do |category| %>
 <!-- 30 Days Products -->
-<section class="py-6 <%= @category.find_index(category) % 2 == 0 ? 'bg-gray-100' : nil %>">
+<section class="py-4 <%= @category.find_index(category) % 2 == 0 ? 'bg-gray-100' : nil %>">
   <div class="container">
     <% if @category.find_index(category) == 0 %>
     <div class="row">
