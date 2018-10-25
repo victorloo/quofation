@@ -2,7 +2,7 @@ class SpgatewayController < ActionController::Base
   skip_before_action :verify_authenticity_token
   
   def return
-    payment = Payment.find_and_process(spagatway_params)
+    payment = Payment.find_and_process(spgateway_params)
     if payment&.save
       flash[:notice] = "#{payment.sn} paid"
     else
@@ -14,20 +14,19 @@ class SpgatewayController < ActionController::Base
   end
 
   def notify
-    payment = Payment.find_and_process(spagatway_params)
-     if payment&.save
+    payment = Payment.find_and_process(spgateway_params)
+    if payment&.save
       # send paid email
       render text: "1|OK"
     else
       render text: "0|ErrorMessage"
     end
-    byebug
   end
 
   private
 
   # 取出必要參數
-  def spagatway_params
+  def spgateway_params
     params.slice("Status", "MerchantID", "Version", "TradeInfo", "TradeSha")
   end
 end

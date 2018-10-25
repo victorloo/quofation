@@ -24,10 +24,10 @@
           <tbody>
             <% if @chatrooms.length == 0 %>
             <tr>
-              <td colspan="6" class="py-4 align-middle">沒有任何聊天室</td>
+              <td colspan="6" class="py-4 align-middle">There is not chat room</td>
             </tr>
             <% end %>
-            <% @chatrooms.limit(3).each do |cr| %>
+            <% @chatrooms.each do |cr| %>
             <tr>
               <th class="py-4 align-middle">#</th>
               <td class="py-4 align-middle">
@@ -38,7 +38,7 @@
               </td>
               <td class="py-4 align-middle">
                 <% if cr.messages.length == 0 %>
-                開始進行討論吧！
+                Let's Chat!
                 <% else %>
                 <span class="badge text-uppercase badge-info p-2">
                   <%= cr.messages.length %></span>

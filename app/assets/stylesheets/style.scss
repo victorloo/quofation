@@ -114,3 +114,30 @@
 .btn-font-lg {
   font-size: 1.7875rem;
 }
+
+.cart-30-image {
+  position: absolute;
+  top: -2vw;
+  left: 3vw;
+}
+
+.order-13-image {
+  position: absolute;
+  top: -2vw;
+  left: 0.3vw;
+}
+
+.chip {
+  border: 1px solid rgb(204, 204, 204);
+  width: 3vw;
+  height: 3vw;
+  margin: 0 auto;
+  .chip-child {
+    width: 2vw;
+    height: 2vw;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

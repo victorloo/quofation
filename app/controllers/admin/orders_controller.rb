@@ -17,6 +17,16 @@ class Admin::OrdersController < ApplicationController
     end
   end
 
+  def show
+    if current_user.role == 'designer'
+      item_leng = []
+      @order.order_items.each do |item|
+        item_leng.push(item) if item.product.designer.user == current_user
+      end
+      redirect_to admin_orders_path, notice: "Maybe you go to wrong order" if item_leng.size < 1
+    end
+  end
+
   def edit
     @order = Order.find(params[:id])
   end
@@ -25,7 +35,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     if @order.update(order_params)
       if @order.payment_status == "paid"
-        #UserMailer.notify_order_paid(@order).deliver_now
+        UserMailer.notify_order_paid(@order).deliver_now
       end
       redirect_to admin_orders_path, notice: "Order updated"
     else
@@ -38,12 +48,21 @@ class Admin::OrdersController < ApplicationController
     @order_item = OrderItem.find(params[:id])
     if @order_item.update(order_item_params)
       if @order_item.shipping_status == "shipped"
-        #UserMailer.notify_order_shipped(@order_item.order).deliver_now
+        UserMailer.notify_order_shipped(@order_item.order).deliver_now
       end
       redirect_to admin_order_path(@order_item.order), notice: "Order Item updated"
     else
       flash.now[:alert] = @order_item.errors.full_messages.to_sentence
       redirect_to admin_order_path(@order_item.order), alert: "There are some errors."
+    end
+  end
+
+  def destroy
+    if @order.payment_status == 'paid'
+      redirect_to admin_orders_path, alert: "The Order has be paid"
+    else
+      @order.destroy
+      redirect_to admin_orders_path, alert: "Order was deleted"
     end
   end
    

@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
           end
         end
 
-        #UserMailer.notify_order_create(@order).deliver_now!
+        UserMailer.notify_order_create(@order).deliver_now!
         redirect_to orders_path, notice: "new order created"
       else
         @items = current_cart.cart_items
@@ -55,8 +55,7 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    if @order.shipping_status == "not_shipped"
-      
+    if @order.payment_status == 'not_paid' && @order.order_items.where(shipping_status: "not_shipped").size > 0
       @order.destroy
       redirect_to orders_path, alert: "order##{@order.sn} cancelled."
     end

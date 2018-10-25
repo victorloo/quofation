@@ -58,6 +58,9 @@
                   <div class="col-4">
                     <div class="d-flex align-items-center">
                       <%= link_to product_path(item) do %>
+                      <% if item.product.thirtydays_status %>
+                      <div class="ribbon ribbon-primary order-13-image">30 Days</div>
+                      <% end %>
                       <%= image_tag item.product.image, class: "cart-item-img" %>
                       <% end %>
                       <div class="cart-title text-left">
@@ -90,15 +93,16 @@
                     <%= item.item_total %>
                   </div>
                   <div class="col-2">
-                    <span class="badge text-uppercase p-2 <%= item.shipping_status == 'shipped' ? 'badge-success' : 'badge-info' %>">
-                      <%= item.shipping_status.split("_").join(" ") %>
-                    </span>
                     <% if item.product.designer.user == current_user || current_user.admin? %>
                     <span>
                       <%= simple_form_for [:admin, item] do |f| %>
                       <%= f.input :shipping_status, label: false, collection: OrderItem::SHIPPING_STATUS, label_method: :first, value_method: :second, include_blank: false %>
                       <%= f.button :submit, 'Update', class: "btn btn-outline-dark ml-2" %>
                       <% end %>
+                    </span>
+                    <% else %>
+                    <span class="badge text-uppercase p-2 <%= item.shipping_status == 'shipped' ? 'badge-success' : 'badge-info' %>">
+                      <%= item.shipping_status.split("_").join(" ") %>
                     </span>
                     <% end %>
                   </div>
