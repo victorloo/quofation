@@ -1,10 +1,10 @@
 <% @category.each do |category| %>
 <!-- 30 Days Products -->
-<section class="py-6 <%= @category.find_index(category) % 2 == 0 ? 'bg-gray-100' : nil %>">
+<section class="py-3 <%= @category.find_index(category) % 2 == 0 ? 'bg-gray-100' : nil %>">
   <div class="container">
     <% if @category.find_index(category) == 0 %>
     <div class="row">
-      <div class="col-xl-8 mx-auto text-center mb-5">
+      <div class="col-xl-8 mx-auto text-center mb-3">
         <h2 class="text-uppercase">All Products</h2>
         <p class="lead text-muted">
           You don't wear 70% of the items in your closet - so clear out your wardrobe and buy some hew clothes.
@@ -12,9 +12,8 @@
       </div>
     </div>
     <% end %>
-
     <div class="row">
-      <div class="col-xl-8 mx-auto text-center mb-5">
+      <div class="col-xl-8 mx-auto text-center mb-3">
         <h2 class="text-uppercase">
           <%= category.name %>
         </h2>
@@ -55,15 +54,13 @@
           </div>
         </div>
       </div>
-      <% end %> 
+      <% end %>
     </div>
     <!-- Products of Category end -->
   </div>
   <div class="text-center">
-  <%= link_to "See More", category_products_path(id: category.id), class: "btn btn-outline-dark mx-1 mb-1" %>
+    <%= link_to "See More", category_products_path(id: category.id), class: "btn btn-outline-dark mx-1 mb-1" %>
   </div>
-  
 </section>
 <!-- all Days Products end -->
-
 <% end %>
