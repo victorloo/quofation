@@ -46,6 +46,15 @@ class Admin::OrdersController < ApplicationController
       redirect_to admin_order_path(@order_item.order), alert: "There are some errors."
     end
   end
+
+  def destroy
+    if @order.payment_status == 'paid'
+      redirect_to admin_orders_path, alert: "The Order has be paid"
+    else
+      @order.destroy
+      redirect_to admin_orders_path, alert: "Order was deleted"
+    end
+  end
    
   private
 
