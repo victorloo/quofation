@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-xl-8 offset-xl-2">
           <p class="lead text-muted">
-            Pick 1 form all <%= @category.name %> and try it for 30 days
+            Checkout all <%= @category.name %>
           </p>
         </div>
       </div>
@@ -34,11 +34,10 @@
         <!-- product masonry-->
         <div class="product card border-0">
           <div class="product-image">
-            <div class="ribbon ribbon-primary">30 Days</div>
             <%= image_tag product.image, class: "img-fluid" %>
             <div class="product-hover-overlay">
               <div class="product-hover-overlay-buttons">
-                <%= link_to thirtyday_path(product), class: "btn btn-dark btn-buy" do %>
+                <%= link_to product_path(product), class: "btn btn-dark btn-buy" do %>
                 <i class="fa-search fa mr-2"></i>View
                 <% end %>
               </div>
@@ -46,7 +45,7 @@
           </div>
           <div class="py-2">
             <h3 class="h6 text-uppercase mb-1">
-              <%= link_to product.name, thirtyday_path(product), class: "text-dark" %>
+              <%= link_to product.name, product_path(product), class: "text-dark" %>
             </h3>
             <span class="text-muted">$
               <%= product.price %>

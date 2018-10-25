@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  validates_presence_of :name, :address, :phone, :payment_status, :shipping_status
+  validates_presence_of :name, :address, :phone, :payment_status
    
   belongs_to :user
   has_many :order_items, dependent: :destroy
