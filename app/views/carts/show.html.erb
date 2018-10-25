@@ -143,7 +143,7 @@
                 <%= f.text_field :address, placeholder: "No.3, Beiping W. Rd., Jhongjheng District, Taipei City 100, Taiwan (R.O.C.)", class: "form-control" %>
               </div>
               <div class="form-group col-md-12">
-                <%= f.button :submit, class: "btn btn-dark" do %>
+                <%= f.button :submit, disabled: current_cart.cart_items.length < 1, class: "btn btn-dark" do %>
                 CHECKOUT
                 <i class="fa fa-angle-right ml-2"></i>
                 <% end %>
