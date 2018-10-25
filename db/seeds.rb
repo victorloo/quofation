@@ -182,9 +182,9 @@ Designer.create(
   brandname: "Dreamer",
   description: "Dream as you can.",
   image: "https://cdn.filestackcontent.com/erQpNfJAQS63Zs0BbUab",
-  user_id: 1
+  user_id: 2
 )
-puts "Default Designer 1 Jason has created"
+puts "Default Designer Jason has created"
 
 # Default Product 2
 Product.create(
@@ -206,7 +206,7 @@ Designer.create(
   brandname: "Queen",
   description: "A king next to a Queen",
   image: "https://cdn.filestackcontent.com/L0cAulB1QFOfBLmu67jC",
-  user_id: 2
+  user_id: 3
 )
 puts "Default Designer 3 Vivian has created"
 
@@ -230,7 +230,7 @@ Designer.create(
   brandname: "KKOKK",
   description: "Kick Kick Out Kick Kick",
   image: "https://cdn.filestackcontent.com/yfbEVp1RZGgQe77WaJuP",
-  user_id: 3
+  user_id: 4
 )
 puts "Default Designer Karry Kim has created"
 
@@ -255,7 +255,7 @@ Designer.create(
   brandname: "QDennyQ",
   description: "Don't cry Denny",
   image: "https://cdn.filestackcontent.com/WFYQ1naT82sCXStLqYuw",
-  user_id: 4
+  user_id: 5
 )
 puts "Default Designer Denny has created"
 
