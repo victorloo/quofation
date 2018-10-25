@@ -836,7 +836,7 @@ puts "Default Inventory 15 have created"
 # Default Inventories 16
 Inventory.create(
   amount: 2,
-  product_id: Product.find(16).id,
+  product_id: Product.find(1).id,
   color_id: Color.find(2).id,
   size_id: Size.find(3).id,
   color_name: "black",
@@ -844,7 +844,7 @@ Inventory.create(
 )
 Inventory.create(
   amount: 3,
-  product_id: Product.find(16).id,
+  product_id: Product.find(1).id,
   color_id: Color.find(1).id,
   size_id: Size.find(4).id,
   color_name: "white",
@@ -855,7 +855,7 @@ puts "Default Inventory 16 have created"
 # Default Inventories 17
 Inventory.create(
   amount: 4,
-  product_id: Product.find(17).id,
+  product_id: Product.find(2).id,
   color_id: Color.find(2).id,
   size_id: Size.find(2).id,
   color_name: "black",
@@ -863,7 +863,7 @@ Inventory.create(
 )
 Inventory.create(
   amount: 3,
-  product_id: Product.find(17).id,
+  product_id: Product.find(2).id,
   color_id: Color.find(1).id,
   size_id: Size.find(3).id,
   color_name: "white",
@@ -871,7 +871,7 @@ Inventory.create(
 )
 Inventory.create(
   amount: 3,
-  product_id: Product.find(17).id,
+  product_id: Product.find(2).id,
   color_id: Color.find(3).id,
   size_id: Size.find(4).id,
   color_name: "red",
@@ -882,7 +882,7 @@ puts "Default Inventory 17 have created"
 # Default Inventories 18
 Inventory.create(
   amount: 3,
-  product_id: Product.find(18).id,
+  product_id: Product.find(3).id,
   color_id: Color.find(2).id,
   size_id: Size.find(3).id,
   color_name: "black",
@@ -890,7 +890,7 @@ Inventory.create(
 )
 Inventory.create(
   amount: 2,
-  product_id: Product.find(18).id,
+  product_id: Product.find(3).id,
   color_id: Color.find(1).id,
   size_id: Size.find(4).id,
   color_name: "white",
@@ -898,7 +898,7 @@ Inventory.create(
 )
 Inventory.create(
   amount: 3,
-  product_id: Product.find(18).id,
+  product_id: Product.find(3).id,
   color_id: Color.find(3).id,
   size_id: Size.find(5).id,
   color_name: "red",
@@ -909,7 +909,7 @@ puts "Default Inventory 18 have created"
 # Default Inventories 19
 Inventory.create(
   amount: 2,
-  product_id: Product.find(19).id,
+  product_id: Product.find(4).id,
   color_id: Color.find(2).id,
   size_id: Size.find(1).id,
   color_name: "black",
@@ -917,7 +917,7 @@ Inventory.create(
 )
 Inventory.create(
   amount: 2,
-  product_id: Product.find(19).id,
+  product_id: Product.find(4).id,
   color_id: Color.find(1).id,
   size_id: Size.find(2).id,
   color_name: "white",
@@ -925,7 +925,7 @@ Inventory.create(
 )
 Inventory.create(
   amount: 3,
-  product_id: Product.find(19).id,
+  product_id: Product.find(4).id,
   color_id: Color.find(11).id,
   size_id: Size.find(3).id,
   color_name: "navyBlue",
@@ -936,7 +936,7 @@ puts "Default Inventory 19 have created"
 # Default Inventories 20
 Inventory.create(
   amount: 2,
-  product_id: Product.find(20).id,
+  product_id: Product.find(5).id,
   color_id: Color.find(2).id,
   size_id: Size.find(1).id,
   color_name: "black",
@@ -944,7 +944,7 @@ Inventory.create(
 )
 Inventory.create(
   amount: 2,
-  product_id: Product.find(20).id,
+  product_id: Product.find(5).id,
   color_id: Color.find(3).id,
   size_id: Size.find(2).id,
   color_name: "red",
@@ -952,14 +952,10 @@ Inventory.create(
 )
 Inventory.create(
   amount: 5,
-  product_id: Product.find(20).id,
+  product_id: Product.find(5).id,
   color_id: Color.find(11).id,
   size_id: Size.find(3).id,
   color_name: "navyBlue",
   size_name: "L"
 )
 puts "Default Inventory 20 have created"
-
-
-
-
