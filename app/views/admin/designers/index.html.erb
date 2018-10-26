@@ -6,6 +6,9 @@
       <li class="breadcrumb-item">
         <%= link_to 'Create New Designer', new_admin_designer_path %>
       </li>
+      <li class="breadcrumb-item">
+        <%= link_to "Orders", admin_orders_path %>
+      </li>
     </ol>
     <!-- Hero Content-->
     <div class="hero-content pb-5 text-center">
@@ -30,7 +33,6 @@
               <th class="py-4 text-uppercase text-sm">BrandName</th>
               <th class="py-4 text-uppercase text-sm">Description</th>
               <th class="py-4 text-uppercase text-sm">Function</th>
-              <th class="py-4 text-uppercase text-sm">Order</th>
             </tr>
           </thead>
           <tbody>
@@ -51,9 +53,6 @@
               <td class="py-4 align-middle">
                 <%= link_to 'Edit', edit_admin_designer_path(designer) %>
                 <%= link_to 'Delete', admin_designer_path(designer), method: :delete, data: {confirm:"確定刪除嗎？"} %>
-              </td>
-              <td class="py-4 align-middle">
-                <%= link_to "Orders", admin_orders_path %>
               </td>
             </tr>
           </tbody>
