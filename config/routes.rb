@@ -39,13 +39,14 @@ Rails.application.routes.draw do
   #建立後台設計師CRUD
   namespace :admin do
     resources :designers do
-      resources :products
+      resources :products, except: :index
       resources :categories
     end
     root "designers#index"
     resources :orders
     resources :order_items, only: :update, to: "orders#update_order_item"
     resources :chat_rooms, except: [:create, :new, :show]
+    resources :products, only: :index
   end
   
   resources :orders do
