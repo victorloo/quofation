@@ -3,30 +3,29 @@
     <div class="row mb-5">
       <div class="message-container">
         <div id="messages" data-chat-room-id="<%= @chat_room.id %>" class="row">
-          <%= render partial: "messages/allmessage", local: @chat_room.messages %> 
+          <%= render partial: "messages/allmessage", local: @chat_room.messages %>
         </div>
         <div class="py-5 px-3">
           <h5 class="text-uppercase mb-4">Text Message</h5>
           <div style="clear:both;">
             <%= form_for @message, url: '#', id: "contact-form", class: "form" do |f| %>
-              <div class="form-group">
-                <%= f.label :body, "Message", class: "form-label" %>
-                <%= f.text_area :body, rows: "4", placeholder: "Enter your message", class: 'form-control' %>
-                <small class="text-muted">From 2 to 1000 characters</small>
-              </div>
-              <div class="form-group">
-                <%= f.submit "Post", class: 'btn btn-outline-dark' %>
-                <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
-              </div>
+            <div class="form-group">
+              <%= f.label :body, "Message", class: "form-label" %>
+              <%= f.text_area :body, rows: "4", placeholder: "Enter your message", class: 'form-control' %>
+              <small class="text-muted">From 2 to 1000 characters</small>
+            </div>
+            <div class="form-group">
+              <%= f.submit "Post", class: 'btn btn-outline-dark' %>
+              <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+            </div>
             <% end %>
           </div>
           <% if current_user.designer != nil %>
-            <%= link_to "Back", designer_chat_rooms_user_path(current_user) %>
+          <%= link_to "Back", designer_chat_rooms_user_path(current_user) %>
           <% else %>
-            <%= link_to "Back", user_chat_rooms_path(@chat_room.user) %>
+          <%= link_to "Back", user_chat_rooms_path(@chat_room.user) %>
           <% end %>
         </div>
-        
       </div>
     </div>
   </div>
