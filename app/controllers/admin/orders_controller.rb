@@ -35,7 +35,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     if @order.update(order_params)
       if @order.payment_status == "paid"
-        UserMailer.notify_order_paid(@order).deliver_now
+        #UserMailer.notify_order_paid(@order).deliver_now
       end
       redirect_to admin_orders_path, notice: "Order updated"
     else
@@ -48,10 +48,12 @@ class Admin::OrdersController < ApplicationController
     @order_item = OrderItem.find(params[:id])
     if @order_item.update(order_item_params)
       if @order_item.shipping_status == "shipped"
-        UserMailer.notify_order_shipped(@order_item.order).deliver_now
+        @order_item.order.shipping_count += 1
+        #UserMailer.notify_order_shipped(@order_item.order).deliver_now
       end
       redirect_to admin_order_path(@order_item.order), notice: "Order Item updated"
     else
+      @order_item.order.shipping_count -= 1 if @order_item.shipping_status == "not_shipped"
       flash.now[:alert] = @order_item.errors.full_messages.to_sentence
       redirect_to admin_order_path(@order_item.order), alert: "There are some errors."
     end
