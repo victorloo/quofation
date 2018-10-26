@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
 
   def category
     @category = Category.find(params[:id])
-    @products = @category.products.where(thirtydays_status: true).order("RANDOM()")
+    @products = @category.products.order("RANDOM()")
   end
   
   def add_to_cart
