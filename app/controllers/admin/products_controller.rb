@@ -2,8 +2,7 @@ class Admin::ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @designer = Designer.find(params[:designer_id])
-    @products = @designer.products
+    @products = Product.page(params[:page]).per(10)
   end
 
   def show
