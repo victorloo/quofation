@@ -1,16 +1,16 @@
 development:
-  address: "smtp.gmail.com"
-  port: 587
-  domain: "gmail.com"
-  authentication: "plain"
-  user_name: "tripstaiwan@gmail.com"
-  password: "@admin1314"
+  address: ENV['MAILGUN_SMTP_SERVER']
+  port: ENV['MAILGUN_SMTP_PORT']
+  domain: 'pre-release-quofation.herokuapp.com'
+  user_name: ENV['MAILGUN_SMTP_LOGIN']
+  password: ENV['MAILGUN_SMTP_PASSWORD']
+  authentication: 'plain'
   enable_starttls_auto: true
 production:
-  address: "smtp.mailgun.org"
-  port: 587
-  domain: "gmail.com"
-  authentication: "plain"
-  user_name: "tripstaiwan@gmail.com"
-  password: "@admin1314"
+  address: "ENV['MAILGUN_SMTP_SERVER']"
+  port: "ENV['MAILGUN_SMTP_PORT']"
+  domain: 'pre-release-quofation.herokuapp.com'
+  user_name: "ENV['MAILGUN_SMTP_LOGIN']"
+  password: "ENV['MAILGUN_SMTP_PASSWORD']"
+  authentication: 'plain'
   enable_starttls_auto: true
