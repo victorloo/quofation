@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     current_cart.add_cart_item(@product)
 
-    flash[:notice] = "加入購物車成功！"
+    flash[:notice] = "Successfully add to cart!"
     redirect_back(fallback_location: root_path)
   end
 
@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
       add_to_cart_count: @product.add_to_cart_count -= 1
     )
 
-    flash[:notice] = "移除商品成功！"
+    flash[:notice] = "Successfully remove from cart!"
     redirect_back(fallback_location: root_path)
   end
 
