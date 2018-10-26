@@ -1,27 +1,24 @@
 class Admin::ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_designer, except: :index
 
   def index
     @products = Product.page(params[:page]).per(10)
   end
 
   def show
-    @designer = Designer.find(params[:designer_id])
     @cart_item = CartItem.new
     @admin_product = true
   end
 
   def new
-    @designer = Designer.find(params[:designer_id])
     @product = Product.new
   end
 
   def edit
-    @designer = Designer.find(params[:designer_id])
   end
 
   def create
-    @designer = Designer.find(params[:designer_id])
     @product = Product.new(product_params)
     @product.designer_id = params[:designer_id]
     if @product.save
@@ -35,7 +32,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def update
-    @designer = Designer.find(params[:designer_id])
     if @product.update(product_params)
       automatically_add_attributes
       flash[:notice] = "product was successfully updated"
@@ -47,7 +43,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def destroy
-    @designer = Designer.find(params[:designer_id])
     @product.destroy
     redirect_to admin_designer_path(params[:designer_id]) 
     flash[:alert] = "product was deleted"
@@ -63,8 +58,11 @@ class Admin::ProductsController < ApplicationController
   end
 
   def set_product
-    @designer = Designer.find(params[:designer_id])
     @product = Product.find(params[:id])
+  end
+
+  def set_designer
+    @designer = Designer.find(params[:designer_id])
   end
 
   def automatically_add_attributes
