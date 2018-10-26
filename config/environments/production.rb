@@ -43,7 +43,7 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  config.action_cable.allowed_request_origins = ['https://quofation.herokuapp.com/', 'https://quofation.herokuapp.com/']
+  config.action_cable.allowed_request_origins = ['https://pre-release-quofation.herokuapp.com/', 'https://pre-release-quofation.herokuapp.com/']
   config.action_cable.url = 'wss://quofation.herokuapp.com/cable'
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
