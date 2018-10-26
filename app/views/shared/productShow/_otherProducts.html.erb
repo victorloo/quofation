@@ -1,0 +1,127 @@
+<!-- Other Products -->
+<section class="mt-5">
+  <div class="container">
+    <ul role="tablist" class="nav nav-tabs flex-column flex-sm-row">
+      <li class="nav-item">
+        <a data-toggle="tab" href="#rand-product" role="tab" class="nav-link detail-nav-link active">
+          You might also like
+        </a>
+      </li>
+      <li class="nav-item">
+        <a data-toggle="tab" href="#designer-product" role="tab" class="nav-link detail-nav-link">
+          Designer's Product
+        </a>
+      </li>
+      <li class="nav-item">
+        <a data-toggle="tab" href="#category-product" role="tab" class="nav-link detail-nav-link">
+          Same Category
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content py-4">
+      <div id="rand-product" role="tabpanel" class="tab-pane active px-3">
+        <div class="row">
+          <% products.each do |rand_prod| %>
+          <!-- product-->
+          <div class="col-lg-2 col-md-4 col-6">
+            <div class="product">
+              <div class="product-image">
+                <%= image_tag rand_prod.image, alt: "product", class: "img-fluid other-products" %>
+                <div class="product-hover-overlay">
+                  <div class="product-hover-overlay-buttons">
+                    <%= link_to designer_product_path(designer_id: rand_prod.designer, id: rand_prod), class:"btn btn-dark btn-buy" do %>
+                    <i class="fa-search fa"></i>
+                    <span class="btn-buy-label ml-2">View</span>
+                    <% end %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="py-2">
+                <p class="text-muted text-sm mb-1">
+                  <%= rand_prod.category.name %>
+                </p>
+                <h3 class="h6 text-uppercase mb-1">
+                  <%= link_to rand_prod.name, designer_product_path(designer_id: rand_prod.designer, id: rand_prod), class:"text-dark" %>
+                </h3>
+                <span class="text-muted">$
+                  <%= rand_prod.price %></span>
+              </div>
+            </div>
+          </div>
+          <!-- /product-->
+          <% end %>
+        </div>
+      </div>
+      <div id="designer-product" role="tabpanel" class="tab-pane">
+        <div class="row">
+          <% designer_products.each do |des_prod| %>
+          <!-- product-->
+          <div class="col-lg-2 col-md-4 col-6">
+            <div class="product">
+              <div class="product-image">
+                <%= image_tag des_prod.image, alt: "product", class: "img-fluid other-products" %>
+                <div class="product-hover-overlay">
+                  <div class="product-hover-overlay-buttons">
+                    <%= link_to designer_product_path(designer_id: des_prod.designer, id: des_prod), class:"btn btn-dark btn-buy" do %>
+                    <i class="fa-search fa"></i>
+                    <span class="btn-buy-label ml-2">View</span>
+                    <% end %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="py-2">
+                <p class="text-muted text-sm mb-1">
+                  <%= des_prod.category.name %>
+                </p>
+                <h3 class="h6 text-uppercase mb-1">
+                  <%= link_to des_prod.name, designer_product_path(designer_id: des_prod.designer, id: des_prod), class:"text-dark" %>
+                </h3>
+                <span class="text-muted">$
+                  <%= des_prod.price %></span>
+              </div>
+            </div>
+          </div>
+          <!-- /product-->
+          <% end %>
+        </div>
+      </div>
+      <div id="category-product" role="tabpanel" class="tab-pane">
+        <div class="row">
+          <% category_products.each do |cat_prod| %>
+          <!-- product-->
+          <div class="col-lg-2 col-md-4 col-6">
+            <div class="product">
+              <div class="product-image">
+                <%= image_tag cat_prod.image, alt: "product", class: "img-fluid other-products" %>
+                <div class="product-hover-overlay">
+                  <div class="product-hover-overlay-buttons">
+                    <%= link_to designer_product_path(designer_id: cat_prod.designer, id: cat_prod), class:"btn btn-dark btn-buy" do %>
+                    <i class="fa-search fa"></i>
+                    <span class="btn-buy-label ml-2">View</span>
+                    <% end %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="py-2">
+                <p class="text-muted text-sm mb-1">
+                  <%= cat_prod.category.name %>
+                </p>
+                <h3 class="h6 text-uppercase mb-1">
+                  <%= link_to cat_prod.name, designer_product_path(designer_id: cat_prod.designer, id: cat_prod), class:"text-dark" %>
+                </h3>
+                <span class="text-muted">$
+                  <%= cat_prod.price %></span>
+              </div>
+            </div>
+          </div>
+          <!-- /product-->
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Other Products End -->

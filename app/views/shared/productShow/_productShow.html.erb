@@ -1,0 +1,117 @@
+<!-- Buy Product -->
+<section class="product-details">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 py-3 order-2 order-lg-1">
+        <div data-slider-id="1" class="owl-carousel owl-theme owl-dots-modern detail-full">
+          <div style="background: center center url('<%= product.image %>') no-repeat; background-size: cover;" class="detail-full-item">
+            <% if product.thirtydays_status %>
+            <div class="ribbon ribbon-primary" style="position: absolute; left: 4px;">30 Days</div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center col-lg-6 col-xl-5 pl-lg-5 mb-5 order-1 order-lg-2">
+        <div>
+          <!-- Breadcrumbs -->
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item">
+              <%= link_to "Designer Wardrobe ", designer_path(product.designer) %>
+            </li>
+            <li class="breadcrumb-item active">
+              <%= product.category.name %>
+            </li>
+          </ol>
+          <h1 class="mb-4">
+            <%= product.name %>
+          </h1>
+          <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
+            <ul class="list-inline mb-2 mb-sm-0">
+              <li class="list-inline-item h4 font-weight-light mb-0">$
+                <%= product.price %>
+              </li>
+            </ul>
+            <div class="d-flex align-items-center">
+              <span class="text-muted text-uppercase text-sm">
+                <%= product.comments.length %> reviews</span>
+            </div>
+          </div>
+          <p class="mb-4 text-muted">
+            <%= product.description %>
+          </p>
+          <!-- Rails Form -->
+          <div class="row">
+            <div class="container">
+              <ul role="tablist" class="nav nav-tabs flex-column flex-sm-row">
+                <% product.colors.uniq.each do |color| %>
+                <li class="nav-item">
+                  <a data-toggle="tab" href="#<%= color.name%>" role="tab" class="nav-link detail-nav-link <%= 'active' if product.inventories.first.color == color %>">
+                    <div class="btn-colour" style="background: #<%= color.hexcode%>"></div>
+                  </a>
+                </li>
+                <% end %>
+              </ul>
+              <div class="tab-content py-4">
+                <% product.colors.uniq.each do |color| %>
+                <div id="<%= color.name %>" role="tabpanel" class="tab-pane <%= 'active' if product.inventories.first.color == color %>">
+                  <%= form_for cart_item do |f| %>
+                  <div class="row">
+                    <div class="col-sm-6 col-lg-12 detail-option mb-3">
+                      <%= f.label :size_name, 'Size', class: "detail-option-heading font-weight-bold" do %>
+                      Size <span>(required)</span>
+                      <% end %>
+                      <%= f.select :size_name, product.inventories.where(color_name: color.name).map{ |i| [i.size.name, i.size.id] }, {}, {class: "custom-select"} %>
+                    </div>
+                    <div>
+                      <%= f.hidden_field :product_id, value: product.id %>
+                      <%= f.hidden_field :color_name , value: color.name %>
+                      <%= f.hidden_field :color_id , value: color.id %>
+                    </div>
+                    <div class="col-12 detail-option mb-5">
+                      <%= f.label :quantity, class: "detail-option-heading font-weight-bold" do %>
+                      Items <span>(only 1)</span>
+                      <% end %>
+                      <%= f.number_field :quantity, value: 1, max: 1, min: 1, class: "form-control detail-quantity" %>
+                    </div>
+                  </div>
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <% if @admin_product %>
+                      <div class="btn btn-dark btn-lg mb-1">
+                        <i class="fa fa-shopping-cart mr-2"></i>
+                        Add to Cart
+                      </div>
+                      <% else %>
+                      <% if (current_cart.products.where(thirtydays_status: true).size > 0) && (product.thirtydays_status) %>
+                      <div class="btn btn-dark btn-lg mb-1">
+                        <i class="fa fa-shopping-cart mr-2"></i>
+                        Occupied
+                      </div>
+                      <% else %>
+                      <%= f.button :submit, class: "btn btn-dark btn-lg mb-1" do %>
+                      <i class="fa fa-shopping-cart mr-2"></i>
+                      Add to Cart
+                      <% end %>
+                      <% end %>
+                      <% end %>
+                    </li>
+                  </ul>
+                  <% end %>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Buy Product End -->
+
+<script>
+  setTimeout(() => {
+    const meta = $('meta[name=csrf-token]').attr("content");
+    $('input[name=authenticity_token]').attr("value", meta);
+  }, 2000)
+</script>

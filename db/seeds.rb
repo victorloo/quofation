@@ -157,7 +157,7 @@ Product.create(
 )
 puts "Default Product V sign has created"
 
-# Default Inventories
+# Default Inventories 1
 Inventory.create(
   amount: 5,
   product_id: Product.find(1).id,
@@ -174,7 +174,7 @@ Inventory.create(
   color_name: "black",
   size_name: "M"
 )
-puts "Default Inventory have created"
+puts "Default Inventory 1 have created"
 
 # Default Designer 2
 Designer.create(
@@ -182,9 +182,9 @@ Designer.create(
   brandname: "Dreamer",
   description: "Dream as you can.",
   image: "https://cdn.filestackcontent.com/erQpNfJAQS63Zs0BbUab",
-  user_id: 1
+  user_id: 2
 )
-puts "Default Designer 1 Jason has created"
+puts "Default Designer Jason has created"
 
 # Default Product 2
 Product.create(
@@ -199,6 +199,25 @@ Product.create(
 )
 puts "Default Product Flyer sign has created"
 
+# Default Inventories 2
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(2).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(2).id,
+  color_name: "black",
+  size_name: "M"
+)
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(2).id,
+  color_id: Color.find(1).id,
+  size_id: Size.find(2).id,
+  color_name: "white",
+  size_name: "M"
+)
+puts "Default Inventory 2 have created"
+
 
 # Default Designer 3
 Designer.create(
@@ -206,7 +225,7 @@ Designer.create(
   brandname: "Queen",
   description: "A king next to a Queen",
   image: "https://cdn.filestackcontent.com/L0cAulB1QFOfBLmu67jC",
-  user_id: 2
+  user_id: 3
 )
 puts "Default Designer 3 Vivian has created"
 
@@ -223,6 +242,24 @@ Product.create(
 )
 puts "Default Product soft sign has created"
 
+# Default Inventories 3
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(3).id,
+  color_id: Color.find(7).id,
+  size_id: Size.find(3).id,
+  color_name: "yellow",
+  size_name: "L"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(3).id,
+  color_id: Color.find(8).id,
+  size_id: Size.find(4).id,
+  color_name: "hotPink",
+  size_name: "XL"
+)
+puts "Default Inventory 3 have created"
 
 # Default Designer 4
 Designer.create(
@@ -230,7 +267,7 @@ Designer.create(
   brandname: "KKOKK",
   description: "Kick Kick Out Kick Kick",
   image: "https://cdn.filestackcontent.com/yfbEVp1RZGgQe77WaJuP",
-  user_id: 3
+  user_id: 4
 )
 puts "Default Designer Karry Kim has created"
 
@@ -247,7 +284,24 @@ Product.create(
 )
 puts "Default Product kick vol sign has created"
 
-
+# Default Inventories 4
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(4).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(1).id,
+  color_name: "black",
+  size_name: "S"
+)
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(4).id,
+  color_id: Color.find(9).id,
+  size_id: Size.find(3).id,
+  color_name: "alto",
+  size_name: "L"
+)
+puts "Default Inventory 4 have created"
 
 # Default Designer 5
 Designer.create(
@@ -255,7 +309,7 @@ Designer.create(
   brandname: "QDennyQ",
   description: "Don't cry Denny",
   image: "https://cdn.filestackcontent.com/WFYQ1naT82sCXStLqYuw",
-  user_id: 4
+  user_id: 5
 )
 puts "Default Designer Denny has created"
 
@@ -271,6 +325,25 @@ Product.create(
   category_id: 7
 )
 puts "Default Product QQQQQQQ sign has created"
+
+# Default Inventories 5
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(5).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(2).id,
+  color_name: "black",
+  size_name: "M"
+)
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(5).id,
+  color_id: Color.find(1).id,
+  size_id: Size.find(3).id,
+  color_name: "white",
+  size_name: "L"
+)
+puts "Default Inventory 5 have created"
 
 
 # Default Designer 6
@@ -296,6 +369,24 @@ Product.create(
 )
 puts "Default Product 21 sign has created"
 
+# Default Inventories 6
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(6).id,
+  color_id: Color.find(1).id,
+  size_id: Size.find(2).id,
+  color_name: "white",
+  size_name: "M"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(6).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(3).id,
+  color_name: "black",
+  size_name: "L"
+)
+puts "Default Inventory 6 have created"
 
 # Default Designer 7
 Designer.create(
@@ -320,6 +411,26 @@ Product.create(
 )
 puts "Default Product Sh!!!!!h sign has created"
 
+# Default Inventories 7
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(7).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(1).id,
+  color_name: "black",
+  size_name: "S"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(7).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(2).id,
+  color_name: "black",
+  size_name: "M"
+)
+puts "Default Inventory 7 have created"
+
+
 # Default Designer 8
 Designer.create(
   name: "Dr. Paper",
@@ -343,6 +454,25 @@ Product.create(
 )
 puts "Default Product Pepper sign has created"
 
+# Default Inventories 9
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(8).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(2).id,
+  color_name: "black",
+  size_name: "M"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(8).id,
+  color_id: Color.find(14).id,
+  size_id: Size.find(3).id,
+  color_name: "pizazz",
+  size_name: "L"
+)
+puts "Default Inventory 8 have created"
+
 # Default Designer 9
 Designer.create( 
   name: "Cris Over",
@@ -365,6 +495,25 @@ Product.create(
   category_id: 1
 )
 puts "Default Product Xmen sign has created"
+
+# Default Inventories 9
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(9).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(1).id,
+  color_name: "black",
+  size_name: "S"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(9).id,
+  color_id: Color.find(3).id,
+  size_id: Size.find(2).id,
+  color_name: "red",
+  size_name: "M"
+)
+puts "Default Inventory 9 have created"
 
 # Default Designer 10
 Designer.create( 
@@ -402,6 +551,25 @@ Product.create(
 )
 puts "Default Product Slim Skirt has created"
 
+# Default Inventories 10
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(10).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(3).id,
+  color_name: "black",
+  size_name: "L"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(10).id,
+  color_id: Color.find(1).id,
+  size_id: Size.find(4).id,
+  color_name: "white",
+  size_name: "XL"
+)
+puts "Default Inventory 10 have created"
+
 # Default Designer 11
 Designer.create( 
   name: "Jacky Liq",
@@ -437,6 +605,25 @@ Product.create(
   category_id: 6
 )
 puts "Default Product Worm Coat has created"
+
+# Default Inventories 11
+Inventory.create(
+  amount: 4,
+  product_id: Product.find(11).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(3).id,
+  color_name: "black",
+  size_name: "M"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(11).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(4).id,
+  color_name: "black",
+  size_name: "XL"
+)
+puts "Default Inventory 11 have created"
 
 # Default Designer 12
 Designer.create( 
@@ -474,6 +661,26 @@ Product.create(
 )
 puts "Default Product $kirt has created"
 
+# Default Inventories 12
+Inventory.create(
+  amount: 1,
+  product_id: Product.find(12).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(2).id,
+  color_name: "black",
+  size_name: "M"
+)
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(12).id,
+  color_id: Color.find(15).id,
+  size_id: Size.find(3).id,
+  color_name: "green",
+  size_name: "L"
+)
+puts "Default Inventory 12 have created"
+
+
 # Default Designer 13
 Designer.create( 
   name: "Vicky Lo",
@@ -509,6 +716,25 @@ Product.create(
   category_id: 6
 )
 puts "Default Product White ice has created"
+
+# Default Inventories 13
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(13).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(2).id,
+  color_name: "black",
+  size_name: "M"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(13).id,
+  color_id: Color.find(10).id,
+  size_id: Size.find(2).id,
+  color_name: "seagull",
+  size_name: "M"
+)
+puts "Default Inventory 13 have created"
 
 # Default Designer 14
 Designer.create( 
@@ -546,6 +772,25 @@ Product.create(
 )
 puts "Default Product Slim Blue Skirt has created"
 
+# Default Inventories 14
+Inventory.create(
+  amount: 4,
+  product_id: Product.find(14).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(1).id,
+  color_name: "black",
+  size_name: "S"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(14).id,
+  color_id: Color.find(14).id,
+  size_id: Size.find(2).id,
+  color_name: "pizazz",
+  size_name: "M"
+)
+puts "Default Inventory 14 have created"
+
 # Default Designer 15
 Designer.create( 
   name: "Babara Dean",
@@ -569,3 +814,148 @@ Product.create(
 )
 puts "Default Product Orange has created"
 
+# Default Inventories 15
+Inventory.create(
+  amount: 4,
+  product_id: Product.find(15).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(3).id,
+  color_name: "black",
+  size_name: "L"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(15).id,
+  color_id: Color.find(3).id,
+  size_id: Size.find(4).id,
+  color_name: "red",
+  size_name: "XL"
+)
+puts "Default Inventory 15 have created"
+
+# Default Inventories 16
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(1).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(3).id,
+  color_name: "black",
+  size_name: "L"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(1).id,
+  color_id: Color.find(1).id,
+  size_id: Size.find(4).id,
+  color_name: "white",
+  size_name: "XL"
+)
+puts "Default Inventory 16 have created"
+
+# Default Inventories 17
+Inventory.create(
+  amount: 4,
+  product_id: Product.find(2).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(2).id,
+  color_name: "black",
+  size_name: "M"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(2).id,
+  color_id: Color.find(1).id,
+  size_id: Size.find(3).id,
+  color_name: "white",
+  size_name: "L"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(2).id,
+  color_id: Color.find(3).id,
+  size_id: Size.find(4).id,
+  color_name: "red",
+  size_name: "XL"
+)
+puts "Default Inventory 17 have created"
+
+# Default Inventories 18
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(3).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(3).id,
+  color_name: "black",
+  size_name: "L"
+)
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(3).id,
+  color_id: Color.find(1).id,
+  size_id: Size.find(4).id,
+  color_name: "white",
+  size_name: "XL"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(3).id,
+  color_id: Color.find(3).id,
+  size_id: Size.find(5).id,
+  color_name: "red",
+  size_name: "XXL"
+)
+puts "Default Inventory 18 have created"
+
+# Default Inventories 19
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(4).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(1).id,
+  color_name: "black",
+  size_name: "S"
+)
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(4).id,
+  color_id: Color.find(1).id,
+  size_id: Size.find(2).id,
+  color_name: "white",
+  size_name: "M"
+)
+Inventory.create(
+  amount: 3,
+  product_id: Product.find(4).id,
+  color_id: Color.find(11).id,
+  size_id: Size.find(3).id,
+  color_name: "navyBlue",
+  size_name: "L"
+)
+puts "Default Inventory 19 have created"
+
+# Default Inventories 20
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(5).id,
+  color_id: Color.find(2).id,
+  size_id: Size.find(1).id,
+  color_name: "black",
+  size_name: "S"
+)
+Inventory.create(
+  amount: 2,
+  product_id: Product.find(5).id,
+  color_id: Color.find(3).id,
+  size_id: Size.find(2).id,
+  color_name: "red",
+  size_name: "M"
+)
+Inventory.create(
+  amount: 5,
+  product_id: Product.find(5).id,
+  color_id: Color.find(11).id,
+  size_id: Size.find(3).id,
+  color_name: "navyBlue",
+  size_name: "L"
+)
+puts "Default Inventory 20 have created"

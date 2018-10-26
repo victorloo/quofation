@@ -8,7 +8,7 @@ class Payment < ApplicationRecord
   def self.find_and_process(params)
     data = Spgateway.decrypt(params['TradeInfo'], params['TradeSha'])
      if data
-      payment = Payment.find(data['Result']['MerchantOrderNo'].to_i)
+      payment = Payment.find_by_rand_id(data['Result']['MerchantOrderNo'].to_i)
       if params['Status'] == 'SUCCESS'
         payment.paid_at = Time.now
       end

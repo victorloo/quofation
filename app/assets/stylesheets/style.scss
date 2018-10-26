@@ -69,8 +69,66 @@
   border-radius: 10px;  /*圓角*/
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
- } 
+}
+
 
 .links {
   padding-left: 1.6em;
+}
+
+/* Fix Height of Designer's photo at root page */
+.trim {
+  height: 160px;
+  overflow: hidden;
+}
+
+.cart-update {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.thirtydays-index-img {
+  height: 20vw;
+  width: 20vw;
+}
+
+.other-products {
+  height: 15vw;
+  width: 22vw;
+}
+
+.designer-show-img {
+  height: 30vw;
+  width: 28vw;
+}
+
+.btn-font-lg {
+  font-size: 1.7875rem;
+}
+
+.cart-30-image {
+  position: absolute;
+  top: -2vw;
+  left: 3vw;
+}
+
+.order-13-image {
+  position: absolute;
+  top: -2vw;
+  left: 0.3vw;
+}
+
+.chip {
+  border: 1px solid rgb(204, 204, 204);
+  width: 3vw;
+  height: 3vw;
+  margin: 0 auto;
+  .chip-child {
+    width: 2vw;
+    height: 2vw;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }

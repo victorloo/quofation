@@ -1,22 +1,75 @@
-<table>
-  <tr>
-    <th>#</th>
-    <th>Order Number</th>
-    <th>Customer</th>
-    <th>Amount</th>
-    <th>Payment status</th>
-    <th>Shipping status</th>
-    <th>Order Detail</th>
-  </tr>
-  <% @orders.each do |order| %>
-    <tr>
-      <td><%= order.id %></td>
-      <td><%= order.sn %></td>
-      <td><%= order.user.email %></td>
-      <td><%= order.amount %></td>
-      <td><%= order.payment_status %></td>
-      <td><%= order.shipping_status %></td>
-      <td><%= link_to "Edit Detail", edit_admin_order_path(order) %></td>
-    </tr>
-  <% end %>
-</table>
+<!-- Hero Section-->
+<section class="hero">
+  <div class="container">
+    <!-- Breadcrumbs -->
+    <ol class="breadcrumb justify-content-center">
+      <li class="breadcrumb-item">
+        <%= link_to "Products", admin_root_path %>
+      </li>
+      <li class="breadcrumb-item active">Orders</li>
+    </ol>
+    <!-- Hero Content-->
+    <div class="hero-content pb-5 text-center">
+      <h1 class="hero-heading">All Orders</h1>
+      <div class="row">
+        <div class="col-xl-8 offset-xl-2">
+          <p class="lead">Display all orders for
+            <%= current_user.role %>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="mb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-xl-12">
+        <table class="table table-borderless table-hover table-responsive-md">
+          <thead class="bg-light">
+            <tr>
+              <th class="py-4 text-uppercase text-sm">#</th>
+              <th class="py-4 text-uppercase text-sm">Customer</th>
+              <th class="py-4 text-uppercase text-sm">Amount</th>
+              <th class="py-4 text-uppercase text-sm">Payment status</th>
+              <th class="py-4 text-uppercase text-sm">Shipping status</th>
+              <th class="py-4 text-uppercase text-sm">Order Detail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+            <tr>
+              <th class="py-4 align-middle">
+                <%= order.id %>
+              </th>
+              <td class="py-4 align-middle">
+                <%= order.user.name %>
+              </td>
+              <td class="py-4 align-middle">
+                $
+                <%= order.amount %>
+              </td>
+              <td class="py-4 align-middle">
+                <span class="badge text-uppercase p-2 <%= order.payment_status == 'paid' ? 'badge-success' : 'badge-info' %>">
+                  <%= order.payment_status %>
+                </span>
+              </td>
+              <td class="py-4 align-middle">
+                <span class="badge text-uppercase p-2 <%= order.shipping_count == order.order_items.size ? 'badge-danger' : 'badge-info' %>">
+                  <%= order.shipping_count %>
+                  /
+                  <%= order.order_items.size %> Shppied
+                </span>
+              </td>
+              <td class="py-4 align-middle">
+                <%= link_to "View", admin_order_path(order), class: "btn btn-outline-dark btn-sm" %>
+                <%= link_to "Delete", admin_order_path(order), method: :delete, data: {confirm:"Are you sure?"}, class: "btn btn-outline-danger btn-sm" %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

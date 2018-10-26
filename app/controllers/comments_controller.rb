@@ -1,11 +1,19 @@
 class CommentsController < ApplicationController
 
   def create
-    @product = Product.find(params[:thirtyday_id])
+    if params[:product_id].present?
+      @product = Product.find(params[:product_id])
+    elsif params[:thirtyday_id].present?
+      @product = Product.find(params[:thirtyday_id])
+    end
     @comment = @product.comments.build(comment_params)
     @comment.user = current_user
     @comment.save!
-    redirect_to thirtyday_path(id: @product.id)
+    if params[:product_id].present?
+      redirect_to designer_product_path(id: @product.id)
+    elsif params[:thirtyday_id].present?
+      redirect_to thirtyday_path(id: @product.id)  
+    end
   end
   
   private

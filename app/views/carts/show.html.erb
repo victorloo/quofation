@@ -1,3 +1,4 @@
+<%= render partial: "shared/form_error", locals: { object: @order }%>
 <!-- Hero Section-->
 <section class="hero">
   <div class="container">
@@ -17,88 +18,144 @@
     </div>
   </div>
 </section>
+<!-- Shopping Cart Section -->
 <section>
   <div class="container">
-    <div class="col-lg-15">
-      <div class="cart">
-        <div class="cart-header text-center">
-          <table>
-            <tr>
-              <td width="250">Item</td>
-              <td width="250">Price</td>
-              <td width="250">Quatity</td>
-              <td width="250">Total</td>
-              <td width="250"></td>
-              <td width="250">Order Summary</td>
-            </tr>
+    <div class="row mb-5">
+      <div class="col-lg-12">
+        <div class="cart">
+          <div class="cart-header text-center">
+            <div class="row">
+              <div class="col-md-2">Image</div>
+              <div class="col-md-1">Color</div>
+              <div class="col-md-2">Name</div>
+              <div class="col-md-1">Size</div>
+              <div class="col-md-2">Price</div>
+              <div class="col-md-1">Quantity</div>
+              <div class="col-md-2">Total</div>
+              <div class="col-md-1">Delete</div>
+            </div>
+          </div>
+          <div class="cart-body">
+            <% if current_cart.cart_items.empty? %>
+            <div class="cart-item">
+              <div class="row">
+                <div class="col-12 col-md-12">
+                  <p class="lead text-muted">The cart is empty</p>
+                </div>
+              </div>
+            </div>
+            <% else %>
             <% @items.each do |item| %>
-            <tr bgcolor="#ffffff" ,class="product-<%= item.product.id %>">
-              <td width="250">
-                <%= image_tag item.product.image, width:100 %></br><span>
-                  <%= item.product.name %></span></td>
-              <td width="250"><span>$
-                  <%= item.product.price %></span></td>
-              <td width="250"><span class="cart-<%= item.product.id %>-qty">
-                  <%= link_to '+', adjust_item_product_path(item.product, type: "add"), method: :post, remote: true %>
-                  <%= item.quantity %>
-                  <%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post, remote: true %></span></td>
-              <td class="item-<%= item.product.id%>-total"><span>
-                  <%= item.item_total %></span></td>
-              <td width="250">
-                <%= link_to "Detele", remove_from_cart_product_path(item.product), method: :post, remote: true %>
-              </td>
-              <td width="250">$
-                <%= current_cart.subtotal %>
-              </td>
-            </tr>
+            <!-- Product-->
+            <div class="cart-item">
+              <div class="row d-flex align-items-center text-left text-md-center">
+                <div class="col-12 col-md-2">
+                  <% if item.product.thirtydays_status %>
+                  <div class="ribbon ribbon-primary cart-30-image">30 Days</div>
+                  <% end %>
+                  <%= image_tag item.product.image, class: "cart-item-img" %>
+                </div>
+                <div class="col-12 col-md-1">
+                  <div class="chip">
+                    <div class="chip-child" style='background-color: #<%= item.color.hexcode %>'></div>
+                  </div>
+                  <%= item.color_name %>
+                </div>
+                <div class="col-12 col-md-2">
+                  <% if item.product.thirtydays_status %>
+                  <%= link_to item.product.name, thirtyday_path(item.product) %>
+                  <% else %>
+                  <%= link_to item.product.name, designer_product_path(designer_id: item.product.designer, id: item.product) %>
+                  <% end %>
+                </div>
+                <div class="col-12 col-md-1">
+                  <%= item.size_name %>
+                </div>
+                <div class="col-12 col-md-2">
+                  <%= item.product.price %>
+                </div>
+                <div class="col-12 col-md-1">
+                  <%= render "shared/updateCartItemQuantity", item: item %>
+                </div>
+                <div class="col-12 col-md-2">
+                  <%= item.item_total %>
+                </div>
+                <div class="col-12 col-md-1">
+                  <%= link_to "Detele", remove_from_cart_product_path(item.product), method: :post, remote: true %>
+                </div>
+              </div>
+            </div>
             <% end %>
-          </table>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-</br>
-<%= render partial: "shared/form_error", locals: { object: @order }%>
-
-<section>
-
-  <div class="container">
-    <div class="row mb-5 text-uppercase mb-0 checkout">
-      <<<<<<< HEAD <%=form_for @order do |f| %>
-        <div class="cart-header text-center">
-          <h5>Shpping Information</h5>
+      <div class="col-lg-4">
+        <div class="block mb-5">
+          <div class="block-header">
+            <h6 class="text-uppercase mb-0">Order Summary</h6>
+          </div>
+          <div class="block-body bg-light pt-1">
+            <p class="text-sm">Shipping and additional costs are calculated based on values you have entered.</p>
+            <ul class="order-summary mb-0 list-unstyled">
+              <li class="order-summary-item">
+                <span>Order Subtotal </span>
+                <span>
+                  $
+                  <%= current_cart.subtotal %>
+                </span>
+              </li>
+              <li class="order-summary-item">
+                <span>Shipping and handling</span>
+                <span>$0</span>
+              </li>
+              <li class="order-summary-item border-0">
+                <span>Total</span>
+                <strong class="order-summary-total">
+                  $
+                  <%= current_cart.subtotal %>
+                </strong>
+              </li>
+            </ul>
+          </div>
         </div>
-        =======
-
+      </div>
+      <div class="col-lg-8">
         <%= form_for @order do |f| %>
-        <div class="cart-header text-center">
-          <h5>Shpping Information</h5>
+        <div class="block">
+          <!-- Invoice Address-->
+          <div class="block-header">
+            <h6 class="text-uppercase mb-0">Shpping Information</h6>
+          </div>
+          <div class="block-body">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <%= f.label :name, class: "form-label" %>
+                <%= f.text_field :name, placeholder: "Joe Black", class: "form-control" %>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.label :phone, class: "form-label" %>
+                <%= f.text_field :phone, placeholder: "0912345678", class: "form-control" %>
+              </div>
+              <div class="form-group col-md-12">
+                <%= f.label :address, class: "form-label" %>
+                <%= f.text_field :address, placeholder: "No.3, Beiping W. Rd., Jhongjheng District, Taipei City 100, Taiwan (R.O.C.)", class: "form-control" %>
+              </div>
+              <div class="form-group col-md-12">
+                <%= f.button :submit, disabled: current_cart.cart_items.length < 1, class: "btn btn-dark" do %>
+                CHECKOUT
+                <i class="fa fa-angle-right ml-2"></i>
+                <% end %>
+              </div>
+            </div>
+            <!-- /Invoice Address-->
+          </div>
         </div>
-        >>>>>>> e09d375b03562f35aac5d5c68565732b17dc6e8f
-        <div class="form-group">
-          <%= f.label :name %>
-          <%= f.text_field :name %>
-        </div>
-        <div class="form-group">
-          <%= f.label :phone %>
-          <%= f.text_field :phone %>
-        </div>
-        <div class="form-group">
-          <%= f.label :address %>
-          <%= f.text_field :address %>
-        </div>
-        <<<<<<< HEAD <%=f.submit "CHECKOUT" , class: "btn btn-success btn-lg" %>
-          <% end %>
+      </div>
+      <% end %>
     </div>
   </div>
-  =======
-
-  <%= f.submit "CHECKOUT", class: "btn btn-success btn-lg" %>
-  <% end %>
-
   </div>
-  </div>
-  >>>>>>> e09d375b03562f35aac5d5c68565732b17dc6e8f
-
 </section>
+<!-- Shopping Cart Section End -->

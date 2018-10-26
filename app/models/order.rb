@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  validates_presence_of :name, :address, :phone, :payment_status, :shipping_status
+  validates_presence_of :name, :address, :phone, :payment_status
    
   belongs_to :user
   has_many :order_items, dependent: :destroy
@@ -25,10 +25,6 @@ class Order < ApplicationRecord
   PAYMENT_STATUS = [
     ["Not Paid", :not_paid],
     ["Paid", :paid]
-  ]
-   SHIPPING_STATUS = [
-    ["Not Shipped", :not_shipped],
-    ["Shipped",:shipped]
   ]
 
 end

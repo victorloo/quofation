@@ -93,9 +93,18 @@
                     <%= item.item_total %>
                   </div>
                   <div class="col-2">
+                    <% if item.product.designer.user == current_user || current_user.admin? %>
+                    <span>
+                      <%= simple_form_for [:admin, item] do |f| %>
+                      <%= f.input :shipping_status, label: false, collection: OrderItem::SHIPPING_STATUS, label_method: :first, value_method: :second, include_blank: false %>
+                      <%= f.button :submit, 'Update', class: "btn btn-outline-dark ml-2" %>
+                      <% end %>
+                    </span>
+                    <% else %>
                     <span class="badge text-uppercase p-2 <%= item.shipping_status == 'shipped' ? 'badge-success' : 'badge-info' %>">
                       <%= item.shipping_status.split("_").join(" ") %>
                     </span>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -157,28 +166,6 @@
                 </li>
               </ul>
             </div>
-          </div>
-          <div class="col-md-4">
-            <% if @order.payment_status == "not_paid" && @order.order_items.where(shipping_status: "cancelled").size < 1 %>
-            <div class="block-header">
-              <h6 class="text-uppercase mb-0">Payment Method</h6>
-            </div>
-            <% Payment::PAYMENT_METHODS.each do |method| %>
-            <div class="block-body bg-light pt-1">
-              <%= link_to method, checkout_spgateway_order_path(@order, payment_method: method), method: :post, class: "btn btn-outline-dark" %>
-            </div>
-            <% end %>
-            <% end %>
-          </div>
-          <div class="col-md-5">
-            <% if @order.payment_status == 'not_paid' && @order.order_items.where(shipping_status: "not_shipped").size > 0 %>
-            <div class="block-header">
-              <h6 class="text-uppercase mb-0">Do you want to cancel this order?</h6>
-            </div>
-            <div class="block-body bg-light pt-1">
-              <%= link_to "Cancel Order", order_path(@order), method: :patch, data: {confirm:"Are you sure?"}, class: "btn btn-outline-danger" %>
-            </div>
-            <% end %>
           </div>
         </div>
       </div>

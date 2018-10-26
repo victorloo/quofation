@@ -91,8 +91,8 @@ namespace :dev do
   #designer fake file
   task fake_designers: :environment do
     #Designer.destroy_all
-    first_designer_id =  User.where(role: "designer").first.id
-    20.times do |i|
+    first_designer_id =  User.where(role: "designer").last.id
+    5.times do |i|
       Designer.create!(
         name: FFaker::Name.first_name,
         brandname: FFaker::Lorem.word,
@@ -120,17 +120,17 @@ namespace :dev do
       )
     end
     # 30 Days Products
-    20.times do |i|
-      Product.create!(
-        name: FFaker::Lorem.word,
-        description: FFaker::Lorem.phrase,
-        price: rand(200..500),
-        thirtydays_status: true,
-        designer_id: Designer.all.sample.id,
-        image: product_image.sample,
-        category_id: Category.all.sample.id
-      )
-    end
+    #20.times do |i|
+    #  Product.create!(
+    #    name: FFaker::Lorem.word,
+    #    description: FFaker::Lorem.phrase,
+    #    price: rand(200..500),
+    #    thirtydays_status: true,
+    #    designer_id: Designer.all.sample.id,
+    #    image: product_image.sample,
+    #    category_id: Category.all.sample.id
+    #  )
+    #end
     puts "have created fake products"
     puts "now you have #{Product.count} products data"
   end
@@ -138,9 +138,11 @@ namespace :dev do
   task fake_inventories: :environment do
     #Inventory.destroy_all
     Product.all.each do |product|
+      #size_array = [1..7, 8..24, 25..37]
+      #size = size_array.sample
       3.times do |i|
         color = Color.all.sample
-        size = Size.all.sample
+        size = Size.find(rand(1..7))
         Inventory.create!(
           amount: rand(2..5),
           product_id: product.id,
