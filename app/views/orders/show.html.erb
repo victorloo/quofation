@@ -176,7 +176,7 @@
               <h6 class="text-uppercase mb-0">Do you want to cancel this order?</h6>
             </div>
             <div class="block-body bg-light pt-1">
-              <%= link_to "Cancel Order", order_path(@order), method: :patch, data: {confirm:"Are you sure?"}, class: "btn btn-outline-danger" %>
+              <%= link_to "Cancel Order", order_path(@order), method: :delete, data: {confirm:"Are you sure?"}, class: "btn btn-outline-danger" %>
             </div>
             <% end %>
           </div>
