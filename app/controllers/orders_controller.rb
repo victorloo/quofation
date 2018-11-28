@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
         end
 
         #UserMailer.notify_order_create(@order).deliver_now!
-        redirect_to order_path(@order), notice: "new order created"
+        redirect_to order_path(@order), notice: "new order created, and you can talk with designer by using chatroom at upper right corner!"
       else
         @items = current_cart.cart_items
         render "carts/show"
@@ -72,7 +72,7 @@ class OrdersController < ApplicationController
           )
         end
       end
-      
+
        @chatRoom.destroy
       @order.destroy
       redirect_to orders_path, alert: "order##{@order.sn} cancelled."
