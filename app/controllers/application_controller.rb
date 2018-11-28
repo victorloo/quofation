@@ -29,6 +29,11 @@ class ApplicationController < ActionController::Base
     else
       super
     end
+    if current_user.admin?
+      admin_root_path
+    else
+      URI.parse(request.referer).path if request.referer
+    end
   end
 
   def authenticate_admin
