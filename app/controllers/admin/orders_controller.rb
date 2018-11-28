@@ -3,7 +3,7 @@ class Admin::OrdersController < ApplicationController
   def index
     if current_user.admin?
       @orders = Order.all  
-    elsif current_user.role == "designer"
+    elsif current_user.designer?
       @designer = current_user.designer
       @products = @designer.products
       @orders = []
@@ -18,7 +18,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
-    if current_user.role == 'designer'
+    if current_user.designer?
       item_leng = []
       @order.order_items.each do |item|
         item_leng.push(item) if item.product.designer.user == current_user

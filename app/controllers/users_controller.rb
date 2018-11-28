@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
     @orders = @user.orders.order(created_at: :desc)
     @chatrooms = @user.chat_rooms.order(created_at: :desc)
-    @des_chars = current_user.designer.chat_rooms.order(created_at: :desc) if current_user.role == "designer"
+    @des_chars = current_user.designer.chat_rooms.order(created_at: :desc) if current_user.designer?
   end
 
   def edit
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     @orders = @user.orders
     @chatrooms = @user.chat_rooms
-    @des_chars = current_user.designer.chat_rooms if current_user.role == "designer"
+    @des_chars = current_user.designer.chat_rooms if current_user.designer?
   end
 
   def update
