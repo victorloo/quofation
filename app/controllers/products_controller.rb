@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: [:show, :add_to_cart, :remove_from_cart, :adjust_item]
+  
   def index
     @category = []
     Category.all.each do |cc|
@@ -7,7 +9,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
     @comment = Comment.new
     @cart_item = CartItem.new
     @products = Product.all.sample(6)
@@ -21,27 +22,22 @@ class ProductsController < ApplicationController
   end
   
   def add_to_cart
-    @product = Product.find(params[:id])
     current_cart.add_cart_item(@product)
-
     flash[:notice] = "Successfully add to cart!"
     redirect_back(fallback_location: root_path)
   end
 
   def remove_from_cart
-    @product = Product.find(params[:id])
     cart_item = current_cart.cart_items.find_by(product_id: @product)
     cart_item.destroy
     @product.update(
       add_to_cart_count: @product.add_to_cart_count -= 1
     )
-
     flash[:notice] = "Successfully remove from cart!"
     redirect_back(fallback_location: root_path)
   end
 
    def adjust_item
-    @product = Product.find(params[:id])
     cart_item = current_cart.cart_items.find_by(product_id: @product)
     if params[:type] == "add"
       cart_item.quantity += 1
@@ -55,4 +51,11 @@ class ProductsController < ApplicationController
     end
     redirect_back(fallback_location: root_path)
   end
+
+  private
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
+  
 end
