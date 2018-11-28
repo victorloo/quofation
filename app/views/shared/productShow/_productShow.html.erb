@@ -33,7 +33,12 @@
             </ul>
             <div class="d-flex align-items-center">
               <span class="text-muted text-uppercase text-sm">
-                <%= product.comments.length %> reviews</span>
+                <%= product.comments.length %> reviews
+                <% if product.comments.pluck(:privacy).include?('privacy') %>
+                / include
+                <%= product.comments.pluck(:privacy).select{|x| x == 'privacy'}.length %> private
+                <% end %>
+              </span>
             </div>
           </div>
           <p class="mb-4 text-muted">
