@@ -1,5 +1,6 @@
 class Admin::OrdersController < ApplicationController
   before_action :set_order, except: [:index, :update_order_item]
+
   def index
     if current_user.admin?
       @orders = Order.all  
@@ -28,11 +29,9 @@ class Admin::OrdersController < ApplicationController
   end
 
   def edit
-    @order = Order.find(params[:id])
   end
 
   def update
-    @order = Order.find(params[:id])
     if @order.update(order_params)
       if @order.payment_status == "paid"
         #UserMailer.notify_order_paid(@order).deliver_now
