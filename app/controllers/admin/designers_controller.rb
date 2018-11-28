@@ -36,7 +36,7 @@ class Admin::DesignersController < ApplicationController
       flash[:notice] = "Update designer successfully"
       redirect_to admin_designers_path
     else
-      flash.now[:alert] = "Fail to update designer"
+      flash[:alert] = "Fail to update designer"
       render :edit
     end
   end

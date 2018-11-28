@@ -4,7 +4,6 @@ class Admin::CategoriesController < ApplicationController
   before_action :set_designer, only: [:index, :create, :update]
   before_action :set_category, only: [:update]
 
-
   def index
     @categories = Category.all
     if params[:id]
@@ -50,6 +49,3 @@ class Admin::CategoriesController < ApplicationController
     params.require(:category).permit(:name)
   end
 end
-
-
-
