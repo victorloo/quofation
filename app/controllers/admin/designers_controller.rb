@@ -29,7 +29,6 @@ class Admin::DesignersController < ApplicationController
   end
 
   def edit
-    
   end
 
   def update

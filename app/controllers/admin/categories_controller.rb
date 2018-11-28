@@ -1,23 +1,19 @@
 class Admin::CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin
-
+  before_action :set_designer, only: [:index, :create, :update]
+  before_action :set_category, only: [:update]
 
   def index
-    @designer = Designer.find(params[:designer_id])
     @categories = Category.all
-    
-   
-
     if params[:id]
-      @category = Category.find(params[:id])
+      set_category
     else
       @category = Category.new
     end
   end
 
   def create
-   @designer = Designer.find(params[:designer_id])
    @category = Category.new(category_params)
    if @category.save
      flash[:notice] = "category was successfully created"
@@ -29,8 +25,6 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def update
-    @designer = Designer.find(params[:designer_id])
-    @category = Category.find(params[:id])
     if @category.update(category_params)
       flash[:notice] = "category was successfully updated"
       redirect_to admin_designer_path(params[:designer_id])
@@ -43,10 +37,15 @@ class Admin::CategoriesController < ApplicationController
   
   private
 
+  def set_designer
+    @designer = Designer.find(params[:designer_id])
+  end
+  
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
   def category_params
     params.require(:category).permit(:name)
   end
 end
-
-
-
