@@ -18,4 +18,8 @@ class User < ApplicationRecord
     self.role == "admin"
   end
 
+  def designer?
+    self.role == "designer"
+  end
+
 end
