@@ -53,9 +53,27 @@ class OrdersController < ApplicationController
     end
   end
 
-  def update
+  def destroy
     @order = Order.find(params[:id])
     if @order.payment_status == 'not_paid' && @order.order_items.where(shipping_status: "not_shipped").size > 0
+      orderItems = @order.order_items.map{|x| x.product_id}
+      @chatRoom
+      orderItems.each do |itemId|
+        if (ChatRoom.all.where(user_id: current_user.id, product_id: itemId).length > 0)
+          @chatRoom = ChatRoom.all.where(user_id: current_user.id, product_id: itemId).first
+        end
+      end
+
+       @order.order_items.each do |item|
+        if (Inventory.all.where(product_id: item.product_id, color_name: item.color_name, size_name: item.size_name).length > 0)
+          @inventory = Inventory.all.where(product_id: item.product_id, color_name: item.color_name, size_name: item.size_name).first
+          @inventory.update!(
+            amount: @inventory.amount+1
+          )
+        end
+      end
+      
+       @chatRoom.destroy
       @order.destroy
       redirect_to orders_path, alert: "order##{@order.sn} cancelled."
     end
