@@ -15,10 +15,10 @@ class Admin::DesignersController < ApplicationController
     if @designer.save
       @user.role = "designer"
       @user.save!
-      flash[:notice] = "成功新增設計師"
+      flash[:notice] = "Create Designer successfully"
       redirect_to admin_designers_path
     else
-      flash.now[:alert] = "新增設計師失敗"
+      flash.now[:alert] = "Fail to create designer"
       render :new
     end
   end
@@ -34,10 +34,10 @@ class Admin::DesignersController < ApplicationController
 
   def update
     if @designer.update(designer_params)
-      flash[:notice] = "設計師修改成功"
+      flash[:notice] = "Update designer successfully"
       redirect_to admin_designers_path
     else
-      flash.now[:alert] = "設計師修改失敗"
+      flash[:alert] = "Delete designer successfully"
       render :edit
     end
   end
@@ -45,7 +45,7 @@ class Admin::DesignersController < ApplicationController
   def destroy
     @designer.destroy
     redirect_to admin_designers_path
-    flash[:alert] = "設計師已刪除"
+    flash[:alert] = "Delete designer successfully"
   end
 
   private
