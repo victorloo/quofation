@@ -38,7 +38,6 @@ class ProductsController < ApplicationController
   end
 
   def adjust_item
-    
     cart_item = current_cart.cart_items.find_by(product_id: @product)
     if params[:type] == "add"
       cart_item.quantity += 1
@@ -56,6 +55,7 @@ class ProductsController < ApplicationController
   end
 
   private
+
   
   def set_product
     @product = Product.find(params[:id])

@@ -47,7 +47,7 @@
           <div class="col-sm-7 d-none d-sm-block">
             <ul class="list-inline mb-0">
               <% if current_user %>
-              <% if current_user.designer? %>
+              <% if current_user.admin? %>
               <li class="list-inline-item pr-3 border-right">
                 <%= link_to 'Admin Panel', admin_root_path %>
               </li>

@@ -40,7 +40,7 @@ class Admin::CategoriesController < ApplicationController
   def set_designer
     @designer = Designer.find(params[:designer_id])
   end
-  
+
   def set_category
     @category = Category.find(params[:id])
   end

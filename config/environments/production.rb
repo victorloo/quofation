@@ -43,8 +43,8 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  config.action_cable.allowed_request_origins = ['https://quofation.herokuapp.com/', 'https://quofation.herokuapp.com/']
-  config.action_cable.url = 'wss://quofation.herokuapp.com/cable'
+  config.action_cable.allowed_request_origins = ['https://pre-release-quofation.herokuapp.com/', 'https://pre-release-quofation.herokuapp.com/']
+  config.action_cable.url = 'wss://pre-release-quofation.herokuapp.com/cable'
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -78,7 +78,7 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
