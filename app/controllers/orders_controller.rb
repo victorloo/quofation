@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :checkout_spgateway
+  before_action :set_order, only: [:show, :destroy]
   
   def index
     @user = current_user
@@ -9,7 +10,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
   end
 
   def create
@@ -54,7 +54,6 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    @order = Order.find(params[:id])
     if @order.payment_status == 'not_paid' && @order.order_items.where(shipping_status: "not_shipped").size > 0
       orderItems = @order.order_items.map{|x| x.product_id}
       @chatRoom
@@ -103,7 +102,11 @@ class OrdersController < ApplicationController
   end
 
   private
-   
+
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
   def order_params
     params.require(:order).permit(:name, :phone, :address, :payment_method)
   end
