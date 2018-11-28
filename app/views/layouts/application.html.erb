@@ -46,11 +46,11 @@
           <div class="col-sm-7 d-none d-sm-block">
             <ul class="list-inline mb-0">
               <% if current_user %>
-              <% if current_user.role == "admin" %>
+              <% if current_user.designer? %>
               <li class="list-inline-item pr-3 border-right">
                 <%= link_to 'Admin Panel', admin_root_path %>
               </li>
-              <% elsif current_user.role=="designer" %>
+              <% elsif current_user.designer? %>
               <li class="list-inline-item pr-3 border-right">
                 <%= link_to 'Designer Panel', admin_designer_path(current_user) %>
               </li>
@@ -75,7 +75,7 @@
                 <i class="far fa-comments fa-lg"></i>
                 <% end %>
               </li>
-              <% if current_user.role == "designer" %>
+              <% if current_user.designer? %>
               <li class="list-inline-item pl-3 border-left">
                 <%= link_to designer_chat_rooms_user_path(current_user), title: "Designer's ChatRooms" do %>
                 <i class="fas fa-comment-alt fa-lg"></i>

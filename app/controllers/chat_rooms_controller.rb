@@ -4,7 +4,7 @@ class ChatRoomsController < ApplicationController
     @user = current_user
     @orders = @user.orders.order(created_at: :desc)
     @chatrooms = @user.chat_rooms.order(created_at: :desc)
-    @des_chars = current_user.designer.chat_rooms.order(created_at: :desc) if current_user.role == "designer"
+    @des_chars = current_user.designer.chat_rooms.order(created_at: :desc) if current_user.designer?
   end
 
   def show
@@ -19,7 +19,7 @@ class ChatRoomsController < ApplicationController
     @user = current_user
     @orders = @user.orders.order(created_at: :desc)
     @chatrooms = @user.chat_rooms.order(created_at: :desc)
-    @des_chars = current_user.designer.chat_rooms.order(created_at: :desc) if current_user.role == "designer"
+    @des_chars = current_user.designer.chat_rooms.order(created_at: :desc) if current_user.designer?
   end
   
   def new

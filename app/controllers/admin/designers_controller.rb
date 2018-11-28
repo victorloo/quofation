@@ -55,7 +55,7 @@ class Admin::DesignersController < ApplicationController
   end
 
   def set_designer
-    if current_user.role == "designer"
+    if current_user.designer?
       @designer = current_user.designer
     else
       @designer = Designer.find(params[:id])
