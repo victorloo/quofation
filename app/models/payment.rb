@@ -1,7 +1,7 @@
 class Payment < ApplicationRecord
   belongs_to :order
 
-  PAYMENT_METHODS = %w[Credit WebATM ATM]
+  PAYMENT_METHODS = %w[Credit WebATM]
   validates_inclusion_of :payment_method, in: PAYMENT_METHODS
   after_update :update_order_status
    
