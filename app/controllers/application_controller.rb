@@ -31,6 +31,8 @@ class ApplicationController < ActionController::Base
     end
     if current_user.admin?
       admin_root_path
+    elsif current_user.designer?
+      admin_designer_path(current_user.designer)
     else
       URI.parse(request.referer).path if request.referer
     end
