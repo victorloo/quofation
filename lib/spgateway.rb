@@ -30,16 +30,13 @@ class Spgateway
       Email: @payment.order.user.email,
       LoginType: 0,
       CREDIT: 0,
-      WEBATM: 0,
-      VACC: 0
+      WEBATM: 0
     }
     case @payment.payment_method
       when "Credit"
         spgateway_data.merge!( :CREDIT => 1 )
       when "WebATM"
         spgateway_data.merge!( :WEBATM => 1 )
-      when "ATM"
-        spgateway_data.merge!( :VACC => 1, :ExpireDate => @payment.deadline.strftime("%Y%m%d") )
     end
     
     trade_info = self.encrypt(spgateway_data)
