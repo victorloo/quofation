@@ -21,5 +21,5 @@ class User < ApplicationRecord
   def designer?
     self.role == "designer"
   end
-  
+
 end

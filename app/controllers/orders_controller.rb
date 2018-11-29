@@ -63,7 +63,7 @@ class OrdersController < ApplicationController
         end
       end
 
-       @order.order_items.each do |item|
+      @order.order_items.each do |item|
         if (Inventory.all.where(product_id: item.product_id, color_name: item.color_name, size_name: item.size_name).length > 0)
           @inventory = Inventory.all.where(product_id: item.product_id, color_name: item.color_name, size_name: item.size_name).first
           @inventory.update!(
@@ -72,7 +72,7 @@ class OrdersController < ApplicationController
         end
       end
 
-       @chatRoom.destroy
+      @chatRoom.destroy
       @order.destroy
       redirect_to orders_path, alert: "order##{@order.sn} cancelled."
     end
