@@ -1,3 +1,4 @@
+<%= render partial: "shared/header" %>
 <%= render partial: "shared/productShow/productShow", locals: {product: @product, cart_item: @cart_item} %>
 <%= render partial: "shared/productShow/reviews", locals: {product: @product, new_comment: @comment} %>
 <%= render partial: "shared/productShow/otherProducts", locals: {products: @products, designer_products: @designer_products, category_products: @category_products} %>
