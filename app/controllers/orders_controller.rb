@@ -72,7 +72,7 @@ class OrdersController < ApplicationController
         end
       end
 
-      @chatRoom.destroy
+      @chatRoom.destroy unless @chatRoom == nil
       @order.destroy
       redirect_to orders_path, alert: "order##{@order.sn} cancelled."
     end
