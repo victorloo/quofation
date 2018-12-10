@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   resources :designers, only: [:index, :show] do
-    resources :products, only: [:index, :show]
+    resources :products, only: [:index, :show] do
+      resources :comments, only: [:create, :destroy]
+    end
   end
   resources :products, only: [:index, :show] do
     post :add_to_cart, on: :member
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
     collection do
       get :category, to: "products#category"
     end
-    resources :comments, only: [:create, :destroy]
+    
   end
   
   resource :cart
