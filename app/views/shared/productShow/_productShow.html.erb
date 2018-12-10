@@ -72,12 +72,21 @@
                       <%= f.hidden_field :color_name , value: color.name %>
                       <%= f.hidden_field :color_id , value: color.id %>
                     </div>
+                    <% if product.thirtydays_status %>
                     <div class="col-12 detail-option mb-5">
                       <%= f.label :quantity, class: "detail-option-heading font-weight-bold" do %>
                       Items <span>(only 1)</span>
                       <% end %>
                       <%= f.number_field :quantity, value: 1, max: 1, min: 1, class: "form-control detail-quantity" %>
                     </div>
+                    <% else %>
+                    <div class="col-12 detail-option mb-5">
+                      <%= f.label :quantity, class: "detail-option-heading font-weight-bold" do %>
+                      Items
+                      <% end %>
+                      <%= f.number_field :quantity, value: 1, max: product.inventories.where(color_name: color.name).first.amount, min: 1, class: "form-control detail-quantity" %>
+                    </div>
+                    <% end %>
                   </div>
                   <ul class="list-inline">
                     <li class="list-inline-item">
