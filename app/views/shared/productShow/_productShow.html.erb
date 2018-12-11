@@ -87,7 +87,6 @@
                       <%= f.number_field :quantity, value: 1, max: product.inventories.where(color_name: color.name).first.amount, min: 1, class: "form-control detail-quantity" %>
                     </div>
                     <% end %>
-
                   </div>
                   <ul class="list-inline">
                     <li class="list-inline-item">

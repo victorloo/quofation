@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.save!
     if params[:product_id].present?
-      redirect_to product_path(id: @product.id)
+      redirect_to designer_product_path(designer_id: @product.designer, id: @product.id)
     elsif params[:thirtyday_id].present?
       redirect_to thirtyday_path(id: @product.id)  
     end
